@@ -136,7 +136,7 @@ License: ![License: MIT](https://img.shields.io/endpoint?url=https://raw.githubu
 [SHIELD:curseforge]: https://img.shields.io/badge/CurseForge-Listed-blue.svg?style=plastic
 
 [SHIELD:kspavc]:   https://img.shields.io/badge/KSP-AVC--supported-brightgreen.svg?style=plastic  
-[SHIELD:avcvalid]: https://github.com/zer0Kerbal/ScrapYard/actions/workflows/AVC-VersionFileValidator.yml/badge.svg?branch=base "https://github.com/zer0Kerbal/ScrapYard/actions/workflows/AVC-VersionFileValidator.yml"
+[SHIELD:avcvalid]: https://github.com/zer0Kerbal/OhScrap/workflows/Validate%20AVC%20.version%20files/badge.svg?style=plastic
 
 
 
