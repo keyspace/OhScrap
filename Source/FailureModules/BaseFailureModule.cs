@@ -10,11 +10,6 @@ namespace OhScrap
     //but this handles the stuff that all modules need (like "will I fail" etc)
     class BaseFailureModule : PartModule
     {
-        protected AudioSource ClinkingTeaspoon;
-        protected AudioSource Firepager;
-        protected AudioSource PhoneVibrating;
-        protected AudioSource Upper01;
-
         public bool ready = false;
         public bool willFail = false;
         [KSPField(isPersistant = true, guiActive = false)]
