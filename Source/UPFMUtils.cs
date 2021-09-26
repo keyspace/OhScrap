@@ -9,6 +9,7 @@ using ScrapYard;
 using ScrapYard.Modules;
 using System.Collections;
 using System.IO;
+using KSP.Localization;
 
 namespace OhScrap
 {
@@ -118,14 +119,10 @@ namespace OhScrap
                         failureSound3.Play();
                         break;
                     default:
-                        failureSound4.Play();
+                        failureSound0.Play();
                         break;
                 }
-
             }
-
-
-
         }
 
         private void ReadDefaultCfg()
@@ -196,16 +193,18 @@ namespace OhScrap
             SetNextCheck(failureModules);
             double failureRoll = _randomiser.NextDouble();
 
-            DlogWarning(String.Format("Failure Chance: {0}, Rolled: {1} Succeeded: {2}", chanceOfFailure, failureRoll, (failureRoll <= chanceOfFailure).ToString()), false);
-            //if (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().logging)
-            //{
-            //    Logger.instance.Log("Failure Chance: " + chanceOfFailure + ", Rolled: " + failureRoll + " Succeeded: " + (failureRoll <= chanceOfFailure).ToString());
-            //}
+            //DlogWarning(String.Format("Failure Chance: {0}, Rolled: {1} Succeeded: {2}", chanceOfFailure, failureRoll, (failureRoll <= chanceOfFailure).ToString()), false);
+            if (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().logging)
+            {
+                //Logger.instance.Log("Failure Chance: " + chanceOfFailure + ", Rolled: " + failureRoll + " Succeeded: " + (failureRoll <= chanceOfFailure).ToString());
+                Logger.instance.Log(String.Format("Failure Chance: {0}, Rolled: {1} Succeeded: {2}", chanceOfFailure, failureRoll, (failureRoll <= chanceOfFailure).ToString()));
+            }
 
             if (failureRoll > chanceOfFailure) return;
 
-            Dlog(String.Format("Failure Event! Safety Rating: {0}, MET: {1} ", vesselSafetyRating, FlightGlobals.ActiveVessel.missionTime));
+            //Dlog(String.Format("Failure Event! Safety Rating: {0}, MET: {1} ", vesselSafetyRating, FlightGlobals.ActiveVessel.missionTime));
             //Logger.instance.Log("Failure Event! Safety Rating: " + vesselSafetyRating + ", MET: " + FlightGlobals.ActiveVessel.missionTime);
+            Logger.instance.Log(String.Format("Failure Event! Safety Rating: {0}, MET: {1} ", vesselSafetyRating, FlightGlobals.ActiveVessel.missionTime));
 
             BaseFailureModule failedModule = null;
             int counter = failureModules.Count() - 1;
@@ -275,40 +274,44 @@ namespace OhScrap
                 if (FlightGlobals.ActiveVessel.missionTime < timeToOrbit)
                 {
                     nextFailureCheck = Planetarium.GetUniversalTime() + timeBetweenChecksRocketsAtmosphere;
-                    failureMode = "Atmosphere";
-                    sampleTime = timeToOrbit / 60 + " minutes";
+                    failureMode = "#OHS-04";
+                    sampleTime = timeToOrbit / 60 + "#OHS-00";
                 }
                 else
                 {
                     nextFailureCheck = Planetarium.GetUniversalTime() + timeBetweenChecksPlanes;
-                    failureMode = "Plane";
-                    sampleTime = "15 minutes";
+                    failureMode = "#OHS-05";
+                    sampleTime = "#OHS-01";
                 }
             }
             else if (VesselIsInLocalSpace())
             {
                 nextFailureCheck = Planetarium.GetUniversalTime() + timeBetweenChecksRocketsLocalSpace;
-                failureMode = "Local Space";
-                sampleTime = "7 days";
+                failureMode = "#OHS-06";
+                sampleTime = "#OHS-02";
             }
             else
             {
                 nextFailureCheck = Planetarium.GetUniversalTime() + timeBetweenChecksRocketsDeepSpace;
-                failureMode = "Deep Space";
-                sampleTime = "3 years";
+                failureMode = "#OHS-07";
+                sampleTime = "#OHS-03";
             }
             switch (failureMode)
             {
-                case "Atmosphere":
+                //case "Atmosphere":
+                case "#OHS-04":
                     exponent = timeToOrbit / timeBetweenChecksRocketsAtmosphere;
                     break;
-                case "Plane":
+                //case "Plane":
+                case "#OHS-05":
                     exponent = 900 / timeBetweenChecksPlanes;
                     break;
-                case "Local Space":
+                //case "Local Space":
+                case "#OHS-06":
                     exponent = FlightGlobals.GetHomeBody().solarDayLength * 7 / timeBetweenChecksRocketsLocalSpace;
                     break;
-                case "Deep Space":
+                //case "Deep Space":
+                case "#OHS-07":
                     exponent = FlightGlobals.GetHomeBody().orbit.period * 3 / timeBetweenChecksRocketsDeepSpace;
                     break;
             }
@@ -354,9 +357,9 @@ namespace OhScrap
             StringBuilder msg = new StringBuilder();
             msg.AppendLine(failedModule.part.vessel.vesselName);
             msg.AppendLine("");
-            msg.AppendLine(failedModule.part.partInfo.title + " has suffered a " + failedModule.failureType);
+            msg.AppendLine(failedModule.part.partInfo.title + " " + "#OHS-08" + " " + failedModule.failureType);
             msg.AppendLine("");
-            MessageSystem.Message m = new MessageSystem.Message("OhScrap", msg.ToString(), MessageSystemButton.MessageButtonColor.ORANGE, MessageSystemButton.ButtonIcons.ALERT);
+            MessageSystem.Message m = new MessageSystem.Message("#OHS-09", msg.ToString(), MessageSystemButton.MessageButtonColor.ORANGE, MessageSystemButton.ButtonIcons.ALERT);
             MessageSystem.Instance.AddMessage(m);
             Debug.Log("[OhScrap]: " + failedModule.SYP.ID + " of type " + failedModule.part.partInfo.title + " has suffered a " + failedModule.failureType);
             TimeWarp.SetRate(0, true);
@@ -501,64 +504,70 @@ namespace OhScrap
             switch (vesselSafetyRating)
             {
                 case 10:
-                    s = "(Excellent)";
+                    s = "#OHS-10";
                     break;
                 case 9:
-                    s = "(Excellent)";
+                    s = "#OHS-10";
                     break;
                 case 8:
-                    s = "(Good)";
+                    s = "#OHS-11";
                     break;
                 case 7:
-                    s = "(Good)";
+                    s = "#OHS-11";
                     break;
                 case 6:
-                    s = "(Average)";
+                    s = "#OHS-12";
                     break;
                 case 5:
-                    s = "(Average)";
+                    s = "#OHS-12";
                     break;
                 case 4:
-                    s = "(Poor)";
+                    s = "#OHS-13";
                     break;
                 case 3:
-                    s = "(Poor)";
+                    s = "#OHS-13";
                     break;
                 case 2:
-                    s = "(Terrible)";
+                    s = "#OHS-14";
                     break;
                 case 1:
-                    s = "(Terrible)";
+                    s = "#OHS-14";
                     break;
                 case 0:
-                    s = "(Failure Imminent)";
+                    s = "#OHS-15";
                     break;
                 default:
-                    s = "(Invalid)";
+                    s = "#OHS-16";
                     break;
             }
             if (vesselSafetyRating == -1 || editorConstruct == null || editorConstruct.parts.Count() == 0)
             {
                 if (HighLogic.LoadedSceneIsEditor || vesselSafetyRating == -1)
                 {
-                    GUILayout.Label("No parts detected. Place or right click on a part");
+                    GUILayout.Label(Localizer.Format("#OHS-17"));
                     return;
                 }
             }
-            GUILayout.Label("Vessel Safety Rating: " + vesselSafetyRating + " " + s);
+            //GUILayout.Label(Localizer.Format("#OHS-18" + ": ") + vesselSafetyRating + " " + s);
+            GUILayout.Label(Localizer.Format("#OHS-18", vesselSafetyRating, s));
             advancedDisplay = File.Exists(KSPUtil.ApplicationRootPath + "GameData/OhScrap/debug.txt");
             if (advancedDisplay)
             {
-                GUILayout.Label("WARNING! CALCULATIONS ARE EXPERIMENTAL");
-                GUILayout.Label("MODE: " + failureMode);
-                GUILayout.Label("Chance of Failure in next " + sampleTime + ": " + displayFailureChance + "%");
+                GUILayout.Label(Localizer.Format("#OHS-19"));
+                GUILayout.Label(Localizer.Format("#OHS-20", failureMode));
+                //GUILayout.Label("Chance of Failure in next " + sampleTime + ": " + displayFailureChance + "%");
+                GUILayout.Label(Localizer.Format("#OHS-21", sampleTime, displayFailureChance));
             }
             if (worstPart != null)
             {
-                GUILayout.Label("Worst Part: " + worstPart.partInfo.title);
-                if (GUILayout.Button("Highlight Worst Part")) highlightWorstPart = !highlightWorstPart;
+                //GUILayout.Label("Worst Part: " + worstPart.partInfo.title);
+                GUILayout.Label(Localizer.Format("#OHS-22", worstPart.partInfo.title));
+
+                //if (GUILayout.Button("Highlight Worst Part")) highlightWorstPart = !highlightWorstPart;
+                if (GUILayout.Button(Localizer.Format("#OHS-23"))) highlightWorstPart = !highlightWorstPart;
             }
-            if (GUILayout.Button("Close"))
+            //if (GUILayout.Button("Close"))
+            if (GUILayout.Button(Localizer.Format("#OHS-24")))
             {
                 display = false;
                 ToggleWindow();
