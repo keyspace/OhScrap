@@ -56,7 +56,8 @@ namespace OhScrap
             for (int i = 0; i < nodes.Count(); i++)
             {
                 ConfigNode cn = nodes.ElementAt(i);
-                string s = cn.GetValue("Name");
+                //string s = cn.GetValue("Name");
+                _= cn.GetValue("Name");
             }
             Debug.Log("[OhScrap]: Loaded");
         }

@@ -4,6 +4,14 @@
         <name>OhScrap</name>
     </assembly>
     <members>
+        <member name="M:OhScrap.KRASHWrapper.GetMemberInfoValue(System.Reflection.MemberInfo,System.Object)">
+            <summary>
+            Gets the member information value.
+            </summary>
+            <param name="member">The member.</param>
+            <param name="sourceObject">The source object.</param>
+            <returns></returns>
+        </member>
         <member name="P:OhScrap.StageRecoveryWrapper.StageRecoveryAvailable">
             <summary>
             Check this to see if the addon is available. If this returns false, no additional API calls should be made!
@@ -94,6 +102,10 @@
             <param name="member"></param>
             <param name="sourceObject"></param>
             <returns></returns>
+        </member>
+        <member name="M:OhScrap.ModuleUPFMEvents.ToggleHighlight">
+            This toggles the part failure highlight on and off (player initiated)
+            [KSPEvent(active = false, guiActive = true, guiActiveUnfocused = false, externalToEVAOnly = false, guiName = "Toggle Failure Highlight")]
         </member>
     </members>
 </doc>

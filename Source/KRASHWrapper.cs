@@ -534,15 +534,30 @@ namespace OhScrap
         }
 
         /* A helper function I use since I'm bad at reflection. It's for getting the value of a MemberInfo */
+        /// <summary>
+        /// Gets the member information value.
+        /// </summary>
+        /// <param name="member">The member.</param>
+        /// <param name="sourceObject">The source object.</param>
+        /// <returns></returns>
         private static object GetMemberInfoValue(System.Reflection.MemberInfo member, object sourceObject)
         {
             object newVal;
-            if (member is System.Reflection.FieldInfo)
-                newVal = ((System.Reflection.FieldInfo)member).GetValue(sourceObject);
+            if (member is System.Reflection.FieldInfo info)
+                newVal = info.GetValue(sourceObject);
             else
                 newVal = ((System.Reflection.PropertyInfo)member).GetValue(sourceObject, null);
             return newVal;
         }
+        //private static object GetMemberInfoValue(System.Reflection.MemberInfo member, object sourceObject)
+        //{
+        //    object newVal;
+        //    if (member is System.Reflection.FieldInfo)
+        //        newVal = ((System.Reflection.FieldInfo)member).GetValue(sourceObject);
+        //    else
+        //        newVal = ((System.Reflection.PropertyInfo)member).GetValue(sourceObject, null);
+        //    return newVal;
+        //}
 
         #endregion
 

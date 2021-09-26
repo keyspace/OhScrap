@@ -1,5 +1,10 @@
-from: @HebruSan (thank you) :![link](https://github.com/HebaruSan/Astrogator/tree/master/assets/lang)
-GPLv3
+<!--Readme.md v2.0.0.0  -->
+<!--Localization project  -->
+<!--created:   --> 
+<!--updated: 30 Aug 2021  -->
+
+<!--from: @HebruSan (thank you) ![link](https://github.com/HebaruSan/Astrogator/tree/master/assets/lang)  -->
+
 # Translating to your language
 
 ![Languages supported by KSP 1.3: English, Spanish, Chinese, Russian, Japanese](https://i.imgur.com/DbCCJWK.png)
@@ -9,6 +14,24 @@ The 1.3 release of KSP introduces localization, which allows in-game text to be 
 Unfortunately, I only speak English, and I maintain this mod for free. This means I cannot create my own translations, and I cannot pay a professional translation service to produce high quality translations. The best I can do on my own is to use Google Translate, which is of dubious value for the terse, idiomatic strings needed in a KSP mod's UI. Instead, I must rely on the expertise of you, the multilingual KSP mod user, to tell me what good translations look like for your language. If you would like to help in this effort, please keep reading to learn how the mod's language files are structured and how to submit translations for use by others.
 
 Note: Even though you will appear to be editing the project's files, don't worry about making mistakes. Github will keep your changes separate from the main files until I have verified that they are OK to use. It is even possible for me to ask questions or request changes before your work is committed to the main files.
+
+## Languages Supported by Kerbal Space Program as of 1.12.2
+- [ ]  [![American English][EN]][EN] [American English][EN] <en-us.cfg>  
+- [ ]  [![Brasil][BR]][BR] [Brazilian][BR] <pt-br.cfg>  
+- [ ]  [![中文][CN]][CN] [Chinese (中文)][CN] <zh-cn.cfg>  
+- [ ]  [![Deutsch][DE]][DE] [German (Deutsch)][DE]  
+- [ ]  [![Español][ES]][ES] [Spanish (Español)][ES]  
+- [ ]  [![Français][FR]][FR] [French (Français)][FR] <fr-fr.cfg>  
+- [ ]  [![Italiano][IT]][IT] [Italian (Italiano)][IT] <it-it.cfg>  
+- [ ]  [![日本語][JA]][JA] [Japanese(日本語)][JA] <ja.cfg>  
+- [ ]  [![한국어][KO]][KO] [Korean (한국어)][KO] <ko.cfg>  
+- [ ]  [![Mexicano][ME]][ME] [Mexican (Mexicano)][ME] <es-mx.cfg>  
+- [ ]  [![Dutch][NL]][NL] [Dutch][NL] <nl-nl.cfg>  
+- [ ]  [![Norsk][NO]][NO] [Norwegian (Norsk)][NO] <no-no.cfg>  
+- [ ]  [![Polski][PO]][PO] [Polish (Polski)][PO] <pl.cfg>  
+- [ ]  [![Русский][RU]][RU] [Russian (Русский)][RU] <ru.cfg>  
+- [ ]  [![Svenska][SW]][SW] [Swedish (Svenska)][SW] <sw-sw.cfg>  
+- [ ]  [![国语][TW]][TW] [Taiwanese (国语)][TW] <zh-tw.cfg>  
 
 ## Creating or editing a translation
 
@@ -38,7 +61,7 @@ Follow these steps to make improvements to an existing translation:
 
 Follow these steps to start your own translation from scratch:
 
-4. Make a copy of `en-us.cfg` in the `lang` folder
+4. Make a copy of `en-us.cfg` in the `Localization` folder
 5. Rename the file according to the list of languages above
 6. Edit the file for your language in your favorite text editor
 7. Change the third line from `en-us` to the string for your language
@@ -108,7 +131,7 @@ The remaining steps are different depending on whether the file already exists:
 Once you finish your changes, Github will send me a notification that a pull request has been submitted. I will take a look at it within a day or two and attempt to verify that the changes make sense by:
 
 - Confirming that the file name and the third line of the file match one of the supported locale names
-- Viewing each change string in-game
+- Viewing each changed string in-game
 - Checking Google Translate
 - Asking individual human experts
 - Requesting help on the KSP forum
@@ -116,3 +139,26 @@ Once you finish your changes, Github will send me a notification that a pull req
 If I have any questions about specific changes you've made, I will add them to the pull request, which should trigger a notification to you. Please try to respond to these in as timely a manner as you can manage. Your pull request may be closed without merging if you do not reply for a long time.
 
 Once all the questions and comments are resolved to my satisfaction, your changes will be merged into the main files and included in the next release. I will also add your Github name to the Acknowledgements section of the README file.
+
+
+
+[EN]: https://raw.githubusercontent.com/zer0Kerbal/zer0Kerbal/zed'K/Localization/img/American-flag-sm.png "American English"
+[BR]: https://raw.githubusercontent.com/zer0Kerbal/zer0Kerbal/zed'K/Localization/img/Brazilian-flag-sm.png "Brasil"
+[CN]: https://raw.githubusercontent.com/zer0Kerbal/zer0Kerbal/zed'K/Localization/img/Chinese-flag-sm.png "中文"
+[DE]: https://raw.githubusercontent.com/zer0Kerbal/zer0Kerbal/zed'K/Localization/img/German-flag-sm.png "Deutsch"
+[ES]: https://raw.githubusercontent.com/zer0Kerbal/zer0Kerbal/zed'K/Localization/img/Spanish-flag-sm.png "Español"
+[FR]: https://raw.githubusercontent.com/zer0Kerbal/zer0Kerbal/zed'K/Localization/img/French-flag-sm.png "Français"
+[IT]: https://raw.githubusercontent.com/zer0Kerbal/zer0Kerbal/zed'K/Localization/img/Italian-flag-sm.png "Italiano"
+[JA]: https://raw.githubusercontent.com/zer0Kerbal/zer0Kerbal/zed'K/Localization/img/Japanese-flag-sm.png "日本語"
+[KO]: https://raw.githubusercontent.com/zer0Kerbal/zer0Kerbal/zed'K/Localization/img/South-Korean-flag-sm.png "한국어"
+[ME]: https://raw.githubusercontent.com/zer0Kerbal/zer0Kerbal/zed'K/Localization/img/Mexican-flag-sm.png "Mexicano"
+[NL]: https://raw.githubusercontent.com/zer0Kerbal/zer0Kerbal/zed'K/Localization/img/Dutch-flag-sm.png "Dutch"
+[NO]: https://raw.githubusercontent.com/zer0Kerbal/zer0Kerbal/zed'K/Localization/img/Norwegian-flag-sm.png "Norsk"
+[PO]: https://raw.githubusercontent.com/zer0Kerbal/zer0Kerbal/zed'K/Localization/img/Polish-flag-sm.png "Polski"
+[RU]: https://raw.githubusercontent.com/zer0Kerbal/zer0Kerbal/zed'K/Localization/img/Russian-flag-sm.png "Русский"
+[SW]: https://raw.githubusercontent.com/zer0Kerbal/zer0Kerbal/zed'K/Localization/img/Swedish-flag-sm.png "Svenska"
+[TW]: https://raw.githubusercontent.com/zer0Kerbal/zer0Kerbal/zed'K/Localization/img/Taiwanese-flag-sm.png "国语"
+[HA]: https://raw.githubusercontent.com/zer0Kerbal/zer0Kerbal/zed'K/Localization/img/Hawaii-flag-sm.png "ʻŌlelo Pākē"
+
+<!-- CC BY-ND-3.0 unported  -->
+<!-- zer0Kerbal  -->
