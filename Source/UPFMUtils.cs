@@ -77,7 +77,7 @@ namespace OhScrap
 
         private void ReadDefaultCfg()
         {
-            ConfigNode cn = ConfigNode.Load(KSPUtil.ApplicationRootPath + "/GameData/OhScrap/PluginData/DefaultSettings.cfg");
+            ConfigNode cn = ConfigNode.Load(KSPUtil.ApplicationRootPath + "/GameData/OhScrap/Plugins/PluginData/DefaultSettings.cfg");
             if (cn == null)
             {
                 Debug.Log("[OhScrap]: Default Settings file is missing. Using hardcoded defaults");
