@@ -34,6 +34,7 @@ namespace OhScrap
             rw.wheelState = ModuleReactionWheel.WheelState.Broken;
             if (OhScrap.highlight) OhScrap.SetFailedHighlight();
             hasFailed = true;
+            PlaySound();
         }
         //Turns it back on again,
         public override void RepairPart()

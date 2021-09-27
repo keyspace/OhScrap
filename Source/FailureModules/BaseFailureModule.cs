@@ -115,7 +115,7 @@ namespace OhScrap
             failureSound3.rolloffMode = AudioRolloffMode.Linear;
             failureSound3.Stop();
 
-            failureSound0.Play();
+            // failureSound0.Play();
 
             if (HighLogic.LoadedSceneIsEditor) hasFailed = false;
 
@@ -224,27 +224,34 @@ namespace OhScrap
                 OhScrap.Events["RepairChecks"].active = true;
                 OhScrap.Events["ToggleHighlight"].active = true;
                 // make sound if failed.
-                if (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().safetyWarning)
-                {
-                    switch (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundClip)
-                    {
-                        case 0:
-                            failureSound0.Play();
-                            break;
-                        case 1:
-                            failureSound1.Play();
-                            break;
-                        case 2:
-                            failureSound2.Play();
-                            break;
-                        case 3:
-                            failureSound3.Play();
-                            break;
-                        default:
-                            failureSound0.Play();
-                            break;
-                    }
-                }
+                //ScreenMessages.PostScreenMessage("Failed");
+                //failureSound0.Play();
+                //if (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().safetyWarning)
+                //{
+                //    ScreenMessages.PostScreenMessage("BaseFailureModule - safety warning");
+                //    switch (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundClip)
+                //    {
+                //        case 0:
+                //            ScreenMessages.PostScreenMessage("BaseFailureModule - sound 0");
+                //            failureSound0.Play();
+                //            break;
+                //        case 1:
+                //            ScreenMessages.PostScreenMessage("BaseFailureModule - sound 1");
+                //            failureSound1.Play();
+                //            break;
+                //        case 2:
+                //            ScreenMessages.PostScreenMessage("BaseFailureModule - sound 2");
+                //            failureSound2.Play();
+                //            break;
+                //        case 3:
+                //            ScreenMessages.PostScreenMessage("BaseFailureModule - sound 3");
+                //            failureSound3.Play();
+                //            break;
+                //        default:
+                //            failureSound0.Play();
+                //            break;
+                //    }
+                //}
             }
 
             displayChance = (int)(chanceOfFailure * 100);
@@ -288,13 +295,45 @@ namespace OhScrap
             return baseChanceOfFailure + 0.01f - (generation * (baseChanceOfFailure / 10));
         }
 
+        public void PlaySound()
+        {
+            if (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().audibleAlarms)
+            {
+                switch (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundClip)
+                {
+                    case 0:
+                        failureSound3.volume = HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundVolume;
+                        failureSound0.Play();
+                        break;
+                    case 1:
+                        failureSound3.volume = HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundVolume;
+                        failureSound1.Play();
+                        break;
+                    case 2:
+                        failureSound3.volume = HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundVolume;
+                        failureSound2.Play();
+                        break;
+                    case 3:
+                        failureSound3.volume = HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundVolume;
+                        failureSound3.Play();
+                        break;
+                    default:
+                        failureSound0.Play();
+                        break;
+                }
+            }
+        }
+
         //These methods all are overridden by the failure modules
 
         //Overrides are things like the UI names, and specific things that we might want to be different for a module
         //For example engines fail after only 2 minutes instead of 30
         protected virtual void Overrides() { }
         //This actually makes the failure happen
-        public virtual void FailPart() { }
+        public virtual void FailPart()
+        {
+
+        }
         //this repairs the part.
         public virtual void RepairPart() { }
         //this should read from the Difficulty Settings.

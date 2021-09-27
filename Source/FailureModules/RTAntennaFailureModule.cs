@@ -26,7 +26,7 @@ namespace OhScrap
                 {
                     if (pm.moduleName.Equals("ModuleRTAntenna"))
                     {
-                       antenna = pm;
+                        antenna = pm;
                     }
                 }
             }
@@ -35,10 +35,10 @@ namespace OhScrap
 
         public override bool FailureAllowed()
         {
-                if (!antenna) return false;
-                if (!RTAvailable) return false;
-                if (!ModWrapper.RemoteTechWrapper.GetAntennaDeployed(antenna)) return false; //Do not fail antennas that are deployed. Returns true if it cant be animated.
-                return (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().AntennaFailureModuleAllowed);
+            if (!antenna) return false;
+            if (!RTAvailable) return false;
+            if (!ModWrapper.RemoteTechWrapper.GetAntennaDeployed(antenna)) return false; //Do not fail antennas that are deployed. Returns true if it cant be animated.
+            return (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().AntennaFailureModuleAllowed);
         }
 
         public override void FailPart()
@@ -47,8 +47,9 @@ namespace OhScrap
             ModWrapper.RemoteTechWrapper.SetRTBrokenStatus(antenna, true);
             if (hasFailed) return;
             Debug.Log("[OhScrap](RemoteTech): " + SYP.ID + " has stopped transmitting");
+            PlaySound();
         }
-        
+
         public override void RepairPart()
         {
             if (antenna)
@@ -57,6 +58,6 @@ namespace OhScrap
             }
         }
 
-    
+
     }
 }

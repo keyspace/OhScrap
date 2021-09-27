@@ -53,6 +53,7 @@ namespace OhScrap
                 failureType = "Sun Tracking Error";
                 if (OhScrap.highlight) OhScrap.SetFailedHighlight();
             }
+            PlaySound();
         }
         //returns to original state.
         public override void RepairPart()

@@ -66,6 +66,15 @@ namespace OhScrap
         [GameParameters.CustomParameterUI("#OHS-Settings-srb", toolTip = "#OHS-Settings-srb-Tip", newGameOnly = false, unlockedDuringMission = true)]
         public bool SRBFailureModuleAllowed = true;
 
+        [GameParameters.CustomParameterUI("#OHS-Settings-lit", toolTip = "#OHS-Settings-lit-Tip", newGameOnly = false, unlockedDuringMission = true)]
+        public bool LightFailureModuleAllowed = true;
+
+        [GameParameters.CustomParameterUI("#OHS-Settings-dcp", toolTip = "#OHS-Settings-dcp-Tip", newGameOnly = false, unlockedDuringMission = true)]
+        public bool DecouplerFailureModuleAllowed = true;
+
+        [GameParameters.CustomParameterUI("#OHS-Settings-lcp", toolTip = "#OHS-Settings-lcp-Tip", newGameOnly = false, unlockedDuringMission = true)]
+        public bool LaunchClampFailureModuleAllowed = true;
+
         [GameParameters.CustomParameterUI("#OHS-Settings-log", toolTip = "#OHS-Settings-log-Tip", newGameOnly = false, unlockedDuringMission = true)]
         public bool logging = false;
 
@@ -84,9 +93,12 @@ namespace OhScrap
                                                 minValue = 0f,
                                                 maxValue = 100f,
                                                 stepCount = 1)]
-        public float soundVolume = 75f;
+        public float soundVolume = 0.75f;
 
         [GameParameters.CustomParameterUI("#OHS-Settings-qt", toolTip = "#OHS-Settings-qt-Tip", newGameOnly = false, unlockedDuringMission = true)]
         public bool quietMode = false;
+
+        [GameParameters.CustomParameterUI("#OHS-Settings-Parts", toolTip = "#OHS-Settings-Parts-Tip", newGameOnly = false, unlockedDuringMission = true)]
+        public bool requireParts = false;
     }
 }

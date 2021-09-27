@@ -25,13 +25,13 @@ namespace OhScrap
             if (part.vessel.atmDensity == 0) return false;
             if (controlSurface == null) return false;
             return (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().ControlSurfaceFailureModuleAllowed
-            &&  !ModWrapper.FerramWrapper.available); 
+            && !ModWrapper.FerramWrapper.available);
         }
         //control surface will stick and not respond to input
         public override void FailPart()
         {
             if (!controlSurface) return;
-            if(!hasFailed)
+            if (!hasFailed)
             {
                 Debug.Log("[OhScrap]: " + SYP.ID + " has suffered a control surface failure");
             }
@@ -39,6 +39,7 @@ namespace OhScrap
             controlSurface.ignorePitch = true;
             controlSurface.ignoreRoll = true;
             controlSurface.ignoreYaw = true;
+            PlaySound();
         }
         //restores control to the control surface
         public override void RepairPart()

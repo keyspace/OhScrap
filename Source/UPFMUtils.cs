@@ -28,6 +28,13 @@ namespace OhScrap
 
     class UPFMUtils : MonoBehaviour
     {
+        /// <summary>
+        /// Adds sound FX for failures
+        /// </summary>
+        protected AudioSource failureSound0;
+        protected AudioSource failureSound1;
+        protected AudioSource failureSound2;
+        protected AudioSource failureSound3;
 
         //These hold all "stats" for parts that have already been generated (to stop them getting different results each time)
         public Dictionary<uint, int> generations = new Dictionary<uint, int>();
@@ -96,6 +103,37 @@ namespace OhScrap
 
         private void Start()
         {
+
+            failureSound0 = Camera.main.gameObject.AddComponent<AudioSource>();
+            failureSound0.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/ClinkingTeaspoon");
+            failureSound0.volume = 0.8f;
+            failureSound0.panStereo = 0;
+            failureSound0.rolloffMode = AudioRolloffMode.Linear;
+
+            failureSound1 = gameObject.AddComponent<AudioSource>();
+            failureSound1.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/FirePager");
+            failureSound1.volume = 0.8f;
+            failureSound1.panStereo = 0;
+            failureSound1.rolloffMode = AudioRolloffMode.Linear;
+
+            failureSound2 = gameObject.AddComponent<AudioSource>();
+            failureSound2.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/PhoneVibrating");
+            failureSound2.volume = 0.8f;
+            failureSound2.panStereo = 0;
+            failureSound2.rolloffMode = AudioRolloffMode.Linear;
+
+            failureSound3 = gameObject.AddComponent<AudioSource>();
+            failureSound3.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/Upper01");
+            failureSound3.volume = 0.8f;
+            failureSound3.panStereo = 0;
+            failureSound3.rolloffMode = AudioRolloffMode.Linear;
+            failureSound3.Stop();
+
+            //failureSound3.Play();
+
+            GameEvents.onHideUI.Add(new EventVoid.OnEvent(OnHideUI));
+            GameEvents.onShowUI.Add(new EventVoid.OnEvent(OnShowUI));
+
             GameEvents.onPartDie.Add(OnPartDie);
             GameEvents.onGUIApplicationLauncherReady.Add(GUIReady);
             GameEvents.OnFlightGlobalsReady.Add(OnFlightGlobalsReady);
@@ -165,6 +203,8 @@ namespace OhScrap
                 {
                     if (failedModule.hasFailed) continue;
                     StartFailure(failedModule);
+                    //ScreenMessages.PostScreenMessage("UPFMUtils 1");
+                    //failureSound1.Play();
                     Logger.instance.Log("Failing " + failedModule.part.partInfo.title);
                     break;
                 }
@@ -295,6 +335,38 @@ namespace OhScrap
             eventModule.SetFailedHighlight();
             eventModule.Events["ToggleHighlight"].active = true;
             eventModule.Events["RepairChecks"].active = true;
+
+            // make sound if failed.
+            //failureSound0.Play();
+            ScreenMessages.PostScreenMessage("UPFMUtils-sound");
+            if (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().audibleAlarms)
+            {
+                ScreenMessages.PostScreenMessage("UPFMUtils-audibleAlarms");
+                switch (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundClip)
+                {
+                    case 0:
+                        ScreenMessages.PostScreenMessage("UPFMUtils- sound 0");
+                        failureSound0.Play();
+                        break;
+                    case 1:
+                        failureSound1.Play();
+                        ScreenMessages.PostScreenMessage("UPFMUtils- sound 0");
+                        break;
+                    case 2:
+                        ScreenMessages.PostScreenMessage("UPFMUtils- sound 1");
+                        failureSound2.Play();
+                        break;
+                    case 3:
+                        ScreenMessages.PostScreenMessage("UPFMUtils- sound 2");
+                        failureSound3.Play();
+                        break;
+                    default:
+                        ScreenMessages.PostScreenMessage("UPFMUtils- sound 3");
+                        failureSound0.Play();
+                        break;
+                }
+            }
+
             eventModule.doNotRecover = true;
             ScreenMessages.PostScreenMessage(failedModule.part.partInfo.title + ": " + failedModule.failureType);
             StringBuilder msg = new StringBuilder();
@@ -429,6 +501,7 @@ namespace OhScrap
         //shouldn't really be using OnGUI but I'm too lazy to learn PopUpDialog
         private void OnGUI()
         {
+            if (!visibleUI) return;
             if (!HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().safetyWarning) return;
             if (HighLogic.CurrentGame.Mode == Game.Modes.MISSION) return;
             if (dontBother) return;
@@ -535,25 +608,21 @@ namespace OhScrap
             ApplicationLauncher.Instance.RemoveModApplication(ToolbarButton);
         }
 
-        internal void showUI() // triggered on F2
+        void OnShowUI() // triggered on F2
         {
             visibleUI = true;
-            display = !display;
-            ToggleWindow();
         }
 
-        internal void hideUI() // triggered on F2
+        void OnHideUI() // triggered on F2
         {
             visibleUI = false;
-            display = !display;
-            ToggleWindow();
         }
 
 
         internal void OnDestroy()
         {
-            GameEvents.onShowUI.Remove(showUI);
-            GameEvents.onHideUI.Remove(hideUI);
+            GameEvents.onShowUI.Remove(OnHideUI);
+            GameEvents.onHideUI.Remove(OnShowUI);
         }
 
         ///// <summary>Formats the information for the part information in the editors.</summary>

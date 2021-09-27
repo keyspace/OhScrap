@@ -12,6 +12,31 @@
             <param name="sourceObject">The source object.</param>
             <returns></returns>
         </member>
+        <member name="M:OhScrap.Logger.Message(System.String,System.Object[])">
+            <summary>Messages to the screen in the specified format.</summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:OhScrap.Logger.Dlog(System.String,System.Boolean)">
+            <summary>Add messages to the log. Prepends "OhScrap (UPFM) v{0}]: ", Version.Text</summary>
+            <param name="logMsg">The message.</param>
+            <param name="xDebug">require DEBUG setting to create log entry</param>
+        </member>
+        <member name="M:OhScrap.Logger.DlogWarning(System.String,System.Boolean)">
+            <summary>LogWarning: Add messages to the log. Prepends "OhScrap (UPFM) v{0}]: ", Version.Text</summary>
+            <param name="logMsg">The message.</param>
+            <param name="xDebug">require DEBUG setting to create log entry</param>
+        </member>
+        <member name="M:OhScrap.Logger.DlogError(System.String,System.Boolean)">
+            <summary>LogError: Add messages to the log. Prepends "OhScrap (UPFM) v{0}]: ", Version.Text</summary>
+            <param name="logMsg">The message.</param>
+            <param name="xDebug">require DEBUG setting to create log entry</param>
+        </member>
+        <member name="F:OhScrap.UPFMUtils.failureSound0">
+            <summary>
+            Adds sound FX for failures
+            </summary>
+        </member>
         <member name="P:OhScrap.StageRecoveryWrapper.StageRecoveryAvailable">
             <summary>
             Check this to see if the addon is available. If this returns false, no additional API calls should be made!
@@ -106,6 +131,11 @@
         <member name="M:OhScrap.ModuleUPFMEvents.ToggleHighlight">
             This toggles the part failure highlight on and off (player initiated)
             [KSPEvent(active = false, guiActive = true, guiActiveUnfocused = false, externalToEVAOnly = false, guiName = "Toggle Failure Highlight")]
+        </member>
+        <member name="F:OhScrap.BaseFailureModule.failureSound0">
+            <summary>
+            Adds sound FX for failures
+            </summary>
         </member>
     </members>
 </doc>

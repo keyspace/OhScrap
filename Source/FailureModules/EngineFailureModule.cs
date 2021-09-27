@@ -41,7 +41,7 @@ namespace OhScrap
                 expectedLifetime = spaceEngineExpectedLifetime;
                 baseChanceOfFailure = spaceEngineBaseChanceOfFailure;
             }
-        }   
+        }
 
         public override bool FailureAllowed()
         {
@@ -106,7 +106,7 @@ namespace OhScrap
                 case "Fuel Flow Failure":
                     engine.Shutdown();
                     break;
-                 //Fuel line leaks will explode the engine after anywhere between 5 and 50 seconds.
+                //Fuel line leaks will explode the engine after anywhere between 5 and 50 seconds.
                 case "Fuel Line Leak":
                     if (timeBetweenFailureEvents > Planetarium.GetUniversalTime()) break;
                     if (fuelLineCounter < 0) part.explode();
@@ -122,7 +122,7 @@ namespace OhScrap
                     }
                     engineWrapper.SetFuelFlowMult(fuelFlowMultiplier);
                     break;
-                 //lock gimbal
+                //lock gimbal
                 case "Gimbal Failure":
                     gimbal.gimbalLock = true;
                     break;
@@ -137,6 +137,7 @@ namespace OhScrap
                 default:
                     return;
             }
+            PlaySound();
         }
 
         public override void RepairPart()

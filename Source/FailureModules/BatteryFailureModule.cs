@@ -26,12 +26,13 @@ namespace OhScrap
             if (OhScrap.highlight) OhScrap.SetFailedHighlight();
             if (hasFailed) return;
             Debug.Log("[OhScrap]: " + SYP.ID + " has suffered a short circuit failure");
+            PlaySound();
         }
 
         //Repair allows it to be charged again.
         public override void RepairPart()
         {
-           battery.flowState = true;
+            battery.flowState = true;
         }
 
         public override bool FailureAllowed()
