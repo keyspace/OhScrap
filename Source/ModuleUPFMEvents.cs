@@ -31,10 +31,9 @@ namespace OhScrap
         private void Start()
         {
             SYP = part.FindModuleImplementing<ModuleSYPartTracker>();
-            Dlog(String.Format("UPFMEvents.Start", SYP.ID));
-            //#if DEBUG
-            //            Debug.Log("[UPFM]: UPFMEvents.Start" + SYP.ID);
-            //#endif
+#if DEBUG
+            Debug.Log("[UPFM]: UPFMEvents.Start" + SYP.ID);
+#endif
         }
         //forces ScrapYard to refresh the part if it's needed.
         public void RefreshPart()

@@ -25,13 +25,9 @@ namespace OhScrap
     {
 
     }
+
     class UPFMUtils : MonoBehaviour
     {
-
-        protected AudioSource failureSound0;
-        protected AudioSource failureSound1;
-        protected AudioSource failureSound2;
-        protected AudioSource failureSound3;
 
         //These hold all "stats" for parts that have already been generated (to stop them getting different results each time)
         public Dictionary<uint, int> generations = new Dictionary<uint, int>();
@@ -70,59 +66,6 @@ namespace OhScrap
         {
             instance = this;
             ReadDefaultCfg();
-        }
-
-        public void Start()
-        {
-            failureSound0 = gameObject.AddComponent<AudioSource>();
-            failureSound0.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/PhoneVibrating");
-            failureSound0.volume = 0.8f;
-            failureSound0.panStereo = 0;
-            failureSound0.rolloffMode = AudioRolloffMode.Linear;
-            failureSound0.Stop();
-
-            failureSound1 = gameObject.AddComponent<AudioSource>();
-            failureSound1.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/Upper01");
-            failureSound1.volume = 0.8f;
-            failureSound1.panStereo = 0;
-            failureSound1.rolloffMode = AudioRolloffMode.Linear;
-            failureSound1.Stop();
-
-            failureSound2 = gameObject.AddComponent<AudioSource>();
-            failureSound2.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/ClinkingTeaspoon");
-            failureSound2.volume = 0.8f;
-            failureSound2.panStereo = 0;
-            failureSound2.rolloffMode = AudioRolloffMode.Linear;
-            failureSound2.Stop();
-
-            failureSound3 = gameObject.AddComponent<AudioSource>();
-            failureSound3.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/Firepager");
-            failureSound3.volume = 0.8f;
-            failureSound3.panStereo = 0;
-            failureSound3.rolloffMode = AudioRolloffMode.Linear;
-            failureSound3.Stop();
-
-            if (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().safetyWarning)
-            {
-                switch (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundClip)
-                {
-                    case 0:
-                        failureSound0.Play();
-                        break;
-                    case 1:
-                        failureSound1.Play();
-                        break;
-                    case 2:
-                        failureSound2.Play();
-                        break;
-                    case 3:
-                        failureSound3.Play();
-                        break;
-                    default:
-                        failureSound0.Play();
-                        break;
-                }
-            }
         }
 
         private void ReadDefaultCfg()

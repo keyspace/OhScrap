@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ScrapYard;
 using ScrapYard.Modules;
+using KSP.Localization;
 
 namespace OhScrap
 {
@@ -10,6 +11,15 @@ namespace OhScrap
     //but this handles the stuff that all modules need (like "will I fail" etc)
     class BaseFailureModule : PartModule
     {
+
+        /// <summary>
+        /// Adds sound FX for failures
+        /// </summary>
+        protected AudioSource failureSound0;
+        protected AudioSource failureSound1;
+        protected AudioSource failureSound2;
+        protected AudioSource failureSound3;
+
         public bool ready = false;
         public bool willFail = false;
         [KSPField(isPersistant = true, guiActive = false)]
@@ -42,7 +52,7 @@ namespace OhScrap
 
 #if DEBUG
         //[KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "Force Failure (DEBUG)")]
-        [KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "#OHS_BaseFailureModule_Force Repair_DEBUG")]
+        [KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "#OHS_BaseFailureModule_ForceFailure")]
         public void ForceFailure()
         {
             if (!ready)
@@ -54,7 +64,8 @@ namespace OhScrap
             FailPart();
             hasFailed = true;
         }
-        [KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "#OHS_BaseFailureModule_Force Repair_DEBUG")]
+        //[KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "Force Repair(DEBUG)")]
+        [KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "#OHS_BaseFailureModule_ForceRepair")]
         public void ForcedRepair()
         {
 
@@ -79,46 +90,53 @@ namespace OhScrap
             Fields["safetyRating"].guiActive = true;
 #endif
 
-            partFailure0 = gameObject.AddComponent<AudioSource>();
-            partFailure0.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/ClinkingTeaspoon");
-            partFailure0.volume = 0.8f;
-            partFailure0.panStereo = 0;
-            partFailure0.rolloffMode = AudioRolloffMode.Linear;
+            failureSound0 = Camera.main.gameObject.AddComponent<AudioSource>();
+            failureSound0.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/ClinkingTeaspoon");
+            failureSound0.volume = 0.8f;
+            failureSound0.panStereo = 0;
+            failureSound0.rolloffMode = AudioRolloffMode.Linear;
 
-            partFailure1 = gameObject.AddComponent<AudioSource>();
-            partFailure1.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/Firepager");
-            partFailure1.volume = 0.8f;
-            partFailure1.panStereo = 0;
-            partFailure1.rolloffMode = AudioRolloffMode.Linear;
+            failureSound1 = gameObject.AddComponent<AudioSource>();
+            failureSound1.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/FirePager");
+            failureSound1.volume = 0.8f;
+            failureSound1.panStereo = 0;
+            failureSound1.rolloffMode = AudioRolloffMode.Linear;
 
-            partFailure2 = gameObject.AddComponent<AudioSource>();
-            partFailure2.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/PhoneVibrating");
-            partFailure2.volume = 0.8f;
-            partFailure2.panStereo = 0;
-            partFailure2.rolloffMode = AudioRolloffMode.Linear;
+            failureSound2 = gameObject.AddComponent<AudioSource>();
+            failureSound2.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/PhoneVibrating");
+            failureSound2.volume = 0.8f;
+            failureSound2.panStereo = 0;
+            failureSound2.rolloffMode = AudioRolloffMode.Linear;
 
-            partFailure3 = gameObject.AddComponent<AudioSource>();
-            partFailure3.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/Upper01");
-            partFailure3.volume = 0.8f;
-            partFailure3.panStereo = 0;
-            partFailure3.rolloffMode = AudioRolloffMode.Linear;
-            partFailure3.Stop();
+            failureSound3 = gameObject.AddComponent<AudioSource>();
+            failureSound3.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/Upper01");
+            failureSound3.volume = 0.8f;
+            failureSound3.panStereo = 0;
+            failureSound3.rolloffMode = AudioRolloffMode.Linear;
+            failureSound3.Stop();
+
+            failureSound0.Play();
 
             if (HighLogic.LoadedSceneIsEditor) hasFailed = false;
+
             //find the ScrapYard Module straight away, as we can't do any calculations without it.
             SYP = part.FindModuleImplementing<ModuleSYPartTracker>();
             chanceOfFailure = baseChanceOfFailure;
-            //overrides are defined in each failue Module - stuff that the generic module can't handle.
+
+            //overrides are defined in each failure Module - stuff that the generic module can't handle.
             Overrides();
+
             //listen to ScrapYard Events so we can recalculate when needed
             ScrapYardEvents.OnSYTrackerUpdated.Add(OnSYTrackerUpdated);
             ScrapYardEvents.OnSYInventoryAppliedToVessel.Add(OnSYInventoryAppliedToVessel);
             ScrapYardEvents.OnSYInventoryAppliedToPart.Add(OnSYInventoryAppliedToPart);
             ScrapYardEvents.OnSYInventoryChanged.Add(OnSYInventoryChanged);
             OhScrap = part.FindModuleImplementing<ModuleUPFMEvents>();
+
             //refresh part if we are in the editor and parts never been used before (just returns if not)
             OhScrap.RefreshPart();
-            //Initialise the Failure Module.
+
+            //Initialize the Failure Module.
             GameEvents.onLaunch.Add(OnLaunch);
             if (launched || HighLogic.LoadedSceneIsEditor) Initialise();
         }
@@ -174,7 +192,7 @@ namespace OhScrap
             UPFMUtils.instance.testedParts.Add(SYP.ID);
             if (HighLogic.LoadedScene == GameScenes.FLIGHT && isSRB && FailureAllowed() && UPFMUtils.instance._randomiser.NextDouble() < chanceOfFailure) InvokeRepeating("FailPart", 0.01f, 0.01f);
         }
-        // This is where we "initialise" the failure module and get everything ready
+        // This is where we "initialize" the failure module and get everything ready
         public void Initialise()
         {
 #if DEBUG
@@ -205,6 +223,28 @@ namespace OhScrap
             {
                 OhScrap.Events["RepairChecks"].active = true;
                 OhScrap.Events["ToggleHighlight"].active = true;
+                // make sound if failed.
+                if (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().safetyWarning)
+                {
+                    switch (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundClip)
+                    {
+                        case 0:
+                            failureSound0.Play();
+                            break;
+                        case 1:
+                            failureSound1.Play();
+                            break;
+                        case 2:
+                            failureSound2.Play();
+                            break;
+                        case 3:
+                            failureSound3.Play();
+                            break;
+                        default:
+                            failureSound0.Play();
+                            break;
+                    }
+                }
             }
 
             displayChance = (int)(chanceOfFailure * 100);
@@ -248,7 +288,7 @@ namespace OhScrap
             return baseChanceOfFailure + 0.01f - (generation * (baseChanceOfFailure / 10));
         }
 
-        //These methods all are overriden by the failure modules
+        //These methods all are overridden by the failure modules
 
         //Overrides are things like the UI names, and specific things that we might want to be different for a module
         //For example engines fail after only 2 minutes instead of 30

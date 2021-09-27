@@ -159,6 +159,7 @@ namespace OhScrap
             {
                 NONE,
                 STOWED,
+                LOWDEPLOYED,
                 PREDEPLOYED,
                 DEPLOYED,
                 CUT
