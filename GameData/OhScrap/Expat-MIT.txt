@@ -1,6 +1,5 @@
- The Expat-MIT License (MIT) with Attribution
+The Expat-MIT License (MIT) with Attribution
 
-Copyright 2016 Magico13 
 Copyright 2018 Martin Joy (aka severedsolo)
 Copyright © 2020, 2021  zer0Kerbal
 
