@@ -54,7 +54,7 @@ Features
 - [ScrapYard](https://forum.kerbalspaceprogram.com/index.php?/topic/178641-*)  to keep track of how many times a part has been built/recovered so that is a hard dependency. (obtained separately)
 - [Module Manager](https://forum.kerbalspaceprogram.com/index.php?/topic/50533-*) is required if you want the mod to actually do anything. (obtained separately)
 
-### Recomends:
+### Recommends:
 - [Kerbal Changelog](https://forum.kerbalspaceprogram.com/index.php?/topic/179207-*)
 - [Kerbal Construction Time](https://forum.kerbalspaceprogram.com/index.php?/topic/182877-*) designed with this with in mind, so would recommend that mod (make sure you use the latest dev version)
 - [StageRecovery](https://forum.kerbalspaceprogram.com/index.php?/topic/179306-*) If you plan to actually re-use your parts (and have them fail), you'll probably want StageRecovery too
