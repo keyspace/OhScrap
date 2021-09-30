@@ -104,7 +104,7 @@ namespace OhScrap
         //This sets the initial highlighting when a part fails (mod initiated)
         public void SetFailedHighlight()
         {
-            if (!HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().highlightFailures) return;
+            if (!HighLogic.CurrentGame.Parameters.CustomParams<OhScrapSettings>().highlightFailures) return;
             if (!highlight) return;
             part.SetHighlightColor(Color.red);
             part.SetHighlightType(Part.HighlightType.AlwaysOn);
@@ -127,7 +127,7 @@ namespace OhScrap
                 if (ModWrapper.RemoteTechWrapper.available && !ModWrapper.RemoteTechWrapper.HasConnectionToKSC(FlightGlobals.ActiveVessel.id))
                 {
                     //ScreenMessages.PostScreenMessage("Vessel must be connected to Homeworld before remote repair can be attempted");
-                    ScreenMessages.PostScreenMessage("#OHS_ModuleUPFMEvents_RemoteRepair");
+                    ScreenMessages.PostScreenMessage(Localizer.Format("#OHS_ModuleUPFMEvents_RemoteRepair"));
                     Debug.Log("[OhScrap]:(RemoteTech) Remote Repair aborted. Vessel not connected home");
                     return;
 
@@ -135,7 +135,7 @@ namespace OhScrap
                 else if (CommNet.CommNetScenario.CommNetEnabled && !FlightGlobals.ActiveVessel.Connection.IsConnectedHome)
                 {
                     //ScreenMessages.PostScreenMessage("Vessel must be connected to Homeworld before remote repair can be attempted");
-                    ScreenMessages.PostScreenMessage("#OHS_ModuleUPFMEvents_RemoteRepair");
+                    ScreenMessages.PostScreenMessage(Localizer.Format("#OHS_ModuleUPFMEvents_RemoteRepair"));
                     Debug.Log("[OhScrap]: Remote Repair aborted. Vessel not connected home");
                     return;
                 }
@@ -189,7 +189,7 @@ namespace OhScrap
             for (int i = 0; i < bfm.Count; i++)
             {
                 BaseFailureModule bf = bfm.ElementAt(i);
-                bf.Initialise();
+                bf.Initialize();
             }
         }
 

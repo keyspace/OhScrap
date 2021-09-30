@@ -35,6 +35,18 @@ namespace OhScrap
             logs.Add(s);
             //Debug.Log("[OhScrap]: " + s);
             Debug.Log(string.Format("[OhScrap (UPFM) v{0}]: ", Version.Text) + s);
+
+            string logMsg = string.Format("[OhScrap (UPFM) v{0}]: ", Version.Text) + s;
+            if (HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().logging)
+            {
+                Debug.Log(logMsg);
+            }
+            else
+            {
+#if DEBUG
+                Debug.Log(logMsg);
+#endif
+            }
         }
 
         public void OnDisable()
@@ -65,14 +77,14 @@ namespace OhScrap
         private void Dlog(string logMsg, bool xDebug = true)
         {
             logMsg = string.Format("[OhScrap (UPFM) v{0}]: ", Version.Text) + logMsg;
-            if (xDebug || HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().logging)
+            if (xDebug || HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().logging)
             {
                 Debug.Log(logMsg);
             }
             else
             {
 #if DEBUG
-                    Debug.Log(logMsg);
+                Debug.Log(logMsg);
 #endif
             }
         }
@@ -83,14 +95,14 @@ namespace OhScrap
         private void DlogWarning(string logMsg, bool xDebug = true)
         {
             logMsg = string.Format("[OhScrap (UPFM) v{0}]: ", Version.Text) + logMsg;
-            if (xDebug || HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().logging)
+            if (xDebug || HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().logging)
             {
                 Debug.LogWarning(logMsg);
             }
             else
             {
 #if DEBUG
-                    Debug.LogWarning(logMsg);
+                Debug.LogWarning(logMsg);
 #endif
             }
         }
@@ -101,14 +113,14 @@ namespace OhScrap
         private void DlogError(string logMsg, bool xDebug = true)
         {
             logMsg = string.Format("[OhScrap (UPFM) v{0}]: ", Version.Text) + logMsg;
-            if (xDebug || HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().logging)
+            if (xDebug || HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().logging)
             {
                 Debug.LogError(logMsg);
             }
             else
             {
 #if DEBUG
-                    Debug.LogError(logMsg);
+                Debug.LogError(logMsg);
 #endif
             }
         }

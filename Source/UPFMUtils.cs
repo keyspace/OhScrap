@@ -175,7 +175,7 @@ namespace OhScrap
             double failureRoll = _randomiser.NextDouble();
 
             //DlogWarning(String.Format("Failure Chance: {0}, Rolled: {1} Succeeded: {2}", chanceOfFailure, failureRoll, (failureRoll <= chanceOfFailure).ToString()), false);
-            if (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().logging)
+            if (HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().logging)
             {
                 //Logger.instance.Log("Failure Chance: " + chanceOfFailure + ", Rolled: " + failureRoll + " Succeeded: " + (failureRoll <= chanceOfFailure).ToString());
                 Logger.instance.Log(String.Format("Failure Chance: {0}, Rolled: {1} Succeeded: {2}", chanceOfFailure, failureRoll, (failureRoll <= chanceOfFailure).ToString()));
@@ -304,7 +304,7 @@ namespace OhScrap
             preparedNumber = Math.Pow(preparedNumber, exponent);
             chanceOfEvent = 1 - preparedNumber;
             displayFailureChance = Math.Round(chanceOfEvent * chanceOfIndividualFailure * 100, 0);
-            if (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().logging)
+            if (HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().logging)
             {
                 Logger.instance.Log("[OhScrap]: Next Failure Check in " + (nextFailureCheck - Planetarium.GetUniversalTime()));
                 Logger.instance.Log("[OhScrap]: Calculated chance of failure in next " + sampleTime + " is " + displayFailureChance + "%");
@@ -338,34 +338,34 @@ namespace OhScrap
 
             // make sound if failed.
             //failureSound0.Play();
-            ScreenMessages.PostScreenMessage("UPFMUtils-sound");
-            if (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().audibleAlarms)
-            {
-                ScreenMessages.PostScreenMessage("UPFMUtils-audibleAlarms");
-                switch (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundClip)
-                {
-                    case 0:
-                        ScreenMessages.PostScreenMessage("UPFMUtils- sound 0");
-                        failureSound0.Play();
-                        break;
-                    case 1:
-                        failureSound1.Play();
-                        ScreenMessages.PostScreenMessage("UPFMUtils- sound 0");
-                        break;
-                    case 2:
-                        ScreenMessages.PostScreenMessage("UPFMUtils- sound 1");
-                        failureSound2.Play();
-                        break;
-                    case 3:
-                        ScreenMessages.PostScreenMessage("UPFMUtils- sound 2");
-                        failureSound3.Play();
-                        break;
-                    default:
-                        ScreenMessages.PostScreenMessage("UPFMUtils- sound 3");
-                        failureSound0.Play();
-                        break;
-                }
-            }
+            //ScreenMessages.PostScreenMessage("UPFMUtils-sound");
+            //if (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().audibleAlarms)
+            //{
+            //    ScreenMessages.PostScreenMessage("UPFMUtils-audibleAlarms");
+            //    switch (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundClip)
+            //    {
+            //        case 0:
+            //            ScreenMessages.PostScreenMessage("UPFMUtils- sound 0");
+            //            failureSound0.Play();
+            //            break;
+            //        case 1:
+            //            failureSound1.Play();
+            //            ScreenMessages.PostScreenMessage("UPFMUtils- sound 0");
+            //            break;
+            //        case 2:
+            //            ScreenMessages.PostScreenMessage("UPFMUtils- sound 1");
+            //            failureSound2.Play();
+            //            break;
+            //        case 3:
+            //            ScreenMessages.PostScreenMessage("UPFMUtils- sound 2");
+            //            failureSound3.Play();
+            //            break;
+            //        default:
+            //            ScreenMessages.PostScreenMessage("UPFMUtils- sound 3");
+            //            failureSound0.Play();
+            //            break;
+            //    }
+            //}
 
             eventModule.doNotRecover = true;
             ScreenMessages.PostScreenMessage(failedModule.part.partInfo.title + ": " + failedModule.failureType);
@@ -502,7 +502,7 @@ namespace OhScrap
         private void OnGUI()
         {
             if (!visibleUI) return;
-            if (!HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().safetyWarning) return;
+            if (!HighLogic.CurrentGame.Parameters.CustomParams<OhScrapSettings>().safetyWarning) return;
             if (HighLogic.CurrentGame.Mode == Game.Modes.MISSION) return;
             if (dontBother) return;
             if (!display) return;

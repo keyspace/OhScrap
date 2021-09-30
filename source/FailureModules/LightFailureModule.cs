@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using KSP.Localization;
 
 namespace OhScrap
 {
     class LightFailureModule : BaseFailureModule
     {
         ModuleLight light;
+
+        ///// <summary>
+        ///// Adds sound FX for failures
+        ///// </summary>
+        //protected AudioSource Failure;
+        //protected AudioSource Repair;
 
         bool lightState = false;
 
@@ -21,9 +28,9 @@ namespace OhScrap
 
         protected override void Overrides()
         {
-            Fields["displayChance"].guiName = "Chance of Light Failure";
-            Fields["safetyRating"].guiName = "Light Safety Rating";
-            failureType = "Light Failure";
+            Fields["displayChance"].guiName = Localizer.Format("#OHS-lit-00");
+            Fields["safetyRating"].guiName = Localizer.Format("#OHS-lit-01");
+            failureType = Localizer.Format("#OHS-lit-02");
             light = part.FindModuleImplementing<ModuleLight>();
         }
 
@@ -41,9 +48,36 @@ namespace OhScrap
         //turns it back on again
         public override void RepairPart()
         {
+            //_PlaySound(Repair);
             this.part.Modules.Add(this.light);
             light.isOn = lightState;
             light.isEnabled = true;
         }
+
+        //    public void Start()
+        //    {
+        //        Failure = Camera.main.gameObject.AddComponent<AudioSource>();
+        //        Failure.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/light-failure");
+        //        Failure.volume = 0.8f;
+        //        Failure.panStereo = 0;
+        //        Failure.rolloffMode = AudioRolloffMode.Linear;
+
+        //        Repair = Camera.main.gameObject.AddComponent<AudioSource>();
+        //        Repair.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/light-repair");
+        //        Repair.volume = 0.8f;
+        //        Repair.panStereo = 0;
+        //        Repair.rolloffMode = AudioRolloffMode.Linear;
+
+        //    }
+
+        //    private void _PlaySound(AudioSource SoundType)
+        //    {
+        //        if (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().audibleAlarms)
+        //        {
+        //            SoundType.volume = HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundVolume;
+        //            SoundType.Play();
+        //        }
+        //    }
     }
 }
+

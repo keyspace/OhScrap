@@ -9,26 +9,18 @@ namespace OhScrap
 {
     class UPFMSettings : GameParameters.CustomParameterNode
     {
-        public override string Title { get { return "#OHS-Title"; } }
+        // title is the left side,
+
+        public override string Section { get { return "#OHS_modname"; } }
+        public override string DisplaySection { get { return "#OHS_modname"; } }
+        public override string Title { get { return "#OHS-Settings-Title-1"; } }
+
         public override GameParameters.GameMode GameMode { get { return GameParameters.GameMode.ANY; } }
-        public override string Section { get { return "#OHS-Settings-Section"; } }
-        public override string DisplaySection { get { return Section; } }
         public override int SectionOrder { get { return 1; } }
+
         public override bool HasPresets { get { return false; } }
         public bool autoPersistance = true;
         public bool newGameOnly = false;
-
-        [GameParameters.CustomParameterUI("#OHS-Settings-warn", toolTip = "#OHS-Settings-warn-Tip", newGameOnly = false, unlockedDuringMission = true)]
-        public bool safetyWarning = true;
-
-        [GameParameters.CustomParameterUI("#OHS-Settings-highlight", toolTip = "#OHS-Settings-highlight-Tip", newGameOnly = false, unlockedDuringMission = true)]
-        public bool highlightFailures = true;
-
-        [GameParameters.CustomParameterUI("#OHS-Settings-warp", toolTip = "#OHS-Settings-warp-Tip", newGameOnly = false, unlockedDuringMission = true)]
-        public bool stopOnFailure = true;
-
-        [GameParameters.CustomParameterUI("#OHS-Settings-recovery", toolTip = "#OHS-Settings-recovery-Tip", newGameOnly = false, unlockedDuringMission = true)]
-        public bool overrideStageRecovery = false;
 
         [GameParameters.CustomParameterUI("#OHS-Settings-alt", toolTip = "#OHS-Settings-alt-Tip", newGameOnly = false, unlockedDuringMission = true)]
         public bool AlternatorFailureModuleAllowed = true;
@@ -75,8 +67,36 @@ namespace OhScrap
         [GameParameters.CustomParameterUI("#OHS-Settings-lcp", toolTip = "#OHS-Settings-lcp-Tip", newGameOnly = false, unlockedDuringMission = true)]
         public bool LaunchClampFailureModuleAllowed = true;
 
-        [GameParameters.CustomParameterUI("#OHS-Settings-log", toolTip = "#OHS-Settings-log-Tip", newGameOnly = false, unlockedDuringMission = true)]
-        public bool logging = false;
+        [GameParameters.CustomParameterUI("#OHS-Settings-cool", toolTip = "#OHS-Settings-cool-Tip", newGameOnly = false, unlockedDuringMission = true)]
+        public bool EngineCoolantModuleAllowed = true;
+
+    }
+
+    class OhScrapSettings : GameParameters.CustomParameterNode
+    {
+        // title is the section title side,
+        public override string Section { get { return "#OHS_modname"; } }
+        public override string DisplaySection { get { return "#OHS_modname"; } }
+        public override string Title { get { return "#OHS-Settings-Title-2"; } }
+
+        public override GameParameters.GameMode GameMode { get { return GameParameters.GameMode.ANY; } }
+        public override int SectionOrder { get { return 2; } }
+
+        public override bool HasPresets { get { return false; } }
+        public bool autoPersistance = true;
+        public bool newGameOnly = false;
+
+        [GameParameters.CustomParameterUI("#OHS-Settings-warn", toolTip = "#OHS-Settings-warn-Tip", newGameOnly = false, unlockedDuringMission = true)]
+        public bool safetyWarning = true;
+
+        [GameParameters.CustomParameterUI("#OHS-Settings-highlight", toolTip = "#OHS-Settings-highlight-Tip", newGameOnly = false, unlockedDuringMission = true)]
+        public bool highlightFailures = true;
+
+        [GameParameters.CustomParameterUI("#OHS-Settings-warp", toolTip = "#OHS-Settings-warp-Tip", newGameOnly = false, unlockedDuringMission = true)]
+        public bool stopOnFailure = true;
+
+        [GameParameters.CustomParameterUI("#OHS-Settings-recovery", toolTip = "#OHS-Settings-recovery-Tip", newGameOnly = false, unlockedDuringMission = true)]
+        public bool overrideStageRecovery = false;
 
         [GameParameters.CustomParameterUI("#OHS-Settings-paw", toolTip = "#OHS-Settings-paw-Tip", newGameOnly = false, unlockedDuringMission = true)]
         public bool coloredPAW = true;
@@ -84,14 +104,15 @@ namespace OhScrap
         [GameParameters.CustomParameterUI("#OHS-Settings-snd", toolTip = "#OHS-Settings-snd-Tip", newGameOnly = false, unlockedDuringMission = true)]
         public bool audibleAlarms = true;
 
-        [GameParameters.CustomIntParameterUI("#OHS-Settings-soundClip", minValue = 0, maxValue = 3, stepSize = 1, toolTip = "#OHS-Settings-soundClip-Tip")]
+        [GameParameters.CustomIntParameterUI("#OHS-Settings-soundClip", minValue = 0, maxValue = 5, stepSize = 1, toolTip = "#OHS-Settings-soundClip-Tip")]
         public int soundClip = 0;
 
         [GameParameters.CustomFloatParameterUI("#OHS-Settings-soundVolume",
                                                 toolTip = "#OHS-Settings-soundVolume-Tip",
-                                                asPercentage = true,
+                                                asPercentage = false,
                                                 minValue = 0f,
-                                                maxValue = 100f,
+                                                maxValue = 1f,
+                                                displayFormat = "F2",
                                                 stepCount = 1)]
         public float soundVolume = 0.75f;
 
@@ -101,4 +122,41 @@ namespace OhScrap
         [GameParameters.CustomParameterUI("#OHS-Settings-Parts", toolTip = "#OHS-Settings-Parts-Tip", newGameOnly = false, unlockedDuringMission = true)]
         public bool requireParts = false;
     }
+    class DebugSettings : GameParameters.CustomParameterNode
+    {
+        // title is the section title side,
+        public override string Section { get { return "#OHS_modname"; } }
+        public override string DisplaySection { get { return "#OHS_modname"; } }
+        public override string Title { get { return "#OHS-Settings-Title-3"; } }
+
+        public override GameParameters.GameMode GameMode { get { return GameParameters.GameMode.ANY; } }
+        public override int SectionOrder { get { return 3; } }
+
+        public override bool HasPresets { get { return false; } }
+        public bool autoPersistance = true;
+        public bool newGameOnly = false;
+
+        [GameParameters.CustomParameterUI("#OHS-Settings-log", toolTip = "#OHS-Settings-log-Tip", newGameOnly = false, unlockedDuringMission = true)]
+        public bool logging = false;
+
+        [GameParameters.CustomParameterUI("#OHS-Settings-deb", toolTip = "#OHS-Settings-deb-Tip", newGameOnly = false, unlockedDuringMission = true)]
+        public bool debugMenu = true;
+
+        [GameParameters.CustomParameterUI("OhScrap(UPFM) v: " + Version.Text)]
+        public bool thrsowaway = false;
+    }
+    //class DebugSettings2 : GameParameters.CustomParameterNode
+    //{
+    //    // title is the section title side,
+    //    public override string Section { get { return "#OHS_modname"; } }
+    //    public override string DisplaySection { get { return "#OHS_modname"; } }
+    //    public override string Title { get { return "#OHS-Settings-Title-4"; } }
+
+    //    public override GameParameters.GameMode GameMode { get { return GameParameters.GameMode.ANY; } }
+    //    public override int SectionOrder { get { return 4; } }
+
+    //    public override bool HasPresets { get { return false; } }
+    //    public bool autoPersistance = true;
+
+    //}
 }

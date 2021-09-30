@@ -19,6 +19,7 @@ namespace OhScrap
         protected AudioSource failureSound1;
         protected AudioSource failureSound2;
         protected AudioSource failureSound3;
+        protected AudioSource failureSound4;
 
         public bool ready = false;
         public bool willFail = false;
@@ -50,70 +51,113 @@ namespace OhScrap
         public bool isSRB = false;
         public bool excluded = false;
 
-#if DEBUG
+        //#if DEBUG
         //[KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "Force Failure (DEBUG)")]
         [KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "#OHS_BaseFailureModule_ForceFailure")]
         public void ForceFailure()
         {
-            if (!ready)
+            if (HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu)
             {
-                launched = true;
-                Initialise();
-            }
 
-            FailPart();
-            hasFailed = true;
+                if (!ready)
+                {
+                    launched = true;
+                    Initialize();
+                }
+
+                FailPart();
+                hasFailed = true;
+            }
         }
         //[KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "Force Repair(DEBUG)")]
         [KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "#OHS_BaseFailureModule_ForceRepair")]
         public void ForcedRepair()
         {
 
-            hasFailed = false;
-            willFail = false;
-            RepairPart();
-            OhScrap.Events["RepairChecks"].active = false;
-            OhScrap.Events["ToggleHighlight"].active = false;
-            numberOfRepairs++;
-            Debug.Log("[OhScrap]: " + SYP.ID + " " + moduleName + " was successfully repaired");
-            part.highlightType = Part.HighlightType.OnMouseOver;
-            part.SetHighlightColor(Color.green);
-            part.SetHighlight(false, false);
+            OhScrap.Events["RepairChecks"].active = HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu;
+            OhScrap.Events["ToggleHighlight"].active = HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu;
+            OhScrap.Events["RepairChecks"].guiActive = HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu;
+            OhScrap.Events["ToggleHighlight"].guiActive = HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu;
 
+            if (HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu)
+            {
+                //OhScrap.Events["RepairChecks"].active = true;
+                //OhScrap.Events["ToggleHighlight"].active = true;
+                hasFailed = false;
+                willFail = false;
+                RepairPart();
+
+                numberOfRepairs++;
+
+                Debug.Log(SYP.ID + " " + moduleName + " was successfully repaired");
+
+                part.highlightType = Part.HighlightType.OnMouseOver;
+                part.SetHighlightColor(Color.green);
+                part.SetHighlight(false, false);
+            }
+            //else
+            //{
+            //    OhScrap.Events["RepairChecks"].active = false;
+            //    OhScrap.Events["ToggleHighlight"].active = false;
+            //    OhScrap.Events["RepairChecks"].guiActive = false;
+            //    OhScrap.Events["ToggleHighlight"].guiActive = false;
+            //}
         }
-#endif
+        // #endif
         private void Start()
         {
-#if DEBUG
-            Fields["displayChance"].guiActive = true;
-            Fields["displayChance"].guiActiveEditor = true;
-            Fields["safetyRating"].guiActive = true;
-#endif
+            // #if DEBUG
+            //if (HighLogic.CurrentGame.Parameters.CustomParams<OhScrapSettings>().logging)
+            //{
+
+            //    Fields["displayChance"].guiActive = true;
+            //    Fields["displayChance"].guiActiveEditor = true;
+            //    Fields["safetyRating"].guiActive = true;
+            //} else
+            //{
+
+            //    Fields["displayChance"].guiActive = false;
+            //    Fields["displayChance"].guiActiveEditor = true;
+            //    Fields["safetyRating"].guiActive = true;
+            //}    
+            // #endif
+
+            Fields["displayChance"].guiActive = HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu;
+            Fields["displayChance"].guiActiveEditor = HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu;
+            Fields["safetyRating"].guiActive = HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu;
+
 
             failureSound0 = Camera.main.gameObject.AddComponent<AudioSource>();
             failureSound0.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/ClinkingTeaspoon");
             failureSound0.volume = 0.8f;
-            failureSound0.panStereo = 0;
+            failureSound0.panStereo = 1f;
             failureSound0.rolloffMode = AudioRolloffMode.Linear;
 
             failureSound1 = gameObject.AddComponent<AudioSource>();
             failureSound1.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/FirePager");
             failureSound1.volume = 0.8f;
-            failureSound1.panStereo = 0;
+            failureSound1.panStereo = 1f;
             failureSound1.rolloffMode = AudioRolloffMode.Linear;
 
             failureSound2 = gameObject.AddComponent<AudioSource>();
             failureSound2.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/PhoneVibrating");
             failureSound2.volume = 0.8f;
-            failureSound2.panStereo = 0;
+            failureSound2.panStereo = 1f;
             failureSound2.rolloffMode = AudioRolloffMode.Linear;
 
             failureSound3 = gameObject.AddComponent<AudioSource>();
             failureSound3.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/Upper01");
             failureSound3.volume = 0.8f;
-            failureSound3.panStereo = 0;
+            failureSound3.panStereo = 1f;
             failureSound3.rolloffMode = AudioRolloffMode.Linear;
             failureSound3.Stop();
+
+            failureSound4 = gameObject.AddComponent<AudioSource>();
+            failureSound4.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/alarm");
+            failureSound4.volume = 0.8f;
+            failureSound4.panStereo = 1f;
+            failureSound4.rolloffMode = AudioRolloffMode.Linear;
+            failureSound4.Stop();
 
             // failureSound0.Play();
 
@@ -138,7 +182,7 @@ namespace OhScrap
 
             //Initialize the Failure Module.
             GameEvents.onLaunch.Add(OnLaunch);
-            if (launched || HighLogic.LoadedSceneIsEditor) Initialise();
+            if (launched || HighLogic.LoadedSceneIsEditor) Initialize();
         }
 
         private void OnLaunch(EventReport data)
@@ -152,53 +196,84 @@ namespace OhScrap
             if (p != part) return;
             willFail = false;
             chanceOfFailure = baseChanceOfFailure;
-            Initialise();
+            Initialize();
         }
 
         private void OnSYInventoryChanged(InventoryPart data0, bool data1)
         {
             willFail = false;
             chanceOfFailure = baseChanceOfFailure;
-            Initialise();
+            Initialize();
         }
 
         // if SY applies inventory we reset the module as it could be a whole new part now.
         private void OnSYInventoryAppliedToVessel()
         {
-#if DEBUG
+            //#if DEBUG
             Debug.Log("[UPFM]: ScrayYard Inventory Applied. Recalculating failure chance for " + SYP.ID + " " + ClassName);
-#endif
+            //#endif
             willFail = false;
             chanceOfFailure = baseChanceOfFailure;
-            Initialise();
+            Initialize();
         }
 
         //likewise for when the SYTracker is updated (usually on VesselRollout). Start() fires before ScrapYard applies the inventory in the flight scene.
         private void OnSYTrackerUpdated(IEnumerable<InventoryPart> data)
         {
-#if DEBUG
             Debug.Log("[UPFM]: ScrayYard Tracker updated. Recalculating failure chance for " + SYP.ID + " " + ClassName);
-#endif
+
             willFail = false;
             chanceOfFailure = baseChanceOfFailure;
-            Initialise();
+            Initialize();
         }
 
         private void ActivateFailures()
         {
             if (KRASHWrapper.simulationActive()) return;
             launched = true;
-            Initialise();
+            Initialize();
             UPFMUtils.instance.testedParts.Add(SYP.ID);
             if (HighLogic.LoadedScene == GameScenes.FLIGHT && isSRB && FailureAllowed() && UPFMUtils.instance._randomiser.NextDouble() < chanceOfFailure) InvokeRepeating("FailPart", 0.01f, 0.01f);
         }
-        // This is where we "initialize" the failure module and get everything ready
-        public void Initialise()
+
+        public void OnUpdate()
         {
-#if DEBUG
-            Events["ForceFailure"].guiName = moduleName + "Force Failure (DEBUG)";
-            Events["ForcedRepair"].guiName = moduleName + "Force Repair (DEBUG)";
-#endif
+            Events["ForceFailure"].guiName = Localizer.Format("#OHS_BaseFailureModule_ForceFailure", moduleName);
+            Events["ForcedRepair"].guiName = Localizer.Format("#OHS_BaseFailureModule_ForceRepair", moduleName);
+
+            Events["ForceFailure"].active = HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu;
+            Events["ForcedRepair"].active = HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu;
+            Events["ForceFailure"].guiActive = HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu;
+            Events["ForcedRepair"].guiActive = HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu;
+            base.OnUpdate();
+        }
+        // This is where we "initialize" the failure module and get everything ready
+        public void Initialize()
+        {
+            // #if DEBUG
+            //if (HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu)
+            //{
+
+            //Events["ForceFailure"].guiName = moduleName + "Force Failure (DEBUG)";
+            //Events["ForcedRepair"].guiName = moduleName + "Force Repair (DEBUG)";
+            Events["ForceFailure"].guiName = Localizer.Format("#OHS_BaseFailureModule_ForceFailure", moduleName);
+            Events["ForcedRepair"].guiName = Localizer.Format("#OHS_BaseFailureModule_ForceRepair", moduleName);
+
+            //    Events["ForceFailure"].active = true;
+            //    Events["ForcedRepair"].active = true;
+            //    Events["ForceFailure"].guiActive = true;
+            //    Events["ForcedRepair"].guiActive = true;
+            //}
+            //else
+            //{
+            //    Events["ForceFailure"].guiName = "";
+            //    Events["ForcedRepair"].guiName = "";
+            //    Events["ForceFailure"].active = false;
+            //    Events["ForcedRepair"].active = false;
+            //    Events["ForceFailure"].guiActive = false;
+            //    Events["ForcedRepair"].guiActive = false;
+            //}
+            // #endif
             //ScrapYard isn't always ready when OhScrap is so we check to see if it's returning an ID yet. If not, return and wait until it does.
             if (SYP.ID == 0 || !UPFMUtils.instance.ready) ready = false;
             else ready = true;
@@ -223,35 +298,7 @@ namespace OhScrap
             {
                 OhScrap.Events["RepairChecks"].active = true;
                 OhScrap.Events["ToggleHighlight"].active = true;
-                // make sound if failed.
-                //ScreenMessages.PostScreenMessage("Failed");
-                //failureSound0.Play();
-                //if (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().safetyWarning)
-                //{
-                //    ScreenMessages.PostScreenMessage("BaseFailureModule - safety warning");
-                //    switch (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundClip)
-                //    {
-                //        case 0:
-                //            ScreenMessages.PostScreenMessage("BaseFailureModule - sound 0");
-                //            failureSound0.Play();
-                //            break;
-                //        case 1:
-                //            ScreenMessages.PostScreenMessage("BaseFailureModule - sound 1");
-                //            failureSound1.Play();
-                //            break;
-                //        case 2:
-                //            ScreenMessages.PostScreenMessage("BaseFailureModule - sound 2");
-                //            failureSound2.Play();
-                //            break;
-                //        case 3:
-                //            ScreenMessages.PostScreenMessage("BaseFailureModule - sound 3");
-                //            failureSound3.Play();
-                //            break;
-                //        default:
-                //            failureSound0.Play();
-                //            break;
-                //    }
-                //}
+
             }
 
             displayChance = (int)(chanceOfFailure * 100);
@@ -295,33 +342,51 @@ namespace OhScrap
             return baseChanceOfFailure + 0.01f - (generation * (baseChanceOfFailure / 10));
         }
 
+        /// <summary>
+        /// Plays sound.
+        /// make sound if failed.        
+        /// </summary>
         public void PlaySound()
         {
-            if (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().audibleAlarms)
-            {
-                switch (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundClip)
-                {
-                    case 0:
-                        failureSound3.volume = HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundVolume;
-                        failureSound0.Play();
-                        break;
-                    case 1:
-                        failureSound3.volume = HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundVolume;
-                        failureSound1.Play();
-                        break;
-                    case 2:
-                        failureSound3.volume = HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundVolume;
-                        failureSound2.Play();
-                        break;
-                    case 3:
-                        failureSound3.volume = HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundVolume;
-                        failureSound3.Play();
-                        break;
-                    default:
-                        failureSound0.Play();
-                        break;
-                }
-            }
+            //int _X;
+
+            //if (HighLogic.CurrentGame.Parameters.CustomParams<OhScrapSettings>().audibleAlarms)
+            //{
+            //    /// this randomizes sound if that option is selected in Game Settings.
+            //    _X = HighLogic.CurrentGame.Parameters.CustomParams<OhScrapSettings>().soundClip;
+            //    if (_X == 0)
+            //    {
+            //        int RandomInt = Random.Range(1, 5);
+            //        _X = RandomInt;
+            //        Log.Debug("Random: {0}", _X.ToString());
+            //    }
+            //    float _v = HighLogic.CurrentGame.Parameters.CustomParams<OhScrapSettings>().soundVolume;
+            //    switch (_X)
+            //    {
+            //        case 1:
+            //            failureSound0.volume = _v;
+            //            failureSound0.Play();
+            //            break;
+            //        case 2:
+            //            failureSound1.volume = _v;
+            //            failureSound1.Play();
+            //            break;
+            //        case 3:
+            //            failureSound2.volume = _v;
+            //            failureSound2.Play();
+            //            break;
+            //        case 4:
+            //            failureSound3.volume = _v;
+            //            failureSound3.Play();
+            //            break;
+            //        case 5:
+            //            failureSound4.volume = _v;
+            //            failureSound4.Play();
+            //            break;
+            //        default:
+            //            break;
+            //    }
+            //}
         }
 
         //These methods all are overridden by the failure modules
@@ -344,7 +409,7 @@ namespace OhScrap
             //If ScrapYard didn't return a sensible ID last time we checked, try again.
             if (!ready)
             {
-                Initialise();
+                Initialize();
                 return;
             }
             //OnLaunch doesn't fire for rovers, so we do a secondary check for whether the vessel is moving, and fire it manually if it is.
@@ -366,6 +431,12 @@ namespace OhScrap
             GameEvents.onLaunch.Remove(OnLaunch);
             if (ScrapYardEvents.OnSYTrackerUpdated != null) ScrapYardEvents.OnSYTrackerUpdated.Remove(OnSYTrackerUpdated);
             if (ScrapYardEvents.OnSYInventoryAppliedToVessel != null) ScrapYardEvents.OnSYInventoryAppliedToVessel.Remove(OnSYInventoryAppliedToVessel);
+
+            //failureSound0.Stop();
+            //failureSound1.Stop();
+            //failureSound2.Stop();
+            //failureSound3.Stop();
+            //failureSound4.Stop();
         }
     }
 }

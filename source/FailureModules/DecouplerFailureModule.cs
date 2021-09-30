@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using KSP.Localization;
 
 namespace OhScrap
 {
@@ -20,9 +21,9 @@ namespace OhScrap
 
         protected override void Overrides()
         {
-            Fields["displayChance"].guiName = "Chance of Decoupler Failure";
-            Fields["safetyRating"].guiName = "Decoupler Safety Rating";
-            failureType = "Decoupler Failure";
+            Fields["displayChance"].guiName = Localizer.Format("#OHS-dcp-00");
+            Fields["safetyRating"].guiName = Localizer.Format("#OHS-dcp-01");
+            failureType = Localizer.Format("#OHS-dcp-02");
             decoupler = part.FindModuleImplementing<ModuleDecouple>();
         }
 
