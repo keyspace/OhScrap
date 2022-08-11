@@ -1,11 +1,24 @@
 {
-    "schedule": "weekly"
+    "schedule": "weekly",
     "ignoredFiles": [
-        "**/GameData/**",
-        "**/source/**",
-        "docs/LegalMumboJumbo/*"
+        "GameData/OhScrap/*",
+        "source/*",
+        "**/@thumbs/**",
+        "**/Agencies/**",
+        "**/Assets/**",
+        "**/Flags/**",
+        "**/FX/**",
+        "**/Icons/**",
+        "**/LegalMumboJumbo/**",
+        "**/Parts/**",
+        "**/PluginData/**",
+        "**/Props/**",
+        "**/SimpleIcons/**",
+        "**/Spaces/**",
+        "**/Textures/**",
+        "**/UI/**"
     ],
-    "aggressiveCompression": "false"
-    "compressWiki": "true"
+    "aggressiveCompression": "false",
+    "compressWiki": "true",
     "minKBReduced": 500
 }
