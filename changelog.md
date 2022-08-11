@@ -1,3 +1,9 @@
+KSP_VERSION_MAX
+
+
+
+
+
 KERBALCHANGELOG
 {
 	showChangelog = true
