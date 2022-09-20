@@ -84,7 +84,7 @@ or [![CKAN][CKAN:img]][CKAN:url]
   * [Module Manager /L][mml]
 
 
-### Recomends
+### Recommends
 
 * [Kerbal Construction Time](https://forum.kerbalspaceprogram.com/index.php?/topic/182877-*) designed with this with in mind, so would recommend that mod (make sure you use the latest dev version)
 * [StageRecovery](https://forum.kerbalspaceprogram.com/index.php?/topic/179306-*) If you plan to actually re-use your parts (and have them fail), you'll probably want StageRecovery too
