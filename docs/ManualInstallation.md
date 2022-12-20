@@ -4,19 +4,18 @@ title: Manual Installation
 description: the flat-pack Kiea instructions, written in Kerbalese, unusally present
 tags: installation,directions,page,kerbal,ksp,zer0Kerbal,zedK
 ---
-
 <!-- ManualInstallation.md v1.1.8.1
-Oh Scrap! (OS)
+OhScrap! (OS)
 created: 01 Oct 2019
 updated: 29 Jul 2022 -->
 
 <!-- based upon work by Lisias -->
 
-# Oh Scrap! (OS)
+# OhScrap! (OS)
 
 [Home](./index.md)
 
-***BLURB***
+Scrapyard Based Part Failure addon plugin for Kerbal Space Program.
 
 ## Installation Instructions
 
@@ -51,6 +50,8 @@ To install, place the `GameData` folder inside your Kerbal Space Program folder:
 ```markdown
 <KSP_ROOT>
   + [GameData]
+    + [ScrapYard]
+      ...
     + [OhScrap]
       + [Agencies]
         ...
@@ -64,19 +65,17 @@ To install, place the `GameData` folder inside your Kerbal Space Program folder:
         ...
       + [Localization]
         ...
-      + [Parts]
-        ...
       + [Plugins]
         ...
       * #.#.#.#.htm
       * Attributions.htm
       * changelog.md
       * GPL-2.0.txt
-        ManualInstallation.htm
+      * ManualInstallation.htm
       * OhScrap.version
       * readme.htm
     ...
-    * [Module Manager][mm] or [Module Manager /L][mml]
+    * [Module Manager /L][mml] or [Module Manager][mm]
     * ModuleManager.ConfigCache
   * KSP.log
   ...
@@ -86,8 +85,8 @@ To install, place the `GameData` folder inside your Kerbal Space Program folder:
 
 * [ScrapYard (SY)][SY]
 * *either*
-  * [Module Manager][mm]
   * [Module Manager /L][mml]
+  * [Module Manager][mm]
 
 [SY]: https://forum.kerbalspaceprogram.com/index.php?/topic/178641-* "ScrapYard (SY)"
 [mm]: https://forum.kerbalspaceprogram.com/index.php?/topic/50533-*/ "Module Manager"
