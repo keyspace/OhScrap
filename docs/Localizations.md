@@ -4,7 +4,6 @@ title: Localizations
 description: camera goes *click-click*
 tags: translations,localizations,languages,page,kerbal,ksp,zer0Kerbal,zedK
 ---
-
 <!-- Localizations.md v1.1.7.0
 Oh Scrap! (OS)
 created: 01 Feb 2022
@@ -22,6 +21,7 @@ updated: 03 Jun 2022 -->
 has been translated into the following languages:
 
 * ![English][EN] English <us-en.cfg>
+* ![简体中文][CN] Simplified Chinese (简体中文) <zh-cn.cfg>  
 
 __These localizations for KSP and its DLC's are available through Steam:__
 
@@ -32,7 +32,6 @@ __These localizations for KSP and its DLC's are available through Steam:__
 * ![日本語][JA] Japanese(日本語) <ja.cfg>  
 * ![Português Brasil][BR] Brazilian Portuguese (Português Brasil) <pt-br.cfg>  
 * ![Русский][RU] Russian (Русский) <ru.cfg>  
-* ![简体中文][CN] Simplified Chinese (简体中文) <zh-cn.cfg>  
 
 ## Additionally Included
 
