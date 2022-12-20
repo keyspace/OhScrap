@@ -6,7 +6,7 @@ tags: attributions,thank-you,directions,page,kerbal,ksp,zer0Kerbal,zedK
 ---
 <!--
 Attributions.md v1.0.7.1
-Oh Scrap! (OS)
+OhScrap! (OS)
 created: 01 Feb 2022
 updated: 03 Jun 2022
 -->
@@ -14,7 +14,7 @@ updated: 03 Jun 2022
 <script src="https://kit.fontawesome.com/0ea5493613.js" crossorigin="anonymous"></script>
 <i class="fa fa-gear fa-spin fa-3x" style="color: firebrick"></i>
 
-# Oh Scrap! (OS)
+# OhScrap! (OS)
 
 [Home](./index.md)
 
@@ -23,8 +23,10 @@ updated: 03 Jun 2022
 ### Credits
 
 <ul>
-  <li><a href="https://forum.kerbalspaceprogram.com/index.php?/profile/93697-*/"><img border="0" alt="dtobi" src="https://kerbal-forum-uploads.s3.us-west-2.amazonaws.com/set_resources_17/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png" width="50" height="50" > DaMichel</a> for creating <a href="https://forum.kerbalspaceprogram.com/index.php?/topic/208107-*/" alt="DaMichel Ltd (KM)"> the DaMichel series of parts addons!</a></li>
-  <li><a href="https://forum.kerbalspaceprogram.com/index.php?/profile/81209-*/"><img border="0" alt="Bezzier" src="https://kerbal-forum-uploads.s3.us-west-2.amazonaws.com/set_resources_17/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png" width="50" height="50" > Bezzier</a> for picking up where DaMichel left off (Color Curves)</li>
+  <li><a href="https://forum.kerbalspaceprogram.com/index.php?/profile/80345-*/"><img border="0" alt="severedsolo" src="https://kerbal-forum-uploads.s3.us-west-2.amazonaws.com/profile/photo-80345.png" width="50" height="50" > severedsolo</a> for creating <a href="https://forum.kerbalspaceprogram.com/index.php?/topic/192360-*/" alt="OhScrap! (OH)"> OhScrap! (OH)!</a></li>
+  <li><a href="https://forum.kerbalspaceprogram.com/index.php?/profile/73338-*/"><img border="0" alt="magico13" src="https://kerbal-forum-uploads.s3.us-west-2.amazonaws.com/profile/photo-73338.png" width="50" height="50" > magico13</a> both for ScrapYard, and helping severedsolo with all his questions issues while making this.</li>
+  <li><i>
+* The maintainers/authors of DangIt - most of this would never have happened without looking at your code to figure out how to make stuff work.</i></li>
   <li><i>Thank you to everyone who gave feedback! It's very important for me and highly appreciated.</i></li>
 </ul>
 
