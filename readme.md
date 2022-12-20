@@ -274,7 +274,7 @@ plugin,config,information,editor,sound,career,crewed,uncrewed
 [reddit]: https://www.reddit.com/user/zer0Kerbal
 [twitch]: https://www.twitch.tv/zer0kerbal
 [twitter]: https://twitter.com/zer0Kerbal
-[youtube]: https://www.youtube.com/channel/UCp9c8IaK4Gjgfj3O9QxrbDw
+[youtube]: https://www.youtube.com/@zer0Kerbal
 
 [DaMichel]: https://forum.kerbalspaceprogram.com/index.php?/profile/102159-*/ "DaMichel"
 [blackheart]: https://forum.kerbalspaceprogram.com/index.php?/profile/42741-*/ "Blackheart612"
