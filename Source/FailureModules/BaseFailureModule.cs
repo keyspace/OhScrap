@@ -41,10 +41,10 @@ namespace OhScrap
         [KSPField(isPersistant = true, guiActive = false)]
         public int numberOfRepairs = 0;
         //[KSPField(isPersistant = false, guiActive = false, guiName = "BaseFailure", guiActiveEditor = false, guiUnits = "%")]
-        [KSPField(isPersistant = false, guiActive = false, guiName = "#OHS_BaseFailureModule_displayChance", guiActiveEditor = false, guiUnits = "%")]
+        [KSPField(isPersistant = false, guiActive = false, guiName = "#OHS-BaseFailureModule-displayChance", guiActiveEditor = false, guiUnits = "%")]
         public int displayChance = 100;
         //[KSPField(isPersistant = false, guiActive = true, guiName = "Base Safety Rating", guiActiveEditor = true)]
-        [KSPField(isPersistant = false, guiActive = true, guiName = "#OHS_BaseFailureModule_safetyRating", guiActiveEditor = true)]
+        [KSPField(isPersistant = false, guiActive = true, guiName = "#OHS-BaseFailureModule-safetyRating", guiActiveEditor = true)]
         public int safetyRating = -1;
         public ModuleUPFMEvents OhScrap;
         public bool remoteRepairable = false;
@@ -53,7 +53,7 @@ namespace OhScrap
 
         //#if DEBUG
         //[KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "Force Failure (DEBUG)")]
-        [KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "#OHS_BaseFailureModule_ForceFailure")]
+        [KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "#OHS-BaseFailureModule-ForceFailure")]
         public void ForceFailure()
         {
             if (HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu)
@@ -70,7 +70,7 @@ namespace OhScrap
             }
         }
         //[KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "Force Repair(DEBUG)")]
-        [KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "#OHS_BaseFailureModule_ForceRepair")]
+        [KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "#OHS-BaseFailureModule-ForceRepair")]
         public void ForcedRepair()
         {
 
@@ -238,8 +238,8 @@ namespace OhScrap
 
         public void OnUpdate()
         {
-            Events["ForceFailure"].guiName = Localizer.Format("#OHS_BaseFailureModule_ForceFailure", moduleName);
-            Events["ForcedRepair"].guiName = Localizer.Format("#OHS_BaseFailureModule_ForceRepair", moduleName);
+            Events["ForceFailure"].guiName = Localizer.Format("#OHS-BaseFailureModule-ForceFailure", moduleName);
+            Events["ForcedRepair"].guiName = Localizer.Format("#OHS-BaseFailureModule-ForceRepair", moduleName);
 
             Events["ForceFailure"].active = HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu;
             Events["ForcedRepair"].active = HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu;
@@ -256,8 +256,8 @@ namespace OhScrap
 
             //Events["ForceFailure"].guiName = moduleName + "Force Failure (DEBUG)";
             //Events["ForcedRepair"].guiName = moduleName + "Force Repair (DEBUG)";
-            Events["ForceFailure"].guiName = Localizer.Format("#OHS_BaseFailureModule_ForceFailure", moduleName);
-            Events["ForcedRepair"].guiName = Localizer.Format("#OHS_BaseFailureModule_ForceRepair", moduleName);
+            Events["ForceFailure"].guiName = Localizer.Format("#OHS-BaseFailureModule-ForceFailure", moduleName);
+            Events["ForcedRepair"].guiName = Localizer.Format("#OHS-BaseFailureModule-ForceRepair", moduleName);
 
             //    Events["ForceFailure"].active = true;
             //    Events["ForcedRepair"].active = true;
