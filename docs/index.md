@@ -1,6 +1,7 @@
 # 
 
 ## Categories
+- [LegalMumboJumbo](./LegalMumboJumbo/index.md)
 - [ReleaseNotes](./ReleaseNotes/index.md)
 
 ## Documents
@@ -11,3 +12,4 @@
 - [ManualInstallation](ManualInstallation.md)
 - [Marketing](Marketing.md)
 - [Notices](Notices.md)
+- [Why](Why.md)
