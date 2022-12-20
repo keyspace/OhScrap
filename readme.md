@@ -53,6 +53,7 @@ adopted with *express* permission and brought to you by *KerbSimpleCo*
 ### Localization
 
 >* ![English][EN] English
+>* ![中文][CN] Simplified Chinese (中文) - courtesy of 
 >* ***your translation here***
 >
 > HELP WANTED - See the [README in the Localization folder][lreadme] or the [Quickstart Guide][qstart] for instructions for adding or improving translations. [GitHub][GitHub:url] push is the best way to contribute. *Additions and corrections welcome!*
