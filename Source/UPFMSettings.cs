@@ -11,9 +11,9 @@ namespace OhScrap
     {
         // title is the left side,
 
-        public override string Section { get { return "#OHS_modname"; } }
-        public override string DisplaySection { get { return "#OHS_modname"; } }
-        public override string Title { get { return "#OHS-Settings-Title-1"; } }
+        public override string Section { get { return "#OHS-modname"; } }
+        public override string DisplaySection { get { return "#OHS-modname"; } }
+        public override string Title { get { return "#OHS-Settings-title-1"; } }
 
         public override GameParameters.GameMode GameMode { get { return GameParameters.GameMode.ANY; } }
         public override int SectionOrder { get { return 1; } }
@@ -75,9 +75,9 @@ namespace OhScrap
     class OhScrapSettings : GameParameters.CustomParameterNode
     {
         // title is the section title side,
-        public override string Section { get { return "#OHS_modname"; } }
-        public override string DisplaySection { get { return "#OHS_modname"; } }
-        public override string Title { get { return "#OHS-Settings-Title-2"; } }
+        public override string Section { get { return "#OHS-modname"; } }
+        public override string DisplaySection { get { return "#OHS-modname"; } }
+        public override string Title { get { return "#OHS-Settings-title-2"; } }
 
         public override GameParameters.GameMode GameMode { get { return GameParameters.GameMode.ANY; } }
         public override int SectionOrder { get { return 2; } }
@@ -125,9 +125,9 @@ namespace OhScrap
     class DebugSettings : GameParameters.CustomParameterNode
     {
         // title is the section title side,
-        public override string Section { get { return "#OHS_modname"; } }
-        public override string DisplaySection { get { return "#OHS_modname"; } }
-        public override string Title { get { return "#OHS-Settings-Title-3"; } }
+        public override string Section { get { return "#OHS-modname"; } }
+        public override string DisplaySection { get { return "#OHS-modname"; } }
+        public override string Title { get { return "#OHS-Settings-title-3"; } }
 
         public override GameParameters.GameMode GameMode { get { return GameParameters.GameMode.ANY; } }
         public override int SectionOrder { get { return 3; } }
@@ -148,9 +148,9 @@ namespace OhScrap
     //class DebugSettings2 : GameParameters.CustomParameterNode
     //{
     //    // title is the section title side,
-    //    public override string Section { get { return "#OHS_modname"; } }
-    //    public override string DisplaySection { get { return "#OHS_modname"; } }
-    //    public override string Title { get { return "#OHS-Settings-Title-4"; } }
+    //    public override string Section { get { return "#OHS-modname"; } }
+    //    public override string DisplaySection { get { return "#OHS-modname"; } }
+    //    public override string Title { get { return "#OHS-Settings-title-4"; } }
 
     //    public override GameParameters.GameMode GameMode { get { return GameParameters.GameMode.ANY; } }
     //    public override int SectionOrder { get { return 4; } }
