@@ -116,6 +116,7 @@ KERBALCHANGELOG
 			subChange = use C# 9.0
 			subChange = update to Version.tt [v2.0.0.0]
 			subChange = pull upstream changes from severedsolo (thank you)
+			subchange = [OhScrap.dll] v2.2.1.79
 		}
 		CHANGE
 		{

@@ -1,17 +1,19 @@
-<!-- readme.md v1.6.9.4
-Oh Scrap! (OS) (formerly UPFM)
+<!-- readme.md v1.6.9.9
+MOD-NAME (ABBV)
 created: 17 Jul 2017
-updated: 10 Aug 2022 -->
+updated: 04 Oct 2022 -->
 
 <!--this file: CC BY-ND 4.0 by zer0Kerbal-->
 
-[![Oh Scrap][MOD:shd:latest]][MOD:forum] [![KSP version][KSP:shd]][KSP:url]  [![License][LIC:shd]][LIC:url]
-[![Curseforge][CURSFG:shd]][CURSFG:url] [![GitHub][GITHUB:shd]][GITHUB:url] [![SpaceDock][SPCDCK:shd]][SPCDCK:url] [![CKAN][CKAN:shd]][CKAN:url] 
+[![MOD-NAME][MOD:shd:latest]][MOD:forum] [![KSP version][KSP:shd]][KSP:url]  [![License][LIC:shd]][LIC:url]  
+[![Curseforge][CURSFG:shd]][CURSFG:url] [![GitHub][GITHUB:shd]][GITHUB:url] [![SpaceDock][SPCDCK:shd]][SPCDCK:url] [![CKAN][ckan:shd]][ckan:url]  
 [![Pages][MOD:pages:shd]][MOD:pages]
+
+![Code][CODE:shd]
 
 # Oh Scrap! (OS) (formerly UPFM)
 
-Scrapyard Based Part Failure Mod  for Kerbal Space Program.
+Scrapyard Based Part Failure addon plugin for Kerbal Space Program.
 
 ## By [`zer0Kerbal`][zer0Kerbal], originally by [`severedsolo`][severedsolo]
 
@@ -19,36 +21,34 @@ adopted with *express* permission and brought to you by *KerbSimpleCo*
 
 <img src="https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/img/HeroLogo_1920x1920.png" alt="OhScrap Hero" width="50%" height="50%">
 
-> Poor Val, she's not having a good day. There she was on her way back from orbit, and this happened: 
+### Preamble by [severedsolo][severedsolo]
+
+> Poor Val, she's not having a good day. There she was on her way back from orbit, and this happened:
 >
-> ![A bad day for Val][IMG:hero:0]
-
+> ![A bad day for Val](https://i.imgur.com/2V0F5DT.png)
+>
 > You see, I forgot to take her shiny new ship for a test flight before sending it to space, so the reaction wheels failed. Then her oxygen started venting into space. So she quickly burned retrograde and started her re-entry. Except that as she came into land, the parachute failed too. Like I said, not a good day.
+>
+>Sound exciting? Then why don't you install Oh Scrap! today.
 
-Sound exciting? Then why don't you install Oh Scrap! today.
-
-Features
+### Features
 
 * Part Failures: Parachutes, Engines, Gimbals, Resources, Batteries, Reaction Wheels, Control Surfaces - all these failures can make your day turn out like Vals. (all can be disabled or enabled through the difficulty settings menu)
 * Failures follow the [bathtub curve](https://en.wikipedia.org/wiki/Bathtub_curve) - brand new untested parts are more likely to fail than pre-tested models. If you re-use a part too many times though, it will reach the end of it's shelf-life and be more prone to failure.
 * Subsequent "new models" of parts become more reliable than their earlier counterparts. Ie, a part you've just researched is more likely to fail than a part that has been tried and tested many times - even if it's brand new.
 * Repairs - some parts can be repaired remotely, some need an EVA. You always have a better chance of repairing a part on EVA
 
-### Eye candy of a really awesome Static Test that someone set up on facebook
+### See more
 
-#### (used with permission)
+>* [GitHub Pages][MOD:pages]
+>* [Marketing Slicks][MOD:markt]
+>* [Discussions][MOD:discu] or [KSP Forums][MOD:forum] for discussions and news
+>* [ChangeLog][MOD:chlog] for more details of changes
+>* [Known Issues][MOD:issue] for more details of feature requests and known issues
 
-![][IMG:hero:1]
+### YouTube video [`Lu`](https://www.youtube.com/@user-ur8lh6oj4s)
 
-![][IMG:hero:2]
-
-### Help Wanted
-
-> * Compatibility patches
-> * Marketing Images and Videos such as hero shots, animated gifs, short highlight
-> * Have a request? Glad to have them, kindly submit through [GitHub][MOD:issue].
-
----
+[![Testing the K-1 with Oh Scrap | Kerbal Space Program](https://img.youtube.com/vi/kn-Dm_6TQ7s/0.jpg)](https://youtu.be/kn-Dm_6TQ7s)
 
 ### Localization
 
@@ -305,7 +305,3 @@ Track progress: issues [here][MOD:issue] and projects [here](https://github.com/
 [severedsolo]: https://forum.kerbalspaceprogram.com/index.php?/profile/80345-*/ "severedsolo"
 [zer0Kerbal]: https://forum.kerbalspaceprogram.com/index.php?/profile/190933-*/ "zer0Kerbal"
 [linuxgurugamer]: https://forum.kerbalspaceprogram.com/index.php?/profile/129964-*/ "linuxgurugamer"
-
-[IMG:hero:0]: https://i.imgur.com/2V0F5DT.png
-[IMG:hero:1]: https://i.imgur.com/eWRLoBR.jpg
-[IMG:hero:2]: https://i.imgur.com/EyWm9e9.jpg
