@@ -13,8 +13,8 @@ namespace OhScrap
         public override bool FailureAllowed()
         {
             if (rcs == null) return false;
-            if(!vessel.ActionGroups[KSPActionGroup.RCS]) return false;
-             return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().RCSFailureModuleAllowed;
+            if (!vessel.ActionGroups[KSPActionGroup.RCS]) return false;
+            return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().RCSFailureModuleAllowed;
         }
 
         protected override void Overrides()
@@ -31,6 +31,7 @@ namespace OhScrap
             if (rcs == null) return;
             rcs.rcsEnabled = false;
             if (OhScrap.highlight) OhScrap.SetFailedHighlight();
+            PlaySound();
         }
         //turns it back on again
         public override void RepairPart()

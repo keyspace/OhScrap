@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OhScrap")]
+[assembly: AssemblyTitle("OhScrap!")]
 [assembly: AssemblyDescription("Scrapyard based Part Failure addin for Kerbal Space Program.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("KGEx")]
-[assembly: AssemblyProduct("OhScrap")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyProduct("OhScrap!")]
+[assembly: AssemblyCopyright("Copyright ©  2018, 2020, 2021 zer0Kerbal")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

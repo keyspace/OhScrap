@@ -1,9 +1,107 @@
+KSP_VERSION_MAX
+
+
+
+
+
 KERBALCHANGELOG
 {
 	showChangelog = true
 	modName = Oy!Scrap!
 	license = Expat/MIT
 	author = magico13, severedsolo, zer0Kerbal
+	VERSION
+	{
+		version = 2.2.1.0
+        versionDate = 28 Sep 2021
+        versionKSP = 1.12.2
+		versionName = *t-minus...the final countdown*
+## DO A CLEAN INSTALL: DELETE EXISTING THEN RE-INSTALL  
+
+## WARNING: Only [Curseforge][CRSFG:url] version will include .dll’s
+
+
+## Finally proper credit given to 
+
+- [@`Zelda'][LINK:zelda] for ideas and support. The legend is real! 🧧 
+- [`eightiesboi`][LINK:eightiesboi] for ideas, support and testing! 🧧
+
+### Changed  
+
+- [Expat-MIT.txt]
+  - rename from MIT.txt to Expat-MIT.txt to properly reference license type
+  - update to include 2021
+  - include contact information for zer0Kerbal (email address)
+  - remove [@`magico13`][LINK:magico13] since he wasn't an author
+- NETKan file updated
+
+## Updated
+
+- [_release.json] to 1.0.2.1 schema
+- [Changelog.cfg] to most recent standard
+- [readme.me] to most recent standard
+
+## Added
+
+- [us-en.cfg]
+- initial code Localization #20 #27
+- part failure sounds and settings 
+  - settings:
+    - five soundfx selections
+    - soundOn or Off on part failure
+    - set to 0 for random sound
+- start of localization :books: 
+  - us-en.cfg
+- onGUI
+  - GUI Hide on <F2> :keycap_ten: 
+- update Version.tt to 2.0.0.2
+- new GameData/OhScrap/Sounds :file_folder: 
+  - includes License.md (one file for all sound assets)
+  - nine new sound clips
+
+## New
+- Failure Sounds #19
+- Light Failure 
+- Decoupler Failures
+- New settings
+
+## Patch linting and file maintenance
+
+- usual spring cleaning and automation
+- update folder structure
+- update to modern back-end automation
+
+## Status
+
+- Bug Issues / / Features
+  - updated #20 #27 us-en.cfg should be complete
+  - Used chutes fitted to ship are already deployed  #29
+  - Implement engine under-thrust/under-Isp failures in a way that doesn't depend on thrust limiter. closes #1
+  
+- *** Possible future changes ***
+  - ❓ ❔ the future : ❓ ❔ 
+    - Clean the ScrapYard #12
+    - Flowgraph Logspam #4
+    - Used chutes fitted to ship are already deployed #3
+    - add a wiki (user driven)
+
+		CHANGE
+		{
+			change = Code
+			subChange = recompile for KSP 1.12.2
+			subChange = use .net 4.7.2
+			subChange = use C# 9.0
+			subChange = update to Version.tt [v2.0.0.0]
+			subChange = pull upstream changes from severedsolo (thank you)
+		}
+		CHANGE
+		{
+			change = Update
+			subChange = usual spring cleaning and automation
+			subChange = folder structure
+			subChange = to modern back-end automation
+		}
+	}
 	VERSION
 	{
 		version = 2.2.0.0

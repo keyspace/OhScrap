@@ -33,19 +33,95 @@ namespace OhScrap
         public void Log(string s)
         {
             logs.Add(s);
-            Debug.Log("[OhScrap]: " + s);
+            //Debug.Log("[OhScrap]: " + s);
+            Debug.Log(string.Format("[OhScrap (UPFM) v{0}]: ", Version.Text) + s);
+
+            string logMsg = string.Format("[OhScrap (UPFM) v{0}]: ", Version.Text) + s;
+            if (HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().logging)
+            {
+                Debug.Log(logMsg);
+            }
+            else
+            {
+#if DEBUG
+                Debug.Log(logMsg);
+#endif
+            }
         }
 
         public void OnDisable()
         {
             if (logs.Count() == 1) return;
-            string path = directory + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss")+".txt";
+            string path = directory + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".txt";
             using (StreamWriter writer = File.AppendText(path))
             {
                 foreach (string s in logs)
                 {
                     writer.WriteLine(s);
                 }
+            }
+        }
+
+        /// <summary>Messages to the screen in the specified format.</summary>
+        /// <param name="format">The format.</param>
+        /// <param name="args">The arguments.</param>
+        private void Message(string format, params object[] args)
+        {
+            //ScreenMessages.PostScreenMessage(string.Format(format, args), 3.0f, ScreenMessageStyle.UPPER_CENTER);
+            ScreenMessages.PostScreenMessage(string.Format(format, args), 3f, 0);
+        }
+
+        /// <summary>Add messages to the log. Prepends "OhScrap (UPFM) v{0}]: ", Version.Text</summary>
+        /// <param name="logMsg">The message.</param>
+        /// <param name="xDebug">require DEBUG setting to create log entry</param>
+        private void Dlog(string logMsg, bool xDebug = true)
+        {
+            logMsg = string.Format("[OhScrap (UPFM) v{0}]: ", Version.Text) + logMsg;
+            if (xDebug || HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().logging)
+            {
+                Debug.Log(logMsg);
+            }
+            else
+            {
+#if DEBUG
+                Debug.Log(logMsg);
+#endif
+            }
+        }
+
+        /// <summary>LogWarning: Add messages to the log. Prepends "OhScrap (UPFM) v{0}]: ", Version.Text</summary>
+        /// <param name="logMsg">The message.</param>
+        /// <param name="xDebug">require DEBUG setting to create log entry</param>
+        private void DlogWarning(string logMsg, bool xDebug = true)
+        {
+            logMsg = string.Format("[OhScrap (UPFM) v{0}]: ", Version.Text) + logMsg;
+            if (xDebug || HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().logging)
+            {
+                Debug.LogWarning(logMsg);
+            }
+            else
+            {
+#if DEBUG
+                Debug.LogWarning(logMsg);
+#endif
+            }
+        }
+
+        /// <summary>LogError: Add messages to the log. Prepends "OhScrap (UPFM) v{0}]: ", Version.Text</summary>
+        /// <param name="logMsg">The message.</param>
+        /// <param name="xDebug">require DEBUG setting to create log entry</param>
+        private void DlogError(string logMsg, bool xDebug = true)
+        {
+            logMsg = string.Format("[OhScrap (UPFM) v{0}]: ", Version.Text) + logMsg;
+            if (xDebug || HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().logging)
+            {
+                Debug.LogError(logMsg);
+            }
+            else
+            {
+#if DEBUG
+                Debug.LogError(logMsg);
+#endif
             }
         }
     }

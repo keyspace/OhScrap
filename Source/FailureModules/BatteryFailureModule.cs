@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using KSP.Localization;
 
 namespace OhScrap
 {
     class BatteryFailureModule : BaseFailureModule
     {
+        /// <summary>
+        /// Adds sound FX for failures
+        /// </summary>
+        protected AudioSource Failure;
+        protected AudioSource Repair;
+
         PartResource battery;
 
         protected override void Overrides()
         {
-            Fields["displayChance"].guiName = "Chance of Battery Failure";
-            Fields["safetyRating"].guiName = "Battery Safety Rating";
-            failureType = "Short Circuit";
+            Fields["displayChance"].guiName = Localizer.Format("#OHS-bat-00");
+            Fields["safetyRating"].guiName = Localizer.Format("#OHS-bat-01");
+            failureType = Localizer.Format("#OHS-bat-02");
             battery = part.Resources["ElectricCharge"];
         }
 
@@ -26,17 +33,45 @@ namespace OhScrap
             if (OhScrap.highlight) OhScrap.SetFailedHighlight();
             if (hasFailed) return;
             Debug.Log("[OhScrap]: " + SYP.ID + " has suffered a short circuit failure");
+            //PlaySound();
+            PlaySound();
         }
 
         //Repair allows it to be charged again.
         public override void RepairPart()
         {
-           battery.flowState = true;
+            battery.flowState = true;
+            // PlaySound(Repair);
         }
 
         public override bool FailureAllowed()
         {
             return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().BatteryFailureModuleAllowed;
         }
+
+        //public void Start()
+        //{
+        //    Failure = Camera.main.gameObject.AddComponent<AudioSource>();
+        //    Failure.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/battery-failure");
+        //    Failure.volume = 0.8f;
+        //    Failure.panStereo = 0;
+        //    Failure.rolloffMode = AudioRolloffMode.Linear;
+
+        //    Repair = Camera.main.gameObject.AddComponent<AudioSource>();
+        //    Repair.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/battery-repair");
+        //    Repair.volume = 0.8f;
+        //    Repair.panStereo = 0;
+        //    Repair.rolloffMode = AudioRolloffMode.Linear;
+
+        //}
+
+        //private void _PlaySound(AudioSource SoundType)
+        //{
+        //    if (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().audibleAlarms)
+        //    {
+        //        SoundType.volume = HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().soundVolume;
+        //        SoundType.Play();
+        //    }
+        //}
     }
 }

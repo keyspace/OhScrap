@@ -8,7 +8,7 @@ namespace OhScrap
     {
         public void Awake()
         {
-            if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER && StageRecoveryWrapper.StageRecoveryEnabled && HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().overrideStageRecovery) StageRecoveryWrapper.AddRecoverySuccessEvent(RecoverySuccess);
+            if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER && StageRecoveryWrapper.StageRecoveryEnabled && HighLogic.CurrentGame.Parameters.CustomParams<OhScrapSettings>().overrideStageRecovery) StageRecoveryWrapper.AddRecoverySuccessEvent(RecoverySuccess);
         }
 
         private void RecoverySuccess(Vessel vessel, float[] returns, string result)
@@ -19,7 +19,7 @@ namespace OhScrap
 
         public void OnDisable()
         {
-            if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER && StageRecoveryWrapper.StageRecoveryEnabled && HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().overrideStageRecovery) StageRecoveryWrapper.RemoveRecoverySuccessEvent(RecoverySuccess);
+            if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER && StageRecoveryWrapper.StageRecoveryEnabled && HighLogic.CurrentGame.Parameters.CustomParams<OhScrapSettings>().overrideStageRecovery) StageRecoveryWrapper.RemoveRecoverySuccessEvent(RecoverySuccess);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using ScrapYard.Modules;
+using KSP.Localization;
 
 namespace OhScrap
 {
@@ -14,12 +15,14 @@ namespace OhScrap
         [KSPField(isPersistant = true, guiActive = false)]
         public bool highlight = true;
         public bool doNotRecover = false;
-        [KSPField(isPersistant = false, guiActiveEditor = true, guiName = "Tested")]
+        //[KSPField(isPersistant = false, guiActiveEditor = true, guiName = "Tested")]
+        [KSPField(isPersistant = false, guiActiveEditor = true, guiName = "#OHS_ModuleUPFMEvents_tested")]
         public bool tested = false;
         BaseFailureModule repair;
         ModuleSYPartTracker SYP;
         public bool refreshed = false;
-        [KSPField(isPersistant = false, guiActive = true, guiName = "Generation", guiActiveEditor = true)]
+        //[KSPField(isPersistant = false, guiActive = true, guiName = "Generation", guiActiveEditor = true)]
+        [KSPField(isPersistant = false, guiActive = true, guiName = "#OHS_ModuleUPFMEvents_generation", guiActiveEditor = true)]
         public int generation = 0;
         public bool customFailureEvent = false;
         public bool highlightOverride = false;
@@ -46,33 +49,37 @@ namespace OhScrap
             else Debug.Log("[OhScrap]: " + SYP.ID + " has been recovered " + SYP.TimesRecovered + " times. No need to refresh");
             refreshed = true;
         }
-        
+
         //This allows the player to not recover the part to the SY Inventory
-        [KSPEvent(active = true, guiActive = true, guiActiveUnfocused = false, externalToEVAOnly = false, guiName = "Trash Part")]
+        //[KSPEvent(active = true, guiActive = true, guiActiveUnfocused = false, externalToEVAOnly = false, guiName = "Trash Part")]
+        [KSPEvent(active = true, guiActive = true, guiActiveUnfocused = false, externalToEVAOnly = false, guiName = "#OHS_ModuleUPFMEvents_TrashPart")]
         public void TrashPart()
         {
             if (!doNotRecover)
             {
                 doNotRecover = true;
-                ScreenMessages.PostScreenMessage(part.partInfo.title + " will not be recovered");
+                //ScreenMessages.PostScreenMessage(part.partInfo.title + " will not be recovered");
+                ScreenMessages.PostScreenMessage(Localizer.Format("#OHS_ModuleUPFMEvents_recovered", part.partInfo.title));
             }
             else
             {
                 List<BaseFailureModule> modules = part.FindModulesImplementing<BaseFailureModule>();
                 if (modules.Count == 0) return;
-                for(int i = 0; i<modules.Count; i++)
+                for (int i = 0; i < modules.Count; i++)
                 {
                     BaseFailureModule bfm = modules.ElementAt(i);
-                    if(bfm.hasFailed)
+                    if (bfm.hasFailed)
                     {
-                        ScreenMessages.PostScreenMessage(part.partInfo.title + " cannot be saved");
+                        //ScreenMessages.PostScreenMessage(part.partInfo.title + " cannot be saved");
+                        ScreenMessages.PostScreenMessage(Localizer.Format("#OHS_ModuleUPFMEvents_saved", part.partInfo.title));
                         return;
                     }
                 }
                 doNotRecover = false;
-                ScreenMessages.PostScreenMessage(part.partInfo.title + " will be recovered");
+                //ScreenMessages.PostScreenMessage(part.partInfo.title + " will be recovered");
+                ScreenMessages.PostScreenMessage(Localizer.Format("#OHS_ModuleUPFMEvents_recovered", part.partInfo.title));
             }
-            Debug.Log("[OhScrap]: TrashPart " + SYP.ID+" "+doNotRecover);
+            Debug.Log("[OhScrap]: TrashPart " + SYP.ID + " " + doNotRecover);
         }
         //This marks the part as not recoverable to ScrapYard
         public void MarkBroken()
@@ -80,8 +87,9 @@ namespace OhScrap
             doNotRecover = true;
         }
 
-        //This toggles the part failure highlight on and off (player initiated)
-        [KSPEvent(active = false, guiActive = true, guiActiveUnfocused = false, externalToEVAOnly = false, guiName = "Toggle Failure Highlight")]
+        ///This toggles the part failure highlight on and off (player initiated)
+        ///[KSPEvent(active = false, guiActive = true, guiActiveUnfocused = false, externalToEVAOnly = false, guiName = "Toggle Failure Highlight")]
+        [KSPEvent(active = false, guiActive = true, guiActiveUnfocused = false, externalToEVAOnly = false, guiName = "#OHS_ModuleUPFMEvents_ToggleHighlight")]
         public void ToggleHighlight()
         {
             if (highlight)
@@ -96,7 +104,7 @@ namespace OhScrap
         //This sets the initial highlighting when a part fails (mod initiated)
         public void SetFailedHighlight()
         {
-            if (!HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().highlightFailures) return;
+            if (!HighLogic.CurrentGame.Parameters.CustomParams<OhScrapSettings>().highlightFailures) return;
             if (!highlight) return;
             part.SetHighlightColor(Color.red);
             part.SetHighlightType(Part.HighlightType.AlwaysOn);
@@ -104,7 +112,8 @@ namespace OhScrap
         }
 
         //This loops through every failure module on this part and runs the "Repair Part" method.
-        [KSPEvent(active = false, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "Repair")]
+        //[KSPEvent(active = false, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "Repair")]
+        [KSPEvent(active = false, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "#OHS_ModuleUPFMEvents_RepairChecks")]
         public void RepairChecks()
         {
             Debug.Log("[OhScrap]: Attempting repairs");
@@ -115,18 +124,21 @@ namespace OhScrap
             {
                 Debug.Log("[OhScrap]: Attempting Remote Repair");
                 //If CommNet or RemoteTech is enabled, check if vessel is connected. (can't upload a software fix with no connection)
-               if(ModWrapper.RemoteTechWrapper.available && !ModWrapper.RemoteTechWrapper.HasConnectionToKSC(FlightGlobals.ActiveVessel.id))
-               {
-                    ScreenMessages.PostScreenMessage("Vessel must be connected to Homeworld before remote repair can be attempted");
+                if (ModWrapper.RemoteTechWrapper.available && !ModWrapper.RemoteTechWrapper.HasConnectionToKSC(FlightGlobals.ActiveVessel.id))
+                {
+                    //ScreenMessages.PostScreenMessage("Vessel must be connected to Homeworld before remote repair can be attempted");
+                    ScreenMessages.PostScreenMessage(Localizer.Format("#OHS_ModuleUPFMEvents_RemoteRepair"));
                     Debug.Log("[OhScrap]:(RemoteTech) Remote Repair aborted. Vessel not connected home");
                     return;
 
-               }else if (CommNet.CommNetScenario.CommNetEnabled && !FlightGlobals.ActiveVessel.Connection.IsConnectedHome)
-               {
-                    ScreenMessages.PostScreenMessage("Vessel must be connected to Homeworld before remote repair can be attempted");
+                }
+                else if (CommNet.CommNetScenario.CommNetEnabled && !FlightGlobals.ActiveVessel.Connection.IsConnectedHome)
+                {
+                    //ScreenMessages.PostScreenMessage("Vessel must be connected to Homeworld before remote repair can be attempted");
+                    ScreenMessages.PostScreenMessage(Localizer.Format("#OHS_ModuleUPFMEvents_RemoteRepair"));
                     Debug.Log("[OhScrap]: Remote Repair aborted. Vessel not connected home");
                     return;
-               }
+                }
 
                 //Check if the part is actually remote repairable. This will fail if any of the failed modules are not remote repairable.
                 for (int i = 0; i < bfm.Count(); i++)
@@ -136,7 +148,8 @@ namespace OhScrap
                     {
                         if (!b.remoteRepairable)
                         {
-                            ScreenMessages.PostScreenMessage(part.partInfo.title + "cannot be repaired remotely");
+                            //ScreenMessages.PostScreenMessage(part.partInfo.title + "cannot be repaired remotely");
+                            ScreenMessages.PostScreenMessage(Localizer.Format("#OHS_ModuleUPFMEvents_RepairRemotely", part.partInfo.title));
                             repairAllowed = false;
                             Debug.Log("[OhScrap]: Remote Repair not allowed on " + SYP.ID + " " + b.ClassName);
                             continue;
@@ -151,10 +164,11 @@ namespace OhScrap
             //This will carry on until either a module cant be repaired, or all modules are repaired.
             while (!Repaired())
             {
-                //If the module fails the check or it's already been marked as irrepairable will stop trying.
+                //If the module fails the check or it's already been marked as unrepairable will stop trying.
                 if (!RepairFailCheck() || repairTried)
                 {
-                    ScreenMessages.PostScreenMessage("This part is beyond repair");
+                    //ScreenMessages.PostScreenMessage("This part is beyond repair");
+                    ScreenMessages.PostScreenMessage("#OHS_ModuleUPFMEvents_BeyondRepair");
                     repairTried = true;
                     Debug.Log("[OhScrap]: " + SYP.ID + " is too badly damaged to be fixed");
                     return;
@@ -163,18 +177,19 @@ namespace OhScrap
                 repair.hasFailed = false;
                 repair.willFail = false;
                 repair.RepairPart();
-                if (!customFailureEvent) ScreenMessages.PostScreenMessage("The part should be ok to use now");
+                //if (!customFailureEvent) ScreenMessages.PostScreenMessage("The part should be ok to use now");
+                if (!customFailureEvent) ScreenMessages.PostScreenMessage(Localizer.Format("#OHS_ModuleUPFMEvents_Okay"));
                 repair.numberOfRepairs++;
                 Debug.Log("[OhScrap]: " + SYP.ID + " " + repair.moduleName + " was successfully repaired");
                 part.highlightType = Part.HighlightType.OnMouseOver;
                 part.SetHighlightColor(Color.green);
                 part.SetHighlight(false, false);
             }
-            //Once the part has been repaired run the Initialise Event again (possibly another fail)
+            //Once the part has been repaired run the Initialize Event again (possibly another fail)
             for (int i = 0; i < bfm.Count; i++)
             {
                 BaseFailureModule bf = bfm.ElementAt(i);
-                bf.Initialise();
+                bf.Initialize();
             }
         }
 
@@ -183,32 +198,32 @@ namespace OhScrap
         {
             //base success chance is 20%
             float repairChance = 0.2f;
-            if(FlightGlobals.ActiveVessel.GetCrewCount() >0)
+            if (FlightGlobals.ActiveVessel.GetCrewCount() > 0)
             {
                 //if repair is done by EVA success is 40%
                 if (FlightGlobals.ActiveVessel.FindPartModuleImplementing<KerbalEVA>() != null) repairChance = 0.4f;
-                for(int i = 0; i<FlightGlobals.ActiveVessel.GetVesselCrew().Count(); i++)
+                for (int i = 0; i < FlightGlobals.ActiveVessel.GetVesselCrew().Count(); i++)
                 {
                     //Engineers give a 10% bonus per level to repair rates
                     ProtoCrewMember p = FlightGlobals.ActiveVessel.GetVesselCrew().ElementAt(i);
-                    for(int ii = 0; ii < p.experienceTrait.Effects.Count(); ii++)
-                        if  (p.experienceTrait.Effects[ii].Name == "FailureRepairSkill")
+                    for (int ii = 0; ii < p.experienceTrait.Effects.Count(); ii++)
+                        if (p.experienceTrait.Effects[ii].Name == "FailureRepairSkill")
                         {
                             if (p.experienceTrait.Effects[ii].LevelModifiers.Length > 0)
-                            { 
+                            {
                                 repairChance += p.experienceTrait.Effects[ii].LevelModifiers[p.experienceLevel];
                                 Debug.Log(String.Format("[OhScrap]: name {0) experiencetrait {1) level {2) modifier {3)", p.name, p.experienceTrait.ToString(), p.experienceLevel.ToString(), p.experienceTrait.Effects[ii].LevelModifiers[p.experienceLevel].ToString()));
                             }
                             else repairChance += p.experienceLevel * 0.1f;
                             break;
-                    }
-                            //p.experienceTrait.Effects[ii].Level
-                   /* if (p.experienceTrait.Effects == "FailureRepairSkill")
-                    // if ((p.trait == "Engineer") || (p.trait == "Mechanic"))
-                    {
-                        repairChance += p.experienceLevel*0.1f;
-                        break;
-                    }*/
+                        }
+                    //p.experienceTrait.Effects[ii].Level
+                    /* if (p.experienceTrait.Effects == "FailureRepairSkill")
+                     // if ((p.trait == "Engineer") || (p.trait == "Mechanic"))
+                     {
+                         repairChance += p.experienceLevel*0.1f;
+                         break;
+                     }*/
                 }
             }
             double roll = UPFMUtils.instance._randomiser.NextDouble();
@@ -234,5 +249,6 @@ namespace OhScrap
             doNotRecover = false;
             return true;
         }
+
     }
 }
