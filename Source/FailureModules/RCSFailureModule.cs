@@ -31,7 +31,7 @@ namespace OhScrap
             if (rcs == null) return;
             rcs.rcsEnabled = false;
             if (OhScrap.highlight) OhScrap.SetFailedHighlight();
-            PlaySound();
+            //PlaySound();
         }
         //turns it back on again
         public override void RepairPart()
