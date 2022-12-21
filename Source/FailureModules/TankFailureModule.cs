@@ -97,7 +97,7 @@ namespace OhScrap
             }
             leaking.amount = leaking.amount * 0.999f;
             if (OhScrap.highlight) OhScrap.SetFailedHighlight();
-            PlaySound();
+            //PlaySound();
         }
     }
 }
