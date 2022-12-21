@@ -142,7 +142,7 @@ namespace OhScrap
                 s.Run(FARControlSurface);
                 if (OhScrap.highlight) OhScrap.SetFailedHighlight();
             }
-            PlaySound();
+            //PlaySound();
         }
 
 
