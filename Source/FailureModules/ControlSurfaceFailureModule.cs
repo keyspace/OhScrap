@@ -39,7 +39,7 @@ namespace OhScrap
             controlSurface.ignorePitch = true;
             controlSurface.ignoreRoll = true;
             controlSurface.ignoreYaw = true;
-            PlaySound();
+            //PlaySound();
         }
         //restores control to the control surface
         public override void RepairPart()
