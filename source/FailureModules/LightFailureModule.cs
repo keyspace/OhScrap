@@ -43,7 +43,7 @@ namespace OhScrap
             light.isOn = false;
             if (OhScrap.highlight) OhScrap.SetFailedHighlight();
             this.part.Modules.Remove(this.light);
-            PlaySound();
+            //PlaySound();
         }
         //turns it back on again
         public override void RepairPart()
