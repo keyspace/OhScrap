@@ -12,8 +12,8 @@ namespace OhScrap
         /// <summary>
         /// Adds sound FX for failures
         /// </summary>
-        protected AudioSource Failure;
-        protected AudioSource Repair;
+        //protected AudioSource Failure;
+        //protected AudioSource Repair;
 
         PartResource battery;
 
@@ -34,7 +34,7 @@ namespace OhScrap
             if (hasFailed) return;
             Debug.Log("[OhScrap]: " + SYP.ID + " has suffered a short circuit failure");
             //PlaySound();
-            PlaySound();
+            //PlaySound();
         }
 
         //Repair allows it to be charged again.
