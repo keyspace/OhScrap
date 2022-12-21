@@ -32,6 +32,16 @@
   * thank you to [T2Fat2Fl](https://github.com/T2Fat2Fly)
   * [Bug]: Incorrect mod settings descriptions/labels
 * Updated documentation
+* *Experimental*
+  * <RealAntennasFailureModule.cfg.0> v1.0.0.0
+    * thank you. requested by [Gordon Dry](https://github.com/Gordon-Dry)
+    * currently disabled
+
+### Credit
+
+* Finally proper credit given to
+  * [Zelda](https://forum.kerbalspaceprogram.com/index.php?/profile/66411-*/) for ideas and support. The legend is real!
+  * [eightiesboi](https://forum.kerbalspaceprogram.com/index.php?/profile/133828-*/) for ideas, support and testing!
 
 ### Code 2.2.99.0
 
@@ -44,23 +54,28 @@
   * GUI Hide on `<F2>`
 * start of localization
   * us-en.cfg
-* temporarily removed (on hold)
-  * Failure Sounds
-  * Light Failure
-  * Decoupler Failures
-  * New settings
-  * part failure sounds and settings
-    * settings:
+* *Experimental*
+  * <RealAntennasFailureModule.cfg.0> v1.0.0.0
+    * thank you. requested by [Gordon Dry](https://github.com/Gordon-Dry)
+    * currently disabled
+    * temporarily removed (on hold)
+    * Failure Sounds
+    * Light Failure
+    * Decoupler Failures
+    * New settings
+    * part failure sounds and settings
+      * settings:
       * five soundfx selections
       * soundOn or Off on part failure
       * set to 0 for random sound
-  * new GameData/OhScrap/Sounds
-    * includes License.md (one file for all sound assets)
+    * new GameData/OhScrap/Sounds
+      * includes License.md (one file for all sound assets)
     * nine new sound clips
 * updates #19 - audible alarm on failure
 * closes #21 - OhScrap window doesn't get hidden when F2 is pressed
 * closes #74 - [Bug 🐞]: Incorrect mod settings descriptions/labels
 * closes #76 - [Bug 🐞]: FAR Parachute Incompability Due to Wrong MM Config
+* updates #78 - [Request]: RealAntennaFailureModule
 
 ### Localization 2.2.99.0
 
@@ -95,12 +110,6 @@
 * closes #23 - Wiki
 * closes #75 - Check Links in documentation
 
-### Credit
-
-* Finally proper credit given to
-  * [Zelda](https://forum.kerbalspaceprogram.com/index.php?/profile/66411-*/) for ideas and support. The legend is real!
-  * [eightiesboi](https://forum.kerbalspaceprogram.com/index.php?/profile/133828-*/) for ideas, support and testing!
-
 ### Update License
 
 * Updated License: GPL-2.0 + CC NC-BY-SA 4.0
@@ -118,6 +127,7 @@
   * closes #25 - Localization - duplicated
   * closes #26 - Localization - duplicated
   * closes #27 - Localization - duplicated
+  * updates #36 - update the ModWrappers
 
 ---
 
