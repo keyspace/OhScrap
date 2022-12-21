@@ -56,7 +56,7 @@ namespace OhScrap
 
             }
             hasFailed = true;
-            PlaySound();
+            //PlaySound();
         }
 
         public override void RepairPart() //turn off highlight and repack with one of realchutes spares.
