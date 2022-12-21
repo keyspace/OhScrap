@@ -10,6 +10,117 @@
 | spacedock  | (https://spacedock.info/mod/2364)                                 |
 | ckan       | OhScrap                                                           |
 
+## Version 2.2.99.0-prerelease - `<允许降落伞损坏>` edition
+
+* Released
+  * 20 Dec 2022
+  * for Kerbal Space Program 1.12.4
+  * by zer0Kerbal
+
+### Summary 2.2.99.0
+
+* Maintenance release - no major code changes
+  * Recompile for 1.12.4
+  * <OhScrap.dll> v2.2.1.79 --> v2.2.99.80
+  * Create hero logo/cover
+* OhScrap! window now hides when F2 is pressed
+* Localization
+  * English
+  * Simplified Chinese (简体中文)
+* FIX:
+  * [Bug]: FAR Parachute Incompability Due to Wrong MM Config
+  * thank you to [T2Fat2Fl](https://github.com/T2Fat2Fly)
+  * [Bug]: Incorrect mod settings descriptions/labels
+* Updated documentation
+
+### Code 2.2.99.0
+
+* Recompile
+  * KSP 1.12.4
+  * .NET 4.6.1
+  * C# 5.0
+* <OhScrap.dll> v2.2.1.79 --> v2.2.99.80
+* onGUI
+  * GUI Hide on `<F2>`
+* start of localization
+  * us-en.cfg
+* temporarily removed (on hold)
+  * Failure Sounds
+  * Light Failure
+  * Decoupler Failures
+  * New settings
+  * part failure sounds and settings
+    * settings:
+      * five soundfx selections
+      * soundOn or Off on part failure
+      * set to 0 for random sound
+  * new GameData/OhScrap/Sounds
+    * includes License.md (one file for all sound assets)
+    * nine new sound clips
+* updates #19 - audible alarm on failure
+* closes #21 - OhScrap window doesn't get hidden when F2 is pressed
+* closes #74 - [Bug 🐞]: Incorrect mod settings descriptions/labels
+* closes #76 - [Bug 🐞]: FAR Parachute Incompability Due to Wrong MM Config
+
+### Localization 2.2.99.0
+
+* Initial code localization
+* Create
+  * Localization/
+    * English
+      * <en-us.cfg>
+    * Simplified Chinese (简体中文)
+      * <zh-cn.cfg>
+      * thank you to [T2Fat2Fl](https://github.com/T2Fat2Fly)
+    * [readme.md] v2.1.1.0
+    * [quickstart.md] v1.0.1.0
+* updates #54 - Localization - Master
+* closes #55 - English <en-us.cfg>
+* closes #63 - Simplified Chinese (简体中文) <zh-cn.cfg>
+
+### documentation 2.2.99.0
+
+* Add
+  * [ManualInstallation.md] v1.1.7.0
+  * [Attribution.md] v1.0.6.0
+  * [404.md] v1.0.3.1
+  * [Disclaimer.md] v1.0.0.0
+  * [LegalMumboJumbo.md] v1.0.5.0
+  * [Localizations.md] v1.1.3.1
+  * [Marketing.md] v1.0.0.0
+  * [Notices.md] v1.0.0.0
+  * [PartInvoice.md] v1.1.3.1
+  * [Why.md] v1.1.0.0
+  * [_config.yml]
+* closes #23 - Wiki
+* closes #75 - Check Links in documentation
+
+### Credit
+
+* Finally proper credit given to
+  * [Zelda](https://forum.kerbalspaceprogram.com/index.php?/profile/66411-*/) for ideas and support. The legend is real!
+  * [eightiesboi](https://forum.kerbalspaceprogram.com/index.php?/profile/133828-*/) for ideas, support and testing!
+
+### Update License
+
+* Updated License: GPL-2.0 + CC NC-BY-SA 4.0
+  * was: Expat-MIT + CC NC-BY-SA 4.0
+
+## Status
+
+* Issues
+  * closes #50 - OhScrap! (OHS) 2.2.99.0-prerelease `<允许降落伞损坏>`
+  * closes #51 - 2.2.99.0 Verify Legal Mumbo Jumbo
+  * closes #52 - 2.2.99.0 Update Documentation
+  * closes #53 - 2.2.99.0 Update Social Media
+  * closes #20 - Localization - duplicated
+  * closes #22 - Dependancy check - duplicated
+  * closes #25 - Localization - duplicated
+  * closes #26 - Localization - duplicated
+  * closes #27 - Localization - duplicated
+
+---
+
 ## Version - 2.2.0.0 `<Final Countdown...>`
 
 * Released
@@ -20,7 +131,7 @@
 ### Code
 
 * recompile for KSP 1.12.1
-* use .net 4.7.2
+* use .NET 4.7.2
 * use C# 9.0
 * update to Version.tt [v2.0.0.0]
 * pull upstream changes from severedsolo (thank you)
@@ -141,7 +252,7 @@
 
 ## Version = 2.0.0.0
 
-* Recompile against KSP 1.8 / .Net 4.2.7
+* Recompile against KSP 1.8 / .NET 4.2.7
 * Resized icon so KSP can properly compress it when using half res textures
 * Added Alternator Failures
 * Added Landing Gear Failures
