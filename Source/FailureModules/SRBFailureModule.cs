@@ -57,7 +57,7 @@ namespace OhScrap
             if (OhScrap.highlight) OhScrap.SetFailedHighlight();
             CancelInvoke("FailPart");
             Logger.instance.Log("[OhScrap]: " + part.partInfo.title + " has failed to ignite");
-            PlaySound();
+            //PlaySound();
         }
 
         //SRBs cant be repaired.
