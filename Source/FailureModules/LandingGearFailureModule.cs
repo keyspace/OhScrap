@@ -18,7 +18,7 @@ namespace OhScrap
         {
             _wheel.enabled = false;
             if (OhScrap.highlight) OhScrap.SetFailedHighlight();
-            PlaySound();
+            //PlaySound();
         }
         //this repairs the part.
         public override void RepairPart()
