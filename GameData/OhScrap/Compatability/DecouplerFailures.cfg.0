@@ -1,0 +1,9 @@
+@PART[*]:HAS[@MODULE[ModuleDecouple]]:NEEDS[OhScrap,ScrapYard]:FOR[OhScrap]
+{
+	MODULE
+	{
+		name = DecouplerFailureModule
+		baseChanceOfFailure = 0.1
+		expectedLifetime = 6
+	}
+}
