@@ -47,7 +47,7 @@ namespace OhScrap
             ModWrapper.RemoteTechWrapper.SetRTBrokenStatus(antenna, true);
             if (hasFailed) return;
             Debug.Log("[OhScrap](RemoteTech): " + SYP.ID + " has stopped transmitting");
-            PlaySound();
+            //PlaySound();
         }
 
         public override void RepairPart()
