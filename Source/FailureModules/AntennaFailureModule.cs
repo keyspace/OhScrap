@@ -54,7 +54,7 @@ namespace OhScrap
             }
             if (OhScrap.highlight) OhScrap.SetFailedHighlight();
             antenna.antennaPower = 0;
-            PlaySound();
+            //PlaySound();
         }
         //repair just turns the power back to the original power
         public override void RepairPart()
