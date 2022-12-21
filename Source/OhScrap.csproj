@@ -39,20 +39,22 @@
 		<DocumentationFile>..\docs\Code\OhScrap.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
-		<!-- <Reference Include="$(K112)\GameData\ScrapYard\Plugins\ScrapYard.dll" /> -->
-		<Reference Include="$(K112)Assembly-CSharp-firstpass.dll">
+		<!-- <Reference Include="$(K112)GameData\ScrapYard\Plugins\ScrapYard.dll" />
+			<Private>False</Private>
+		</Reference> -->
+		<Reference Include="$(K112)Assembly-CSharp.dll">
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="$(K112)Assembly-CSharp.dll">
+		<Reference Include="$(K112)Assembly-CSharp-firstpass.dll">
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="$(K112)UnityEngine.dll">
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="$(K112)UnityEngine.AnimationModule.dll">
+		<Reference Include="$(K112)UnityEngine.*.dll">
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="$(K112)UnityEngine.CoreModule.dll">
+		<!-- <Reference Include="$(K112)UnityEngine.CoreModule.dll">
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="$(K112)UnityEngine.IMGUIModule.dll">
@@ -66,16 +68,16 @@
 		</Reference>
 		<Reference Include="$(K112)UnityEngine.AudioModule.dll">
 			<Private>False</Private>
-		</Reference>
-		<Reference Include="$(K112)\GameData\ScrapYard\Plugins\ScrapYard.dll">
+		</Reference> -->
+		<Reference Include="$(K112)..\..\GameData\ScrapYard\Plugins\ScrapYard.dll">
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="System" />
 		<Reference Include="System.Core" />
-		<Reference Include="System.Xml.Linq" />
 		<Reference Include="System.Data.DataSetExtensions" />
 		<Reference Include="System.Data" />
+		<Reference Include="System.Xml.Linq" />
 		<Reference Include="System.Xml" />
+		<Reference Include="System" />
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Include="Dependencies\EngineModuleWrapper.cs" />
