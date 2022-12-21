@@ -15,11 +15,11 @@ namespace OhScrap
         /// <summary>
         /// Adds sound FX for failures
         /// </summary>
-        protected AudioSource failureSound0;
-        protected AudioSource failureSound1;
-        protected AudioSource failureSound2;
-        protected AudioSource failureSound3;
-        protected AudioSource failureSound4;
+        //protected AudioSource failureSound0;
+        //protected AudioSource failureSound1;
+        //protected AudioSource failureSound2;
+        //protected AudioSource failureSound3;
+        //protected AudioSource failureSound4;
 
         public bool ready = false;
         public bool willFail = false;
