@@ -15,7 +15,7 @@ namespace OhScrap
         string directory;
         public void Awake()
         {
-            logs.Add("Using Oh Scrap " + Version.Number);
+            logs.Add("Using OhScrap! " + Version.Number);
             instance = this;
             directory = KSPUtil.ApplicationRootPath + "/GameData/OhScrap/Logs/";
             if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
