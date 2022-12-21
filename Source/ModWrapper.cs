@@ -153,8 +153,7 @@ namespace OhScrap
 
 
 
-
-            //RealChuteLite. 
+            /// <summary>RealChuteLite - Parachute deployment states </summary>
             public enum DeploymentStates
             {
                 NONE,
@@ -178,8 +177,6 @@ namespace OhScrap
 
             }
 
-
-
             public static bool IsDeployed(PartModule p)
             {
                 DeploymentStates state = GetDeploymentState(p);
@@ -190,7 +187,6 @@ namespace OhScrap
             {
                 return GetReflectionProperty<DeploymentStates>(p, "DeploymentState");
             }
-
         }
 
         //Reflection Helpers. 
