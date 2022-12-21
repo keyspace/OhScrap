@@ -1,5 +1,5 @@
 {
-    "NAME"          : "OhScrap! (OS)",
+    "NAME"          : "OhScrap! (OHS) by severedsolo",
     "URL"           : "https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/OhScrap.version",
     "DOWNLOAD"      : "https://github.com/zer0Kerbal/OhScrap/releases/latest/",
     "CHANGE_LOG_URL": "https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/changelog.md",
@@ -20,7 +20,7 @@
     {
         "MAJOR" : 1,
         "MINOR" : 12,
-        "PATCH" : 3
+        "PATCH" : 4
     },
     "KSP_VERSION_MIN" :
     {
