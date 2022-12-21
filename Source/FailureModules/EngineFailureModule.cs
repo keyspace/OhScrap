@@ -137,7 +137,7 @@ namespace OhScrap
                 default:
                     return;
             }
-            PlaySound();
+            //PlaySound();
         }
 
         public override void RepairPart()
