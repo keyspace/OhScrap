@@ -127,37 +127,37 @@ namespace OhScrap
             Fields["safetyRating"].guiActive = HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu;
 
 
-            failureSound0 = Camera.main.gameObject.AddComponent<AudioSource>();
-            failureSound0.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/ClinkingTeaspoon");
-            failureSound0.volume = 0.8f;
-            failureSound0.panStereo = 1f;
-            failureSound0.rolloffMode = AudioRolloffMode.Linear;
+            //failureSound0 = Camera.main.gameObject.AddComponent<AudioSource>();
+            //failureSound0.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/ClinkingTeaspoon");
+            //failureSound0.volume = 0.8f;
+            //failureSound0.panStereo = 1f;
+            //failureSound0.rolloffMode = AudioRolloffMode.Linear;
 
-            failureSound1 = gameObject.AddComponent<AudioSource>();
-            failureSound1.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/FirePager");
-            failureSound1.volume = 0.8f;
-            failureSound1.panStereo = 1f;
-            failureSound1.rolloffMode = AudioRolloffMode.Linear;
+            //failureSound1 = gameObject.AddComponent<AudioSource>();
+            //failureSound1.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/FirePager");
+            //failureSound1.volume = 0.8f;
+            //failureSound1.panStereo = 1f;
+            //failureSound1.rolloffMode = AudioRolloffMode.Linear;
 
-            failureSound2 = gameObject.AddComponent<AudioSource>();
-            failureSound2.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/PhoneVibrating");
-            failureSound2.volume = 0.8f;
-            failureSound2.panStereo = 1f;
-            failureSound2.rolloffMode = AudioRolloffMode.Linear;
+            //failureSound2 = gameObject.AddComponent<AudioSource>();
+            //failureSound2.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/PhoneVibrating");
+            //failureSound2.volume = 0.8f;
+            //failureSound2.panStereo = 1f;
+            //failureSound2.rolloffMode = AudioRolloffMode.Linear;
 
-            failureSound3 = gameObject.AddComponent<AudioSource>();
-            failureSound3.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/Upper01");
-            failureSound3.volume = 0.8f;
-            failureSound3.panStereo = 1f;
-            failureSound3.rolloffMode = AudioRolloffMode.Linear;
-            failureSound3.Stop();
+            //failureSound3 = gameObject.AddComponent<AudioSource>();
+            //failureSound3.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/Upper01");
+            //failureSound3.volume = 0.8f;
+            //failureSound3.panStereo = 1f;
+            //failureSound3.rolloffMode = AudioRolloffMode.Linear;
+            //failureSound3.Stop();
 
-            failureSound4 = gameObject.AddComponent<AudioSource>();
-            failureSound4.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/alarm");
-            failureSound4.volume = 0.8f;
-            failureSound4.panStereo = 1f;
-            failureSound4.rolloffMode = AudioRolloffMode.Linear;
-            failureSound4.Stop();
+            //failureSound4 = gameObject.AddComponent<AudioSource>();
+            //failureSound4.clip = GameDatabase.Instance.GetAudioClip("OhScrap/Sounds/alarm");
+            //failureSound4.volume = 0.8f;
+            //failureSound4.panStereo = 1f;
+            //failureSound4.rolloffMode = AudioRolloffMode.Linear;
+            //failureSound4.Stop();
 
             // failureSound0.Play();
 
