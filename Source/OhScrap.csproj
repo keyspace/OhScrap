@@ -9,7 +9,7 @@
 		<AppDesignerFolder>Properties</AppDesignerFolder>
 		<RootNamespace>OhScrap</RootNamespace>
 		<AssemblyName>OhScrap</AssemblyName>
-		<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+		<TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
 		<FileAlignment>512</FileAlignment>
 		<Deterministic>true</Deterministic>
 		<LangVersion>latest</LangVersion>
@@ -39,36 +39,18 @@
 		<DocumentationFile>..\docs\Code\OhScrap.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
-		<!-- <Reference Include="$(K112)GameData\ScrapYard\Plugins\ScrapYard.dll" />
-			<Private>False</Private>
-		</Reference> -->
 		<Reference Include="$(K112)Assembly-CSharp.dll">
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="$(K112)Assembly-CSharp-firstpass.dll">
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="$(K112)UnityEngine.dll">
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="$(K112)UnityEngine.*.dll">
-			<Private>False</Private>
-		</Reference>
-		<!-- <Reference Include="$(K112)UnityEngine.CoreModule.dll">
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="$(K112)UnityEngine.IMGUIModule.dll">
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="$(K112)UnityEngine.InputLegacyModule.dll">
+		<Reference Include="$(K112)UnityEngine*.dll">
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="$(K112)UnityEngine.UI.dll">
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="$(K112)UnityEngine.AudioModule.dll">
-			<Private>False</Private>
-		</Reference> -->
 		<Reference Include="$(K112)..\..\GameData\ScrapYard\Plugins\ScrapYard.dll">
 			<Private>False</Private>
 		</Reference>
