@@ -5,6 +5,8 @@ using System.Text;
 using UnityEngine;
 using ScrapYard.Modules;
 using ScrapYard;
+using KSP;
+using KSP.Localization;
 
 namespace OhScrap
 {
