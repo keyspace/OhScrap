@@ -4,6 +4,57 @@
         <name>OhScrap</name>
     </assembly>
     <members>
+        <member name="F:OhScrap.BaseFailureModule.ready">
+            <summary>
+            Adds sound FX for failures
+            </summary>
+        </member>
+        <member name="M:OhScrap.BaseFailureModule.PlaySound">
+            <summary>
+            Plays sound.
+            make sound if failed.        
+            </summary>
+        </member>
+        <member name="F:OhScrap.BatteryFailureModule.battery">
+            <summary>
+            Adds sound FX for failures
+            </summary>
+        </member>
+        <member name="M:OhScrap.KRASHWrapper.GetMemberInfoValue(System.Reflection.MemberInfo,System.Object)">
+            <summary>
+            Gets the member information value.
+            </summary>
+            <param name="member">The member.</param>
+            <param name="sourceObject">The source object.</param>
+            <returns></returns>
+        </member>
+        <member name="M:OhScrap.Logger.Message(System.String,System.Object[])">
+            <summary>Messages to the screen in the specified format.</summary>
+            <param name="format">The format.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:OhScrap.Logger.Dlog(System.String,System.Boolean)">
+            <summary>Add messages to the log. Prepends "OhScrap (UPFM) v{0}]: ", Version.Text</summary>
+            <param name="logMsg">The message.</param>
+            <param name="xDebug">require DEBUG setting to create log entry</param>
+        </member>
+        <member name="M:OhScrap.Logger.DlogWarning(System.String,System.Boolean)">
+            <summary>LogWarning: Add messages to the log. Prepends "OhScrap (UPFM) v{0}]: ", Version.Text</summary>
+            <param name="logMsg">The message.</param>
+            <param name="xDebug">require DEBUG setting to create log entry</param>
+        </member>
+        <member name="M:OhScrap.Logger.DlogError(System.String,System.Boolean)">
+            <summary>LogError: Add messages to the log. Prepends "OhScrap (UPFM) v{0}]: ", Version.Text</summary>
+            <param name="logMsg">The message.</param>
+            <param name="xDebug">require DEBUG setting to create log entry</param>
+        </member>
+        <member name="M:OhScrap.ModuleUPFMEvents.ToggleHighlight">
+            This toggles the part failure highlight on and off (player initiated)
+            [KSPEvent(active = false, guiActive = true, guiActiveUnfocused = false, externalToEVAOnly = false, guiName = "Toggle Failure Highlight")]
+        </member>
+        <member name="T:OhScrap.ModWrapper.FerramWrapper.DeploymentStates">
+            <summary>RealChuteLite - Parachute deployment states </summary>
+        </member>
         <member name="P:OhScrap.StageRecoveryWrapper.StageRecoveryAvailable">
             <summary>
             Check this to see if the addon is available. If this returns false, no additional API calls should be made!
@@ -94,6 +145,11 @@
             <param name="member"></param>
             <param name="sourceObject"></param>
             <returns></returns>
+        </member>
+        <member name="F:OhScrap.UPFMUtils.generations">
+            <summary>
+            Adds sound FX for failures
+            </summary>
         </member>
     </members>
 </doc>
