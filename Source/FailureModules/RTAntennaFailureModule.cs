@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
-
+using KSP.Localization;
 
 namespace OhScrap
 {
@@ -17,9 +17,10 @@ namespace OhScrap
 
         protected override void Overrides()
         {
-            Fields["displayChance"].guiName = "Chance of Antenna Failure";
-            Fields["safetyRating"].guiName = "Antenna Safety Rating";
-            failureType = "communication failure";
+            Fields["displayChance"].guiName = Localizer.Format("#OHS-ant-00");
+            Fields["safetyRating"].guiName = Localizer.Format("#OHS-ant-01");
+            failureType = Localizer.Format("#OHS-ant-02");
+
             if (!antenna)
             {
                 foreach (PartModule pm in part.Modules)
