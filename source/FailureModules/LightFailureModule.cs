@@ -23,7 +23,7 @@ namespace OhScrap
         {
             if (light == null) return false;
             if (!vessel.ActionGroups[KSPActionGroup.Light]) return false;
-            return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().LightFailureModuleAllowed;
+            return HighLogic.CurrentGame.Parameters.CustomParams<Settings>().LightFailureModuleAllowed;
         }
 
         protected override void Overrides()
