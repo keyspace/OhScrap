@@ -41,6 +41,8 @@ namespace OhScrap
         public override void RepairPart()
         {
             battery.flowState = true;
+            // allows for saving the vessel if only battery
+            battery.amount = 1;
             // PlaySound(Repair);
         }
 
