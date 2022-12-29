@@ -1,6 +1,6 @@
 # Changelog  
   
-| modName    | Oh Scrap! (OS)                                                    |
+| modName    | Oh Scrap! (OHS)                                                    |
 | ---------- | ----------------------------------------------------------------- |
 | license    | GPL-2.0                                                           |
 | author     | severedsolo and zer0Kerbal                                        |
@@ -21,7 +21,7 @@
 
 * Maintenance release
   * Recompile for 1.12.4
-  * <OhScrap.dll> v2.2.1.79 --> v2.2.99.80
+  * <OhScrap.dll> v2.2.1.79 --> v2.2.99.97
   * only major code changes are for localization
   * OhScrap! window now hides when F2 is pressed
 * Localization
@@ -32,6 +32,7 @@
   * [Bug]: FAR Parachute Incompability Due to Wrong MM Config
   * thank you to [T2Fat2Fl](https://github.com/T2Fat2Fly)
   * [Bug]: Incorrect mod settings descriptions/labels
+  * [BUG]: make it so when battery is repaired it will have 1 ec
 * Updated documentation
 * *Experimental*
   * <RealAntennasFailureModule.cfg.0> v1.0.0.0
@@ -60,15 +61,15 @@
     * thank you. requested by [Gordon Dry](https://github.com/Gordon-Dry)
     * currently disabled
     * temporarily removed (on hold)
-    * Failure Sounds
-    * Light Failure
-    * Decoupler Failures
-    * New settings
-    * part failure sounds and settings
-      * settings:
-      * five soundfx selections
-      * soundOn or Off on part failure
-      * set to 0 for random sound
+      * Failure Sounds
+      * Light Failure
+      * Decoupler Failures
+      * New settings
+      * part failure sounds and settings
+        * settings:
+        * five soundfx selections
+        * soundOn or Off on part failure
+        * set to 0 for random sound
     * new GameData/OhScrap/Sounds
       * includes License.md (one file for all sound assets)
     * nine new sound clips
@@ -84,10 +85,11 @@
 * Create
   * Localization/
     * English
-      * <en-us.cfg>
+      * <en-us.cfg> v1.1.0.0
     * Simplified Chinese (简体中文)
-      * <zh-cn.cfg>
+      * <zh-cn.cfg> v1.1.0.0
       * thank you to [ZhaoFJx](https://github.com/ZhaoFJx)
+      * added strings after submitted
     * [readme.md] v2.1.1.0
     * [quickstart.md] v1.0.1.0
 * updates #54 - Localization - Master
