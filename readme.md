@@ -25,7 +25,7 @@ adopted with *express* permission and brought to you by *KerbSimpleCo*
 
 > Poor Val, she's not having a good day. There she was on her way back from orbit, and this happened:
 >
-> ![A bad day for Val](https://i.imgur.com/2V0F5DT.png)
+> <img src="https://i.imgur.com/2V0F5DT.png" alt="A bad day for Val" width="50%" height="50%">
 >
 > You see, I forgot to take her shiny new ship for a test flight before sending it to space, so the reaction wheels failed. Then her oxygen started venting into space. So she quickly burned retrograde and started her re-entry. Except that as she came into land, the parachute failed too. Like I said, not a good day.
 >
