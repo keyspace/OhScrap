@@ -2,7 +2,6 @@
 permalink: /License.html
 title: License - GPL-2.0
 ---
-
 <!--
 GPL-2.0.md v1.0.1.0
 OhScrap! (OS)

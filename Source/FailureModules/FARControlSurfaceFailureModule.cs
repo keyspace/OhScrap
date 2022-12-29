@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using KSP.Localization;
 
 namespace OhScrap
 {
@@ -22,14 +23,14 @@ namespace OhScrap
         [KSPField(isPersistant = true, guiActive = false)]
         public int hingeWeight = 80;
 
-        private int weightTotal; 
+        private int weightTotal;
 
         //Hinge Failure additional random weights. - Every tick we adjust pitch/yaw/roll input amount or we reset to the fail time values, or set all to 0. 
         [KSPField(isPersistant = true, guiActive = false)]
         public int hingeAdjustmentWeight = 20;  //chance of changing one of pitch,yaw or roll when a hinge failure happens.
-        
+
         public int hingePitchWeight;
-        public int hingeYawWeight; 
+        public int hingeYawWeight;
         public int hingeRollWeight;
 
         [KSPField(isPersistant = true, guiActive = false)]
@@ -50,13 +51,13 @@ namespace OhScrap
         private int adjustmentAmount = 0;
         private StuckScenario stuckScenario;
         private ResetScenario resetScenario;
-        private List<Scenario> hingeFailureScenarios = new List<Scenario>(); 
+        private List<Scenario> hingeFailureScenarios = new List<Scenario>();
 
         protected override void Overrides()
         {
-            Fields["displayChance"].guiName = "Chance of Control Surface Failure";
-            Fields["safetyRating"].guiName = "Control Surface Safety Rating";
-            failureType = "Control Surface Failure";
+            Fields["displayChance"].guiName = Localizer.Format("#OHS-csurf-00");
+            Fields["safetyRating"].guiName = Localizer.Format("#OHS-csurf-01");
+            failureType = Localizer.Format("#OHS-csurf-02");
             foreach (PartModule pm in part.Modules)
             {
                 if (pm.moduleName.Equals("FARControllableSurface"))
@@ -64,12 +65,12 @@ namespace OhScrap
                     FARControlSurface = pm;
                 }
             }
-            
+
             //Part is mechanical so can be repaired remotely.
             remoteRepairable = true;
 
             //Setup Weights and references. 
-            CheckValidWeights(); 
+            CheckValidWeights();
 
             hingePitchWeight = hingeAdjustmentWeight;
             hingeYawWeight = hingeAdjustmentWeight;
@@ -90,22 +91,22 @@ namespace OhScrap
         public override bool FailureAllowed()
         {
             if (part.vessel.atmDensity == 0) return false;
-            return (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().ControlSurfaceFailureModuleAllowed
+            return (HighLogic.CurrentGame.Parameters.CustomParams<Settings>().ControlSurfaceFailureModuleAllowed
             && ModWrapper.FerramWrapper.available
             && FARControlSurface);
         }
-        
+
         public override void FailPart()
         {
             if (!FARControlSurface) return;
-            if (!hasFailed) 
+            if (!hasFailed)
             {
                 failMode = _randomizer.Next(1, weightTotal + 1);
                 //failTimeBrakeRudder = ModWrapper.FerramWrapper.GetCtrlSurfBrakeRudder(FARControlSurface);
                 resetScenario.failTimeYaw = ModWrapper.FerramWrapper.GetCtrlSurfYaw(FARControlSurface);
                 resetScenario.failTimePitch = ModWrapper.FerramWrapper.GetCtrlSurfPitch(FARControlSurface);
                 resetScenario.failTimeRoll = ModWrapper.FerramWrapper.GetCtrlSurfRoll(FARControlSurface);
-                
+
             }
 
             if (failMode <= stuckWeight) //Stuck Surface.
@@ -113,7 +114,7 @@ namespace OhScrap
                 if (!hasFailed)
                 {
                     Debug.Log("[OhScrap](FAR): " + SYP.ID + " has a stuck control surface");
-                    
+
                     hasFailed = true;
                 }
                 stuckScenario.Run(FARControlSurface);
@@ -126,7 +127,7 @@ namespace OhScrap
                     hasFailed = true;
                 }
                 int adjustmentRoll = _randomizer.Next(1, hingeWeightTotal + 1);
-                
+
                 int counter = hingeFailureScenarios.Count - 1;
                 Scenario s = null;
                 while (counter >= 0)
@@ -135,21 +136,22 @@ namespace OhScrap
                     if ((adjustmentRoll -= s.Weight) <= 0)
                     {
                         counter = 0;
-                        
+
                     }
                     counter--;
                 }
                 s.Run(FARControlSurface);
                 if (OhScrap.highlight) OhScrap.SetFailedHighlight();
             }
+            //PlaySound();
         }
-       
-        
+
+
         //restores control to the control surface
         public override void RepairPart()
         {
             resetScenario.Run(FARControlSurface);
-            
+
         }
 
         private abstract class Scenario
@@ -163,7 +165,7 @@ namespace OhScrap
         {
             public int adjustmentAmount { get; set; }
             private float curr_amount;
-            public PitchChangeScenario(int weight, int amount  )
+            public PitchChangeScenario(int weight, int amount)
             {
                 adjustmentAmount = amount;
                 Weight = weight;
@@ -175,22 +177,24 @@ namespace OhScrap
                 if (curr_amount > 90.0f)
                 {
                     sign = 1;
-                }else if(curr_amount < -90.0f)
+                }
+                else if (curr_amount < -90.0f)
                 {
                     sign = 0;
                 }
-                
 
-                if(sign == 0)
+
+                if (sign == 0)
                 {
                     ModWrapper.FerramWrapper.SetCtrlSurfPitch(surface, (curr_amount + ((curr_amount * adjustmentAmount) / 100)));
-                }else
+                }
+                else
                 {
                     ModWrapper.FerramWrapper.SetCtrlSurfPitch(surface, (curr_amount - ((curr_amount * adjustmentAmount) / 100)));
                 }
-                
+
             }
-           
+
         }
 
         private class YawChangeScenario : Scenario
@@ -223,7 +227,7 @@ namespace OhScrap
                 {
                     ModWrapper.FerramWrapper.SetCtrlSurfYaw(surface, (curr_amount - ((curr_amount * adjustmentAmount) / 100)));
                 }
-               
+
             }
 
         }
@@ -241,7 +245,7 @@ namespace OhScrap
             {
                 curr_amount = ModWrapper.FerramWrapper.GetCtrlSurfRoll(surface);
                 int sign = _randomizer.Next(0, 2);
-                if (curr_amount > 90.0f) 
+                if (curr_amount > 90.0f)
                 {
                     sign = 1;
                 }
@@ -258,7 +262,7 @@ namespace OhScrap
                 {
                     ModWrapper.FerramWrapper.SetCtrlSurfRoll(surface, (curr_amount - ((curr_amount * adjustmentAmount) / 100)));
                 }
-                
+
             }
 
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using KSP.Localization;
 
 namespace OhScrap
 {
@@ -15,8 +16,10 @@ namespace OhScrap
 
         protected override void Overrides()
         {
-            Fields["displayChance"].guiName = "Chance of Resource Tank Failure";
-            Fields["safetyRating"].guiName = "Tank Safety Rating";
+
+            Fields["displayChance"].guiName = Localizer.Format("#OHS-tank-00");
+            Fields["safetyRating"].guiName = Localizer.Format("#OHS-tank-01");
+
             List<PartResource> potentialLeakCache = part.Resources.ToList();
             List<PartResource> potentialLeaks = part.Resources.ToList();
             //Check if we have any parts that can leak (not on the blacklist)
@@ -50,7 +53,7 @@ namespace OhScrap
         {
             if (cantLeak) return false;
             if (part.vesselType == VesselType.EVA) return false;
-            return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().TankFailureModuleAllowed;
+            return HighLogic.CurrentGame.Parameters.CustomParams<Settings>().TankFailureModuleAllowed;
         }
         //Assuming that part has a resource that is not on the blacklist, it will leak.
         public override void FailPart()
@@ -60,7 +63,7 @@ namespace OhScrap
                 if (leakingName != "None")
                 {
                     leaking = part.Resources[leakingName];
-                    failureType = leaking.resourceName + " leak";
+                    failureType = Localizer.Format("#OHS-tank-02", leaking.resourceName);
                     return;
                 }
                 List<PartResource> potentialLeakCache = part.Resources.ToList();
@@ -85,18 +88,19 @@ namespace OhScrap
                     if (potentialLeaks.Count == 0)
                     {
                         leaking = null;
-                        leakingName = "None";
+                        leakingName = Localizer.Format("#autoLOC_258911");
                         cantLeak = true;
                         Debug.Log("[OhScrap]: " + SYP.ID + "has no resources that could fail. Failure aborted");
                         return;
                     }
                 }
-                leaking = potentialLeaks.ElementAt(UPFMUtils.instance._randomiser.Next(0, potentialLeaks.Count()));
+                leaking = potentialLeaks.ElementAt(Utils.instance._randomiser.Next(0, potentialLeaks.Count()));
                 leakingName = leaking.resourceName;
-                failureType = leaking.resourceName + " leak";
+                failureType = Localizer.Format("#OHS-tank-02", leaking.resourceName);
             }
             leaking.amount = leaking.amount * 0.999f;
             if (OhScrap.highlight) OhScrap.SetFailedHighlight();
+            //PlaySound();
         }
     }
 }

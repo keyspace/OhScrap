@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
-
+using KSP.Localization;
 
 namespace OhScrap
 {
@@ -17,16 +17,17 @@ namespace OhScrap
 
         protected override void Overrides()
         {
-            Fields["displayChance"].guiName = "Chance of Antenna Failure";
-            Fields["safetyRating"].guiName = "Antenna Safety Rating";
-            failureType = "communication failure";
+            Fields["displayChance"].guiName = Localizer.Format("#OHS-ant-00");
+            Fields["safetyRating"].guiName = Localizer.Format("#OHS-ant-01");
+            failureType = Localizer.Format("#OHS-ant-02");
+
             if (!antenna)
             {
                 foreach (PartModule pm in part.Modules)
                 {
                     if (pm.moduleName.Equals("ModuleRTAntenna"))
                     {
-                       antenna = pm;
+                        antenna = pm;
                     }
                 }
             }
@@ -35,10 +36,10 @@ namespace OhScrap
 
         public override bool FailureAllowed()
         {
-                if (!antenna) return false;
-                if (!RTAvailable) return false;
-                if (!ModWrapper.RemoteTechWrapper.GetAntennaDeployed(antenna)) return false; //Do not fail antennas that are deployed. Returns true if it cant be animated.
-                return (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().AntennaFailureModuleAllowed);
+            if (!antenna) return false;
+            if (!RTAvailable) return false;
+            if (!ModWrapper.RemoteTechWrapper.GetAntennaDeployed(antenna)) return false; //Do not fail antennas that are deployed. Returns true if it cant be animated.
+            return (HighLogic.CurrentGame.Parameters.CustomParams<Settings>().AntennaFailureModuleAllowed);
         }
 
         public override void FailPart()
@@ -47,8 +48,9 @@ namespace OhScrap
             ModWrapper.RemoteTechWrapper.SetRTBrokenStatus(antenna, true);
             if (hasFailed) return;
             Debug.Log("[OhScrap](RemoteTech): " + SYP.ID + " has stopped transmitting");
+            //PlaySound();
         }
-        
+
         public override void RepairPart()
         {
             if (antenna)
@@ -57,6 +59,6 @@ namespace OhScrap
             }
         }
 
-    
+
     }
 }

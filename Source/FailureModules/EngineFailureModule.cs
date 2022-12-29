@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using KSP.Localization;
 
 namespace OhScrap
 {
@@ -27,8 +28,8 @@ namespace OhScrap
 
         protected override void Overrides()
         {
-            Fields["displayChance"].guiName = "Chance of Engine Failure";
-            Fields["safetyRating"].guiName = "Engine Safety Rating";
+            Fields["displayChance"].guiName = Localizer.Format("#OHS-eng-00");
+            Fields["safetyRating"].guiName = Localizer.Format("#OHS-eng-01");
 
             engine = part.FindModuleImplementing<ModuleEngines>();
             engineWrapper = EngineModuleWrapper.getInstance(part, engine.engineID);
@@ -41,13 +42,13 @@ namespace OhScrap
                 expectedLifetime = spaceEngineExpectedLifetime;
                 baseChanceOfFailure = spaceEngineBaseChanceOfFailure;
             }
-        }   
+        }
 
         public override bool FailureAllowed()
         {
             if (engine == null) return false;
             if (engine.currentThrottle == 0) return false;
-            return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().EngineFailureModuleAllowed;
+            return HighLogic.CurrentGame.Parameters.CustomParams<Settings>().EngineFailureModuleAllowed;
         }
 
         public override void FailPart()
@@ -64,36 +65,43 @@ namespace OhScrap
             //Randomly pick which failure we will give the player
             if (failureType == "none")
             {
-                int i = UPFMUtils.instance._randomiser.Next(1, 7);
+                int i = Utils.instance._randomiser.Next(1, 7);
                 switch (i)
                 {
                     case 1:
+                        // failureType = Localizer.Format("#OHS-eng-03");
                         failureType = "Fuel Flow Failure";
                         Debug.Log("[OhScrap]: attempted to perform Fuel Flow Failure on " + SYP.ID);
                         break;
                     case 2:
+                        //failureType = Localizer.Format("#OHS-eng-04");
                         failureType = "Fuel Line Leak";
                         Debug.Log("[OhScrap]: attempted to perform Fuel Line Leak on " + SYP.ID);
                         InvokeRepeating("LeakFuel", 2.0f, 2.0f);
                         break;
                     case 3:
+                        //failureType = Localizer.Format("#OHS-eng-05");
                         failureType = "Underthrust";
                         Debug.Log("[OhScrap]: attempted to perform Underthrust on " + SYP.ID);
                         break;
                     case 4:
                         if (gimbal == null) return;
+                        //failureType = Localizer.Format("#OHS-eng-06");
                         failureType = "Gimbal Failure";
                         Debug.Log("[OhScrap]: attempted to lock gimbal on " + SYP.ID);
                         break;
                     case 5:
+                        //failureType = Localizer.Format("#OHS-eng-07");
                         failureType = "Stable Underthrust";
                         Debug.Log("[OhScrap]: attempted to perform Stable Underthrust on " + SYP.ID);
                         break;
                     case 6:
+                        //failureType = Localizer.Format("#OHS-eng-08");
                         failureType = "Performance Loss";
                         Debug.Log("[OhScrap]: attempted to perform Performance Loss on " + SYP.ID);
                         break;
                     default:
+                        //failureType = Localizer.Format("#autoLOC_258911");
                         failureType = "none";
                         Debug.Log("[OhScrap]: " + SYP.ID + " decided not to fail after all");
                         break;
@@ -103,26 +111,27 @@ namespace OhScrap
             switch (failureType)
             {
                 //Engine shutdown
+                //case Localizer.Format("#OHS-eng-04"):
                 case "Fuel Flow Failure":
                     engine.Shutdown();
                     break;
-                 //Fuel line leaks will explode the engine after anywhere between 5 and 50 seconds.
+                //Fuel line leaks will explode the engine after anywhere between 5 and 50 seconds.
                 case "Fuel Line Leak":
                     if (timeBetweenFailureEvents > Planetarium.GetUniversalTime()) break;
                     if (fuelLineCounter < 0) part.explode();
                     else fuelLineCounter--;
-                    timeBetweenFailureEvents = Planetarium.GetUniversalTime() + UPFMUtils.instance._randomiser.Next(1, 5);
+                    timeBetweenFailureEvents = Planetarium.GetUniversalTime() + Utils.instance._randomiser.Next(1, 5);
                     break;
                 //Engine will constantly lose thrust
                 case "Underthrust":
                     if (timeBetweenFailureEvents <= Planetarium.GetUniversalTime())
                     {
                         fuelFlowMultiplier *= 0.9f;
-                        timeBetweenFailureEvents = Planetarium.GetUniversalTime() + UPFMUtils.instance._randomiser.Next(10, 30);
+                        timeBetweenFailureEvents = Planetarium.GetUniversalTime() + Utils.instance._randomiser.Next(10, 30);
                     }
                     engineWrapper.SetFuelFlowMult(fuelFlowMultiplier);
                     break;
-                 //lock gimbal
+                //lock gimbal
                 case "Gimbal Failure":
                     gimbal.gimbalLock = true;
                     break;
@@ -137,6 +146,7 @@ namespace OhScrap
                 default:
                     return;
             }
+            //PlaySound();
         }
 
         public override void RepairPart()

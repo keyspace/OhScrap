@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using KSP.Localization;
 
 namespace OhScrap
 {
@@ -12,9 +13,10 @@ namespace OhScrap
 
         protected override void Overrides()
         {
-            Fields["displayChance"].guiName = "Chance of Reaction Wheel Failure";
-            Fields["safetyRating"].guiName = "Reaction Wheel Safety Rating";
-            failureType = "Reaction Wheel Failure";
+            Fields["displayChance"].guiName = Localizer.Format("#OHS-rw-00");
+            Fields["safetyRating"].guiName = Localizer.Format("#OHS-rw-01");
+            failureType = Localizer.Format("#OHS-rw-02");
+
             remoteRepairable = true;
             rw = part.FindModuleImplementing<ModuleReactionWheel>();
         }
@@ -23,7 +25,7 @@ namespace OhScrap
         {
             if (rw == null) return false;
             if (!rw.isEnabled && rw.wheelState != ModuleReactionWheel.WheelState.Active) return false;
-            return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().ReactionWheelFailureModuleAllowed;
+            return HighLogic.CurrentGame.Parameters.CustomParams<Settings>().ReactionWheelFailureModuleAllowed;
         }
 
         // Reaction wheel stops working
@@ -34,6 +36,7 @@ namespace OhScrap
             rw.wheelState = ModuleReactionWheel.WheelState.Broken;
             if (OhScrap.highlight) OhScrap.SetFailedHighlight();
             hasFailed = true;
+            //PlaySound();
         }
         //Turns it back on again,
         public override void RepairPart()

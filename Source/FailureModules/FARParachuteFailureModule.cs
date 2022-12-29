@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using KSP.Localization;
 
 namespace OhScrap
 {
@@ -14,17 +15,18 @@ namespace OhScrap
     class FARParachuteFailureModule : BaseFailureModule
     {
         PartModule chute;
-        
+
         public override bool FailureAllowed()
         {
-            return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().ParachuteFailureModuleAllowed;
+            return HighLogic.CurrentGame.Parameters.CustomParams<Settings>().ParachuteFailureModuleAllowed;
         }
 
         protected override void Overrides()
         {
-            Fields["displayChance"].guiName = "Chance of Parachute Failure";
-            failureType = "Parachute Failure";
-            Fields["safetyRating"].guiName = "Parachute Safety Rating";
+            Fields["displayChance"].guiName = Localizer.Format("#OHS-chut-00");
+            Fields["safetyRating"].guiName = Localizer.Format("#OHS-chut-01");
+            failureType = Localizer.Format("#OHS-chut-02");
+
             foreach (PartModule pm in part.Modules)
             {
                 if (pm.moduleName.Equals("RealChuteFAR"))
@@ -34,7 +36,7 @@ namespace OhScrap
             }
         }
 
-        
+
         public override void FailPart()
         {
 
@@ -44,25 +46,25 @@ namespace OhScrap
             if (hasFailed) return;
             if (ModWrapper.FerramWrapper.IsDeployed(chute))
             {
-                    ModWrapper.FerramWrapper.CutChute(chute);
-                   chute.Events["GUIRepack"].active = false;
+                ModWrapper.FerramWrapper.CutChute(chute);
+                chute.Events["GUIRepack"].active = false;
             }
             else
             {
-                    ModWrapper.FerramWrapper.DeployChute(chute); //Will deploy the chute right away, ignoring chutes min altitude/pressure. 
-                    chute.Events["GUIDisarm"].active = false;
-                    chute.Events["GUIRepack"].active = false;
-                    
-                    
+                ModWrapper.FerramWrapper.DeployChute(chute); //Will deploy the chute right away, ignoring chutes min altitude/pressure. 
+                chute.Events["GUIDisarm"].active = false;
+                chute.Events["GUIRepack"].active = false;
+
+
             }
             hasFailed = true;
-          
+            //PlaySound();
         }
 
         public override void RepairPart() //turn off highlight and repack with one of realchutes spares.
         {
-                chute.Events["GUIDisarm"].active = true;
-                chute.Events["GUIRepack"].active = true;
+            chute.Events["GUIDisarm"].active = true;
+            chute.Events["GUIRepack"].active = true;
         }
     }
 }

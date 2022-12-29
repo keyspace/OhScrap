@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using KSP.Localization;
 
 namespace OhScrap
 {
@@ -15,8 +16,9 @@ namespace OhScrap
 
         protected override void Overrides()
         {
-            Fields["displayChance"].guiName = "Chance of Solar Panel Failure";
-            Fields["safetyRating"].guiName = "Solar Panel Safety Rating";
+            Fields["displayChance"].guiName = Localizer.Format("#OHS-sol-00");
+            Fields["safetyRating"].guiName = Localizer.Format("#OHS-sol-01");
+
             remoteRepairable = true;
             panel = part.FindModuleImplementing<ModuleDeployableSolarPanel>();
         }
@@ -25,7 +27,7 @@ namespace OhScrap
             if (panel == null) return false;
             if (!panel.isTracking) return false;
             if (panel.deployState != ModuleDeployablePart.DeployState.EXTENDED) return false;
-            return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().SolarPanelFailureModuleAllowed;
+            return HighLogic.CurrentGame.Parameters.CustomParams<Settings>().SolarPanelFailureModuleAllowed;
         }
         public override void FailPart()
         {
@@ -33,7 +35,7 @@ namespace OhScrap
             if (panel == null) return;
             if (!trackingSet)
             {
-                if (UPFMUtils.instance._randomiser.NextDouble() < 0.5) trackingFailure = true;
+                if (Utils.instance._randomiser.NextDouble() < 0.5) trackingFailure = true;
                 else trackingFailure = false;
                 trackingSet = true;
             }
@@ -43,16 +45,17 @@ namespace OhScrap
                 originallyRetractable = true;
                 if (!hasFailed)
                 {
-                    failureType = "Retraction Error";
+                    failureType = Localizer.Format("#OHS-sol-02");
                 }
                 if (OhScrap.highlight) OhScrap.SetFailedHighlight();
             }
             else if (panel.isTracking && panel.deployState == ModuleDeployablePart.DeployState.EXTENDED && !originallyRetractable)
             {
                 panel.isTracking = false;
-                failureType = "Sun Tracking Error";
+                failureType = Localizer.Format("#OHS-sol-03");
                 if (OhScrap.highlight) OhScrap.SetFailedHighlight();
             }
+            //PlaySound();
         }
         //returns to original state.
         public override void RepairPart()

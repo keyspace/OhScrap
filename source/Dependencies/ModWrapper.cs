@@ -12,7 +12,7 @@ namespace OhScrap
     {
         private static readonly BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
 
-        
+
         public class RemoteTechWrapper
         {
             private static Assembly RT = null;
@@ -22,7 +22,7 @@ namespace OhScrap
                 get
                 {
                     bool loaded = (RT != null);
-                    if (!loaded && !tried) 
+                    if (!loaded && !tried)
                     {
                         for (int i = 0; i < AssemblyLoader.loadedAssemblies.Count; i++)
                         {
@@ -40,7 +40,7 @@ namespace OhScrap
                     return loaded;
                 }
             }
-            
+
             public static void SetRTBrokenStatus(PartModule p, bool value)
             {
                 SetReflectionField<bool>(p, "IsRTBroken", value);
@@ -59,16 +59,17 @@ namespace OhScrap
             }
             public static bool GetAntennaDeployed(PartModule p)
             {
-                if(GetReflectionProperty<bool>(p, "CanAnimate"))
-                { 
+                if (GetReflectionProperty<bool>(p, "CanAnimate"))
+                {
                     return (bool)p.GetType().GetProperty("AnimOpen", flags).GetValue(p, null);
-                }else
+                }
+                else
                 {
                     return true;
                 }
             }
         }
-     
+
         public class FerramWrapper
         {
             private static Assembly FAR = null;
@@ -79,7 +80,7 @@ namespace OhScrap
                 get
                 {
                     bool loaded = (FAR != null);
-                    if (!loaded && !tried) 
+                    if (!loaded && !tried)
                     {
                         for (int i = 0; i < AssemblyLoader.loadedAssemblies.Count; i++)
                         {
@@ -96,7 +97,7 @@ namespace OhScrap
                     return loaded;
                 }
             }
-            
+
             public static float GetCtrlSurfYaw(PartModule p)
             {
                 return (float)GetReflectionField<float>(p, "yawaxis");
@@ -126,7 +127,7 @@ namespace OhScrap
             {
                 return (bool)GetReflectionField<bool>(p, "isSpoiler");
             }
-            
+
 
 
             public static void SetCtrlSurfYaw(PartModule p, float value)
@@ -152,12 +153,12 @@ namespace OhScrap
 
 
 
-
-            //RealChuteLite. 
+            /// <summary>RealChuteLite - Parachute deployment states </summary>
             public enum DeploymentStates
             {
                 NONE,
                 STOWED,
+                LOWDEPLOYED,
                 PREDEPLOYED,
                 DEPLOYED,
                 CUT
@@ -170,28 +171,25 @@ namespace OhScrap
             public static void DeployChute(PartModule p)
             {
                 float currMinPressure = GetReflectionField<float>(p, "minAirPressureToOpen");
-                SetReflectionField<float>(p, "minAirPressureToOpen", 0.0f); 
+                SetReflectionField<float>(p, "minAirPressureToOpen", 0.0f);
                 p.GetType().GetMethod("ActivateRC").Invoke(p, null);
                 SetReflectionField<float>(p, "minAirPressureToOpen", currMinPressure);
 
             }
-
-
 
             public static bool IsDeployed(PartModule p)
             {
                 DeploymentStates state = GetDeploymentState(p);
                 return (state == DeploymentStates.DEPLOYED || state == DeploymentStates.PREDEPLOYED);
             }
-            
+
             public static DeploymentStates GetDeploymentState(PartModule p)
             {
                 return GetReflectionProperty<DeploymentStates>(p, "DeploymentState");
             }
-            
         }
 
-        //Relfection Helpers. 
+        //Reflection Helpers. 
         private static T GetReflectionField<T>(PartModule p, string field_name)
         {
             return (T)p.GetType().GetField(field_name, flags).GetValue(p);

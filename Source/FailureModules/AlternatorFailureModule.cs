@@ -1,3 +1,5 @@
+using KSP.Localization;
+
 namespace OhScrap
 {
     class AlternatorFailureModule : BaseFailureModule
@@ -5,9 +7,9 @@ namespace OhScrap
         private ModuleAlternator _alternator;
         protected override void Overrides()
         {
-            Fields["displayChance"].guiName = "Chance of Alternator Failure";
-            Fields["safetyRating"].guiName = "Alternator Safety Rating";
-            failureType = "Alternator Failure";
+            Fields["displayChance"].guiName = Localizer.Format("#OHS-alt-00");
+            Fields["safetyRating"].guiName = Localizer.Format("#OHS-alt-01");
+            failureType = Localizer.Format("#OHS-alt-02");
             _alternator = part.FindModuleImplementing<ModuleAlternator>();
         }
 
@@ -27,7 +29,7 @@ namespace OhScrap
         {
             if (_alternator == null) return false;
             if (_alternator.outputRate < 0.1f) return false;
-            return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().AlternatorFailureModuleAllowed;
+            return HighLogic.CurrentGame.Parameters.CustomParams<Settings>().AlternatorFailureModuleAllowed;
         }
     }
 }
