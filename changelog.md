@@ -49,9 +49,9 @@
 
 * Recompile
   * KSP 1.12.4
-  * .NET 4.6.1
-  * C# 5.0
-* <OhScrap.dll> v2.2.1.79 --> v2.2.99.80
+  * .NET 4.7.2
+  * C# 8.0
+* <OhScrap.dll> v2.2.1.79 --> v2.2.99.100
 * onGUI
   * GUI Hide on `<F2>`
 * start of localization
@@ -73,10 +73,12 @@
     * new GameData/OhScrap/Sounds
       * includes License.md (one file for all sound assets)
     * nine new sound clips
-* updates #19 - audible alarm on failure
 * closes #21 - OhScrap window doesn't get hidden when F2 is pressed
+* closes #44 - 2.2.1.0 beta: radially attach in VAB - annoying sound mix of FirePager and PhoneVibrator
 * closes #74 - [Bug 🐞]: Incorrect mod settings descriptions/labels
 * closes #76 - [Bug 🐞]: FAR Parachute Incompability Due to Wrong MM Config
+* closes #81 - [BUG]: when battery is repaired it has 0 ec
+* updates #19 - audible alarm on failure
 * updates #78 - [Request]: RealAntennaFailureModule
 
 ### Localization 2.2.99.0
@@ -95,8 +97,10 @@
 * updates #54 - Localization - Master
 * closes #55 - English <en-us.cfg>
 * closes #63 - Simplified Chinese (简体中文) <zh-cn.cfg>
+* closes #82 - [MISSING] #OHS-UPFME-BeyondRepair
+* closes #80 - [BUG] debug PAW menu doesn't list what
 
-### documentation 2.2.99.0
+### Documentation 2.2.99.0
 
 * Add
   * [ManualInstallation.md] v1.1.7.0
@@ -113,12 +117,12 @@
 * closes #23 - Wiki
 * closes #75 - Check Links in documentation
 
-### Update License
+### Update License 2.0.99.0
 
 * Updated License: GPL-2.0 + CC NC-BY-SA 4.0
   * was: Expat-MIT + CC NC-BY-SA 4.0
 
-## Status
+## Status 2.0.99.0
 
 * Issues
   * closes #50 - OhScrap! (OHS) 2.2.99.0-prerelease `<允许降落伞损坏>`
