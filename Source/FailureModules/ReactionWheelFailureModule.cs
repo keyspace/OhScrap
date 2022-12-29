@@ -23,7 +23,7 @@ namespace OhScrap
         {
             if (rw == null) return false;
             if (!rw.isEnabled && rw.wheelState != ModuleReactionWheel.WheelState.Active) return false;
-            return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().ReactionWheelFailureModuleAllowed;
+            return HighLogic.CurrentGame.Parameters.CustomParams<Settings>().ReactionWheelFailureModuleAllowed;
         }
 
         // Reaction wheel stops working
