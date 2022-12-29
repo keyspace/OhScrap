@@ -48,6 +48,15 @@
             <param name="logMsg">The message.</param>
             <param name="xDebug">require DEBUG setting to create log entry</param>
         </member>
+        <member name="F:OhScrap.ModuleUPFMEvents.highlight">
+            <summary>DoNotRecover (DNR)</summary>
+        </member>
+        <member name="F:OhScrap.ModuleUPFMEvents.tested">
+            <summary>Tested</summary>
+        </member>
+        <member name="F:OhScrap.ModuleUPFMEvents.generation">
+            <summary>Generation</summary>
+        </member>
         <member name="M:OhScrap.ModuleUPFMEvents.ToggleHighlight">
             This toggles the part failure highlight on and off (player initiated)
             [KSPEvent(active = false, guiActive = true, guiActiveUnfocused = false, externalToEVAOnly = false, guiName = "Toggle Failure Highlight")]
