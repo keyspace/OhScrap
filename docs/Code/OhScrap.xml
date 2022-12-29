@@ -146,7 +146,7 @@
             <param name="sourceObject"></param>
             <returns></returns>
         </member>
-        <member name="F:OhScrap.UPFMUtils.generations">
+        <member name="F:OhScrap.Utils.generations">
             <summary>
             Adds sound FX for failures
             </summary>
