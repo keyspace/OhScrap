@@ -41,7 +41,7 @@ namespace OhScrap
                 if (deployableAntenna.deployState != ModuleDeployablePart.DeployState.EXTENDED) return false;
             }
             if (antenna == null) return false;
-            return (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().AntennaFailureModuleAllowed
+            return (HighLogic.CurrentGame.Parameters.CustomParams<Settings>().AntennaFailureModuleAllowed
                     && CommNet.CommNetScenario.CommNetEnabled
                     && antenna.CommType != 0); // Not an internal antenna. Command pods without external antennas should not get an antenna failure.
         }
