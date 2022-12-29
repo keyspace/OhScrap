@@ -38,7 +38,7 @@ namespace OhScrap
             if (!antenna) return false;
             if (!RTAvailable) return false;
             if (!ModWrapper.RemoteTechWrapper.GetAntennaDeployed(antenna)) return false; //Do not fail antennas that are deployed. Returns true if it cant be animated.
-            return (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().AntennaFailureModuleAllowed);
+            return (HighLogic.CurrentGame.Parameters.CustomParams<Settings>().AntennaFailureModuleAllowed);
         }
 
         public override void FailPart()
