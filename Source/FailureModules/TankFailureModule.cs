@@ -50,7 +50,7 @@ namespace OhScrap
         {
             if (cantLeak) return false;
             if (part.vesselType == VesselType.EVA) return false;
-            return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().TankFailureModuleAllowed;
+            return HighLogic.CurrentGame.Parameters.CustomParams<Settings>().TankFailureModuleAllowed;
         }
         //Assuming that part has a resource that is not on the blacklist, it will leak.
         public override void FailPart()
@@ -91,7 +91,7 @@ namespace OhScrap
                         return;
                     }
                 }
-                leaking = potentialLeaks.ElementAt(UPFMUtils.instance._randomiser.Next(0, potentialLeaks.Count()));
+                leaking = potentialLeaks.ElementAt(Utils.instance._randomiser.Next(0, potentialLeaks.Count()));
                 leakingName = leaking.resourceName;
                 failureType = leaking.resourceName + " leak";
             }
