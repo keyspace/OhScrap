@@ -12,16 +12,19 @@ namespace OhScrap
     // This module is attached to any part that has at least one other Failure Module
     class ModuleUPFMEvents : PartModule
     {
+        /// <summary>DoNotRecover (DNR)</summary>
         [KSPField(isPersistant = true, guiActive = false)]
         public bool highlight = true;
         public bool doNotRecover = false;
-        //[KSPField(isPersistant = false, guiActiveEditor = true, guiName = "Tested")]
+
+        /// <summary>Tested</summary>
         [KSPField(isPersistant = false, guiActiveEditor = true, guiName = "#OHS-UPFME-tested")]
         public bool tested = false;
         BaseFailureModule repair;
         ModuleSYPartTracker SYP;
         public bool refreshed = false;
-        //[KSPField(isPersistant = false, guiActive = true, guiName = "Generation", guiActiveEditor = true)]
+
+        /// <summary>Generation</summary>
         [KSPField(isPersistant = false, guiActive = true, guiName = "#OHS-UPFME-generation", guiActiveEditor = true)]
         public int generation = 0;
         public bool customFailureEvent = false;
