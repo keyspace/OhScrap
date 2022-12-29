@@ -29,7 +29,7 @@ namespace OhScrap
         public override bool FailureAllowed()
         {
             if (_wheel == null) return false;
-            return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().LandingGearFailureModuleAllowed;
+            return HighLogic.CurrentGame.Parameters.CustomParams<Settings>().LandingGearFailureModuleAllowed;
         }
     }
 }
