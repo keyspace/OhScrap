@@ -27,7 +27,7 @@ namespace OhScrap
         {
             if (_alternator == null) return false;
             if (_alternator.outputRate < 0.1f) return false;
-            return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().AlternatorFailureModuleAllowed;
+            return HighLogic.CurrentGame.Parameters.CustomParams<Settings>().AlternatorFailureModuleAllowed;
         }
     }
 }
