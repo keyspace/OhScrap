@@ -24,7 +24,7 @@ namespace OhScrap
         {
             if (part.vessel.atmDensity == 0) return false;
             if (controlSurface == null) return false;
-            return (HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().ControlSurfaceFailureModuleAllowed
+            return (HighLogic.CurrentGame.Parameters.CustomParams<Settings>().ControlSurfaceFailureModuleAllowed
             && !ModWrapper.FerramWrapper.available);
         }
         //control surface will stick and not respond to input
