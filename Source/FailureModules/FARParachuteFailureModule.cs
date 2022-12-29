@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using KSP.Localization;
 
 namespace OhScrap
 {
@@ -22,9 +23,10 @@ namespace OhScrap
 
         protected override void Overrides()
         {
-            Fields["displayChance"].guiName = "Chance of Parachute Failure";
-            failureType = "Parachute Failure";
-            Fields["safetyRating"].guiName = "Parachute Safety Rating";
+            Fields["displayChance"].guiName = Localizer.Format("#OHS-chut-00");
+            Fields["safetyRating"].guiName = Localizer.Format("#OHS-chut-01");
+            failureType = Localizer.Format("#OHS-chut-02");
+
             foreach (PartModule pm in part.Modules)
             {
                 if (pm.moduleName.Equals("RealChuteFAR"))
