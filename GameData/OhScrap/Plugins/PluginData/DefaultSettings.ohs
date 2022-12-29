@@ -1,0 +1,7 @@
+minimumFailureChance = 0.01
+timeBetweenChecksRocketsAtmosphere = 10
+timeBetweenChecksPlanes = 150
+timeToOrbit = 120
+timeBetweenChecksRocketsLocalSpace = 1200
+timeBetweenChecksRocketsDeepSpace = 25400
+debugMode = False
