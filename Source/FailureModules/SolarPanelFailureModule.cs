@@ -25,7 +25,7 @@ namespace OhScrap
             if (panel == null) return false;
             if (!panel.isTracking) return false;
             if (panel.deployState != ModuleDeployablePart.DeployState.EXTENDED) return false;
-            return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().SolarPanelFailureModuleAllowed;
+            return HighLogic.CurrentGame.Parameters.CustomParams<Settings>().SolarPanelFailureModuleAllowed;
         }
         public override void FailPart()
         {
@@ -33,7 +33,7 @@ namespace OhScrap
             if (panel == null) return;
             if (!trackingSet)
             {
-                if (UPFMUtils.instance._randomiser.NextDouble() < 0.5) trackingFailure = true;
+                if (Utils.instance._randomiser.NextDouble() < 0.5) trackingFailure = true;
                 else trackingFailure = false;
                 trackingSet = true;
             }
