@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using KSP.Localization;
 
 namespace OhScrap
 {
@@ -54,9 +55,9 @@ namespace OhScrap
 
         protected override void Overrides()
         {
-            Fields["displayChance"].guiName = "Chance of Control Surface Failure";
-            Fields["safetyRating"].guiName = "Control Surface Safety Rating";
-            failureType = "Control Surface Failure";
+            Fields["displayChance"].guiName = Localizer.Format("#OHS-csurf-00");
+            Fields["safetyRating"].guiName = Localizer.Format("#OHS-csurf-01");
+            failureType = Localizer.Format("#OHS-csurf-02");
             foreach (PartModule pm in part.Modules)
             {
                 if (pm.moduleName.Equals("FARControllableSurface"))
