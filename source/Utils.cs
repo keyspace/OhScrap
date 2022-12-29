@@ -68,7 +68,6 @@ namespace OhScrap
 
         public static bool visibleUI = true;
 
-
         private void Awake()
         {
             instance = this;
@@ -257,13 +256,13 @@ namespace OhScrap
                 if (FlightGlobals.ActiveVessel.missionTime < timeToOrbit)
                 {
                     nextFailureCheck = Planetarium.GetUniversalTime() + timeBetweenChecksRocketsAtmosphere;
-                    failureMode = "#OHS-04";
-                    sampleTime = timeToOrbit / 60 + "#OHS-00";
+                    failureMode = "#autoLOC_6001674";
+                    sampleTime = timeToOrbit / 60 + "#autoLOC_6002340";
                 }
                 else
                 {
                     nextFailureCheck = Planetarium.GetUniversalTime() + timeBetweenChecksPlanes;
-                    failureMode = "#OHS-05";
+                    failureMode = "#autoLOC_900685";
                     sampleTime = "#OHS-01";
                 }
             }
@@ -276,17 +275,17 @@ namespace OhScrap
             else
             {
                 nextFailureCheck = Planetarium.GetUniversalTime() + timeBetweenChecksRocketsDeepSpace;
-                failureMode = "#OHS-07";
+                failureMode = "#OHS-05";
                 sampleTime = "#OHS-03";
             }
             switch (failureMode)
             {
                 //case "Atmosphere":
-                case "#OHS-04":
+                case "#autoLOC_6001674":
                     exponent = timeToOrbit / timeBetweenChecksRocketsAtmosphere;
                     break;
                 //case "Plane":
-                case "#OHS-05":
+                case "#autoLOC_900685":
                     exponent = 900 / timeBetweenChecksPlanes;
                     break;
                 //case "Local Space":
@@ -294,7 +293,7 @@ namespace OhScrap
                     exponent = FlightGlobals.GetHomeBody().solarDayLength * 7 / timeBetweenChecksRocketsLocalSpace;
                     break;
                 //case "Deep Space":
-                case "#OHS-07":
+                case "#OHS-05":
                     exponent = FlightGlobals.GetHomeBody().orbit.period * 3 / timeBetweenChecksRocketsDeepSpace;
                     break;
             }
@@ -372,7 +371,7 @@ namespace OhScrap
             StringBuilder msg = new StringBuilder();
             msg.AppendLine(failedModule.part.vessel.vesselName);
             msg.AppendLine("");
-            msg.AppendLine(failedModule.part.partInfo.title + " " + "#OHS-08" + " " + failedModule.failureType);
+            msg.AppendLine(failedModule.part.partInfo.title + " " + "#OHS-06" + " " + failedModule.failureType);
             msg.AppendLine("");
             MessageSystem.Message m = new MessageSystem.Message("#OHS-09", msg.ToString(), MessageSystemButton.MessageButtonColor.ORANGE, MessageSystemButton.ButtonIcons.ALERT);
             MessageSystem.Instance.AddMessage(m);
@@ -520,10 +519,10 @@ namespace OhScrap
             switch (vesselSafetyRating)
             {
                 case 10:
-                    s = "#OHS-10";
+                    s = "#OHS-08";
                     break;
                 case 9:
-                    s = "#OHS-10";
+                    s = "#OHS-08";
                     break;
                 case 8:
                     s = "#OHS-11";
@@ -532,25 +531,25 @@ namespace OhScrap
                     s = "#OHS-11";
                     break;
                 case 6:
-                    s = "#OHS-12";
+                    s = "#OHS-10";
                     break;
                 case 5:
-                    s = "#OHS-12";
+                    s = "#OHS-10";
                     break;
                 case 4:
-                    s = "#OHS-13";
+                    s = "#OHS-11";
                     break;
                 case 3:
-                    s = "#OHS-13";
+                    s = "#OHS-11";
                     break;
                 case 2:
-                    s = "#OHS-14";
+                    s = "#OHS-12";
                     break;
                 case 1:
-                    s = "#OHS-14";
+                    s = "#OHS-12";
                     break;
                 case 0:
-                    s = "#OHS-15";
+                    s = "#OHS-13";
                     break;
                 default:
                     s = "#OHS-16";
@@ -560,30 +559,30 @@ namespace OhScrap
             {
                 if (HighLogic.LoadedSceneIsEditor || vesselSafetyRating == -1)
                 {
-                    GUILayout.Label(Localizer.Format("#OHS-17"));
+                    GUILayout.Label(Localizer.Format("#OHS-15"));
                     return;
                 }
             }
-            //GUILayout.Label(Localizer.Format("#OHS-18" + ": ") + vesselSafetyRating + " " + s);
-            GUILayout.Label(Localizer.Format("#OHS-18", vesselSafetyRating, s));
+            //GUILayout.Label(Localizer.Format("#OHS-16" + ": ") + vesselSafetyRating + " " + s);
+            GUILayout.Label(Localizer.Format("#OHS-16", vesselSafetyRating, s));
             advancedDisplay = File.Exists(KSPUtil.ApplicationRootPath + "GameData/OhScrap/debug.txt");
             if (advancedDisplay)
             {
-                GUILayout.Label(Localizer.Format("#OHS-19"));
-                GUILayout.Label(Localizer.Format("#OHS-20", failureMode));
+                GUILayout.Label(Localizer.Format("#OHS-17"));
+                GUILayout.Label(Localizer.Format("#OHS-18", failureMode));
                 //GUILayout.Label("Chance of Failure in next " + sampleTime + ": " + displayFailureChance + "%");
-                GUILayout.Label(Localizer.Format("#OHS-21", sampleTime, displayFailureChance));
+                GUILayout.Label(Localizer.Format("#OHS-19", sampleTime, displayFailureChance));
             }
             if (worstPart != null)
             {
                 //GUILayout.Label("Worst Part: " + worstPart.partInfo.title);
-                GUILayout.Label(Localizer.Format("#OHS-22", worstPart.partInfo.title));
+                GUILayout.Label(Localizer.Format("#OHS-20", worstPart.partInfo.title));
 
                 //if (GUILayout.Button("Highlight Worst Part")) highlightWorstPart = !highlightWorstPart;
-                if (GUILayout.Button(Localizer.Format("#OHS-23"))) highlightWorstPart = !highlightWorstPart;
+                if (GUILayout.Button(Localizer.Format("#OHS-21"))) highlightWorstPart = !highlightWorstPart;
             }
             //if (GUILayout.Button("Close"))
-            if (GUILayout.Button(Localizer.Format("#OHS-24")))
+            if (GUILayout.Button(Localizer.Format("#autoLOC_149410")))
             {
                 display = false;
                 ToggleWindow();
