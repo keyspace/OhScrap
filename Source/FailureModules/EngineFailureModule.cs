@@ -47,7 +47,7 @@ namespace OhScrap
         {
             if (engine == null) return false;
             if (engine.currentThrottle == 0) return false;
-            return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().EngineFailureModuleAllowed;
+            return HighLogic.CurrentGame.Parameters.CustomParams<Settings>().EngineFailureModuleAllowed;
         }
 
         public override void FailPart()
@@ -64,7 +64,7 @@ namespace OhScrap
             //Randomly pick which failure we will give the player
             if (failureType == "none")
             {
-                int i = UPFMUtils.instance._randomiser.Next(1, 7);
+                int i = Utils.instance._randomiser.Next(1, 7);
                 switch (i)
                 {
                     case 1:
@@ -111,14 +111,14 @@ namespace OhScrap
                     if (timeBetweenFailureEvents > Planetarium.GetUniversalTime()) break;
                     if (fuelLineCounter < 0) part.explode();
                     else fuelLineCounter--;
-                    timeBetweenFailureEvents = Planetarium.GetUniversalTime() + UPFMUtils.instance._randomiser.Next(1, 5);
+                    timeBetweenFailureEvents = Planetarium.GetUniversalTime() + Utils.instance._randomiser.Next(1, 5);
                     break;
                 //Engine will constantly lose thrust
                 case "Underthrust":
                     if (timeBetweenFailureEvents <= Planetarium.GetUniversalTime())
                     {
                         fuelFlowMultiplier *= 0.9f;
-                        timeBetweenFailureEvents = Planetarium.GetUniversalTime() + UPFMUtils.instance._randomiser.Next(10, 30);
+                        timeBetweenFailureEvents = Planetarium.GetUniversalTime() + Utils.instance._randomiser.Next(10, 30);
                     }
                     engineWrapper.SetFuelFlowMult(fuelFlowMultiplier);
                     break;
