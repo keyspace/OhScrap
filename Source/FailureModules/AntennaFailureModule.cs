@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using KSP;
+using KSP.Localization;
 using UnityEngine;
 
 namespace OhScrap
@@ -26,10 +27,11 @@ namespace OhScrap
             }
             else
             {
-                Fields["displayChance"].guiName = "Chance of Antenna Failure";
-                Fields["safetyRating"].guiName = "Antenna Safety Rating";
+                Fields["displayChance"].guiName = Localizer.Format("#OHS-ant-00");
+                Fields["safetyRating"].guiName = Localizer.Format("#OHS-ant-01");
             }
-            failureType = "communication failure";
+            failureType = Localizer.Format("#OHS-ant-02");
+
             deployableAntenna = part.FindModuleImplementing<ModuleDeployableAntenna>();
             remoteRepairable = true;
         }
