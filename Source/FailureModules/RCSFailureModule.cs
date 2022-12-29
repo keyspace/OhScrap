@@ -14,7 +14,7 @@ namespace OhScrap
         {
             if (rcs == null) return false;
             if (!vessel.ActionGroups[KSPActionGroup.RCS]) return false;
-            return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().RCSFailureModuleAllowed;
+            return HighLogic.CurrentGame.Parameters.CustomParams<Settings>().RCSFailureModuleAllowed;
         }
 
         protected override void Overrides()
