@@ -46,7 +46,7 @@ namespace OhScrap
 
         public override bool FailureAllowed()
         {
-            return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().BatteryFailureModuleAllowed;
+            return HighLogic.CurrentGame.Parameters.CustomParams<Settings>().BatteryFailureModuleAllowed;
         }
 
         //public void Start()
