@@ -19,14 +19,15 @@
 
 ### Summary 2.2.99.0
 
-* Maintenance release - no major code changes
+* Maintenance release
   * Recompile for 1.12.4
   * <OhScrap.dll> v2.2.1.79 --> v2.2.99.80
-  * Create hero logo/cover
-* OhScrap! window now hides when F2 is pressed
+  * only major code changes are for localization
+  * OhScrap! window now hides when F2 is pressed
 * Localization
   * English
-  * Simplified Chinese (简体中文)
+  * Simplified Chinese (简体中文) courtesy of [ZhaoFJx](https://github.com/ZhaoFJx)
+* Create hero logo/cover
 * FIX:
   * [Bug]: FAR Parachute Incompability Due to Wrong MM Config
   * thank you to [T2Fat2Fl](https://github.com/T2Fat2Fly)
@@ -86,7 +87,7 @@
       * <en-us.cfg>
     * Simplified Chinese (简体中文)
       * <zh-cn.cfg>
-      * thank you to [T2Fat2Fl](https://github.com/T2Fat2Fly)
+      * thank you to [ZhaoFJx](https://github.com/ZhaoFJx)
     * [readme.md] v2.1.1.0
     * [quickstart.md] v1.0.1.0
 * updates #54 - Localization - Master
