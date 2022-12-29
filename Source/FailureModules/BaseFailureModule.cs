@@ -41,10 +41,10 @@ namespace OhScrap
         [KSPField(isPersistant = true, guiActive = false)]
         public int numberOfRepairs = 0;
         //[KSPField(isPersistant = false, guiActive = false, guiName = "BaseFailure", guiActiveEditor = false, guiUnits = "%")]
-        [KSPField(isPersistant = false, guiActive = false, guiName = "#OHS-BaseFailureModule-displayChance", guiActiveEditor = false, guiUnits = "%")]
+        [KSPField(isPersistant = false, guiActive = false, guiName = "#OHS-BFM-displayChance", guiActiveEditor = false, guiUnits = "%")]
         public int displayChance = 100;
         //[KSPField(isPersistant = false, guiActive = true, guiName = "Base Safety Rating", guiActiveEditor = true)]
-        [KSPField(isPersistant = false, guiActive = true, guiName = "#OHS-BaseFailureModule-safetyRating", guiActiveEditor = true)]
+        [KSPField(isPersistant = false, guiActive = true, guiName = "#OHS-BFM-safetyRating", guiActiveEditor = true)]
         public int safetyRating = -1;
         public ModuleUPFMEvents OhScrap;
         public bool remoteRepairable = false;
@@ -53,7 +53,7 @@ namespace OhScrap
 
         //#if DEBUG
         //[KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "Force Failure (DEBUG)")]
-        [KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "#OHS-BaseFailureModule-ForceFailure")]
+        [KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "#OHS-BFM-ForceFailure")]
         public void ForceFailure()
         {
             if (HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu)
@@ -70,7 +70,7 @@ namespace OhScrap
             }
         }
         //[KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "Force Repair(DEBUG)")]
-        [KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "#OHS-BaseFailureModule-ForceRepair")]
+        [KSPEvent(active = true, guiActive = true, guiActiveUnfocused = true, unfocusedRange = 5.0f, externalToEVAOnly = false, guiName = "#OHS-BFM-ForceRepair")]
         public void ForcedRepair()
         {
 
@@ -232,14 +232,14 @@ namespace OhScrap
             if (KRASHWrapper.simulationActive()) return;
             launched = true;
             Initialize();
-            UPFMUtils.instance.testedParts.Add(SYP.ID);
-            if (HighLogic.LoadedScene == GameScenes.FLIGHT && isSRB && FailureAllowed() && UPFMUtils.instance._randomiser.NextDouble() < chanceOfFailure) InvokeRepeating("FailPart", 0.01f, 0.01f);
+            Utils.instance.testedParts.Add(SYP.ID);
+            if (HighLogic.LoadedScene == GameScenes.FLIGHT && isSRB && FailureAllowed() && Utils.instance._randomiser.NextDouble() < chanceOfFailure) InvokeRepeating("FailPart", 0.01f, 0.01f);
         }
 
         public void OnUpdate()
         {
-            Events["ForceFailure"].guiName = Localizer.Format("#OHS-BaseFailureModule-ForceFailure", moduleName);
-            Events["ForcedRepair"].guiName = Localizer.Format("#OHS-BaseFailureModule-ForceRepair", moduleName);
+            Events["ForceFailure"].guiName = Localizer.Format("#OHS-BFM-ForceFailure", moduleName);
+            Events["ForcedRepair"].guiName = Localizer.Format("#OHS-BFM-ForceRepair", moduleName);
 
             Events["ForceFailure"].active = HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu;
             Events["ForcedRepair"].active = HighLogic.CurrentGame.Parameters.CustomParams<DebugSettings>().debugMenu;
@@ -256,8 +256,8 @@ namespace OhScrap
 
             //Events["ForceFailure"].guiName = moduleName + "Force Failure (DEBUG)";
             //Events["ForcedRepair"].guiName = moduleName + "Force Repair (DEBUG)";
-            Events["ForceFailure"].guiName = Localizer.Format("#OHS-BaseFailureModule-ForceFailure", moduleName);
-            Events["ForcedRepair"].guiName = Localizer.Format("#OHS-BaseFailureModule-ForceRepair", moduleName);
+            Events["ForceFailure"].guiName = Localizer.Format("#OHS-BFM-ForceFailure", moduleName);
+            Events["ForcedRepair"].guiName = Localizer.Format("#OHS-BFM-ForceRepair", moduleName);
 
             //    Events["ForceFailure"].active = true;
             //    Events["ForcedRepair"].active = true;
@@ -275,18 +275,18 @@ namespace OhScrap
             //}
             // #endif
             //ScrapYard isn't always ready when OhScrap is so we check to see if it's returning an ID yet. If not, return and wait until it does.
-            if (SYP.ID == 0 || !UPFMUtils.instance.ready) ready = false;
+            if (SYP.ID == 0 || !Utils.instance.ready) ready = false;
             else ready = true;
             if (!ready) return;
-            if (UPFMUtils.instance.testedParts.Contains(SYP.ID))
+            if (Utils.instance.testedParts.Contains(SYP.ID))
                 part.FindModuleImplementing<ModuleUPFMEvents>().tested = true;
-            OhScrap.generation = UPFMUtils.instance.GetGeneration(SYP.ID, part);
+            OhScrap.generation = Utils.instance.GetGeneration(SYP.ID, part);
             chanceOfFailure = baseChanceOfFailure;
-            if (SYP.TimesRecovered == 0 || !UPFMUtils.instance.testedParts.Contains(SYP.ID))
+            if (SYP.TimesRecovered == 0 || !Utils.instance.testedParts.Contains(SYP.ID))
                 chanceOfFailure = CalculateInitialFailureRate();
             else chanceOfFailure = CalculateInitialFailureRate() * (SYP.TimesRecovered / (float)expectedLifetime);
-            if (chanceOfFailure < UPFMUtils.instance.minimumFailureChance)
-                chanceOfFailure = UPFMUtils.instance.minimumFailureChance;
+            if (chanceOfFailure < Utils.instance.minimumFailureChance)
+                chanceOfFailure = Utils.instance.minimumFailureChance;
             if (SYP.TimesRecovered > expectedLifetime)
             {
                 float endOfLifeBonus = (float)expectedLifetime / SYP.TimesRecovered;
