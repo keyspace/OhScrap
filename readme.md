@@ -13,7 +13,7 @@ updated: 04 Oct 2022 -->
 
 # OhScrap! (OS) (formerly UPFM)
 
-Scrapyard Based Part Failure addon plugin for Kerbal Space Program.
+[ScrapYard (SYD)][SYD] based *part failure* addon plugin for Kerbal Space Program.
 
 ## By [`zer0Kerbal`][zer0Kerbal], originally by [`severedsolo`][severedsolo]
 
