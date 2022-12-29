@@ -28,7 +28,7 @@ namespace OhScrap
         {
             if (engine == null) return false;
             if (KRASHWrapper.simulationActive()) return false;
-            return HighLogic.CurrentGame.Parameters.CustomParams<UPFMSettings>().SRBFailureModuleAllowed;
+            return HighLogic.CurrentGame.Parameters.CustomParams<Settings>().SRBFailureModuleAllowed;
         }
         //Part will just shutdown and not be restartable.
         public override void FailPart()
