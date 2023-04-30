@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OhScrap</RootNamespace>
     <AssemblyName>OhScrap</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <LangVersion>latest</LangVersion>
@@ -40,7 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="$(K112)Assembly-CSharp.dll">
-       <Private>False</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="$(K112)Assembly-CSharp-firstpass.dll">
       <Private>False</Private>
@@ -55,7 +55,6 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dependencies\EngineModuleWrapper.cs" />
