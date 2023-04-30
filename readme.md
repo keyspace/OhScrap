@@ -3,7 +3,7 @@ OhScrap (ABBV)
 created: 17 Jul 2017
 updated: 04 Oct 2022 -->
 
-<!--this file: CC BY-ND 4.0 by zer0Kerbal-->
+<!--THIS FILE: CC BY-ND 4.0 by zer0Kerbal-->
 
 [![OhScrap][MOD:shd:latest]][forum] [![KSP version][KSP:shd]][KSP:url]  [![License][LIC:shd]][LIC:url]  
 [![Curseforge][CURSFG:shd]][CURSFG:url] [![GitHub][GITHUB:shd]][GITHUB:url] [![SpaceDock][SPCDCK:shd]][SPCDCK:url] [![CKAN][ckan:shd]][ckan:url]  
